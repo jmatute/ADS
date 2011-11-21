@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  descripcion: MyText
+  fecha_cambio: 2011-11-20 19:40:09
+  fechaCrear: 2011-11-20 19:40:09
+  fechaMod: 2011-11-20 19:40:09
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  descripcion: MyText
+  fecha_cambio: 2011-11-20 19:40:09
+  fechaCrear: 2011-11-20 19:40:09
+  fechaMod: 2011-11-20 19:40:09
+  usuarioRes: 1
+  usuarioMod: 1

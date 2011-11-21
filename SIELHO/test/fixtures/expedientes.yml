@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  estado_id: 1
+  solicitud_id: 1
+  creador: 1
+  fechaEntrega: 2011-11-20 19:40:00
+  fechaEmision: 2011-11-20 19:40:00
+  fechaCrear: 2011-11-20 19:40:00
+  fechaMod: 2011-11-20 19:40:00
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  estado_id: 1
+  solicitud_id: 1
+  creador: 1
+  fechaEntrega: 2011-11-20 19:40:00
+  fechaEmision: 2011-11-20 19:40:00
+  fechaCrear: 2011-11-20 19:40:00
+  fechaMod: 2011-11-20 19:40:00
+  usuarioRes: 1
+  usuarioMod: 1

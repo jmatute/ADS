@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  emisor_id: 1
+  destinatario_id: 1
+  titulo: MyString
+  texto: MyText
+  documento_adjunto: 
+  fecha: 2011-11-20 19:39:23
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:39:23
+  fechaMod: 2011-11-20 19:39:23
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  emisor_id: 1
+  destinatario_id: 1
+  titulo: MyString
+  texto: MyText
+  documento_adjunto: 
+  fecha: 2011-11-20 19:39:23
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:39:23
+  fechaMod: 2011-11-20 19:39:23
+  usuarioRes: 1
+  usuarioMod: 1

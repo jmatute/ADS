@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  enlace_id: 1
+  descripcion: MyText
+  fechaInic: 2011-11-20 19:38:11
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:38:11
+  fechaMod: 2011-11-20 19:38:11
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  enlace_id: 1
+  descripcion: MyText
+  fechaInic: 2011-11-20 19:38:11
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:38:11
+  fechaMod: 2011-11-20 19:38:11
+  usuarioRes: 1
+  usuarioMod: 1

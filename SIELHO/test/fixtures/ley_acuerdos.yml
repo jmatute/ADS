@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  noLey: MyString
+  noAcuerdo: MyString
+  fechaGaceta: 2011-11-20 19:40:16
+  fechaCrear: 2011-11-20 19:40:16
+  fechaMod: 2011-11-20 19:40:16
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  noLey: MyString
+  noAcuerdo: MyString
+  fechaGaceta: 2011-11-20 19:40:16
+  fechaCrear: 2011-11-20 19:40:16
+  fechaMod: 2011-11-20 19:40:16
+  usuarioRes: 1
+  usuarioMod: 1

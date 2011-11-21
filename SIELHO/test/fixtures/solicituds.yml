@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  solicitante_id: 1
+  descripcion: MyText
+  institucion_id: 1
+  fecha: 2011-11-20 19:39:52
+  clasificacion_id: 1
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:39:52
+  fechaMod: 2011-11-20 19:39:52
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  solicitante_id: 1
+  descripcion: MyText
+  institucion_id: 1
+  fecha: 2011-11-20 19:39:52
+  clasificacion_id: 1
+  expediente_id: 1
+  fechaCrear: 2011-11-20 19:39:52
+  fechaMod: 2011-11-20 19:39:52
+  usuarioRes: 1
+  usuarioMod: 1

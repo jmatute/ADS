@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  oip_id: 1
+  descripcion: MyText
+  nombre: MyString
+  tipo_institucion: MyString
+  fechaCrear: 2011-11-20 19:38:46
+  fechaMod: 2011-11-20 19:38:46
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  oip_id: 1
+  descripcion: MyText
+  nombre: MyString
+  tipo_institucion: MyString
+  fechaCrear: 2011-11-20 19:38:46
+  fechaMod: 2011-11-20 19:38:46
+  usuarioRes: 1
+  usuarioMod: 1

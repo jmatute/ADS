@@ -1,0 +1,16 @@
+<h2>Sign up</h2>
+
+<%= semantic_form_for @user do |f| %>
+  <%= devise_error_messages! %>
+	<% f.inputs do %>
+		<%= f.input :username,:label=>"Nombre de usuario" %>
+	   	<%= f.input :email %> 	
+		<%= f.input :rol_id, :as => :radio,:label => "Rol",:collection => [["Administrador",0],["OIP",1],["Enlace",2]] %>
+		
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
+	<% end %>
+	<%= f.buttons %>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

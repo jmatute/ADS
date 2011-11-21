@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  usuario_id: 1
+  pnombre: MyString
+  snombre: MyString
+  papellido: MyString
+  sapellido: MyString
+  email: MyString
+  email2: MyString
+  tlf: MyString
+  fechaCrear: 2011-11-20 19:39:13
+  fechaMod: 2011-11-20 19:39:13
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  usuario_id: 1
+  pnombre: MyString
+  snombre: MyString
+  papellido: MyString
+  sapellido: MyString
+  email: MyString
+  email2: MyString
+  tlf: MyString
+  fechaCrear: 2011-11-20 19:39:13
+  fechaMod: 2011-11-20 19:39:13
+  usuarioRes: 1
+  usuarioMod: 1

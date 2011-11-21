@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  documento_id: 1
+  tipo_solicitante: 1
+  modo_contacto: MyText
+  ocupacion_id: 1
+  genero: MyString
+  nivel_educativo: MyString
+  telefono: MyString
+  email: MyString
+  direccion_postal: MyText
+  fax: MyString
+  poder: MyString
+  fechaCrear: 2011-11-20 19:37:53
+  fechaMod: 2011-11-20 19:37:53
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  nombre: MyString
+  documento_id: 1
+  tipo_solicitante: 1
+  modo_contacto: MyText
+  ocupacion_id: 1
+  genero: MyString
+  nivel_educativo: MyString
+  telefono: MyString
+  email: MyString
+  direccion_postal: MyText
+  fax: MyString
+  poder: MyString
+  fechaCrear: 2011-11-20 19:37:53
+  fechaMod: 2011-11-20 19:37:53
+  usuarioRes: 1
+  usuarioMod: 1

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  fechaCrear: 2011-11-20 19:39:44
+  fechaMod: 2011-11-20 19:39:44
+  usuarioRes: 1
+  usuarioMod: 1
+
+two:
+  nombre: MyString
+  fechaCrear: 2011-11-20 19:39:44
+  fechaMod: 2011-11-20 19:39:44
+  usuarioRes: 1
+  usuarioMod: 1
