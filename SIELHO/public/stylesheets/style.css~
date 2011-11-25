@@ -59,7 +59,7 @@ ul.osx-dock li:hover a {
 -webkit-transform: scale(1.25);
 }
 ul.osx-dock li.nearby { 
-margin-left: 6px; margin-right: 6px;
+margin-left: 10px; margin-right: 10px;
 z-index: 100;
 }
 ul.osx-dock li.nearby a { 
