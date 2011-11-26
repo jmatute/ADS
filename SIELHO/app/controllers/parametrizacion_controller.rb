@@ -12,6 +12,16 @@ class ParametrizacionController < ApplicationController
 
 	def create
 		if params.has_key? "departamento"
+			@departamento = Departamento.new(params[:departamento])
+			@departamento.usuarioMod = current_user.id
+			@departamento.usuarioRes = current_user.id
+			@departamento.fechaCrear = DateTime.now
+			@departamento.fechaMod = DateTime.now
+			if @departamento.save()
+				flash[:notice] = "Nueva Departamento creada "
+			elsif
+				flash[:notice] = "No se pudo crear la departamento"
+			end	
 
 		end
 		if params.has_key? "ocupacion"
@@ -27,10 +37,20 @@ class ParametrizacionController < ApplicationController
 			end	
 		end
 		if params.has_key? "estado"
+			@estado = Estado.new(params[:estado])
+			@estado.usuarioMod = current_user.id
+			@estado.usuarioRes = current_user.id
+			@estado.fechaCrear = DateTime.now
+			@estado.fechaMod = DateTime.now
+			if @estado.save()
+				flash[:notice] = "Nuevo Estado creado "
+			elsif
+				flash[:notice] = "No se pudo crear el estado"
+			end	
 
 		end
 		if params.has_key? "tipo_documento"
-			@tipodocumento = TipoDocumento.new(params[:ocupacion])
+			@tipodocumento = TipoDocumento.new(params[:tipo_documento])
 			@tipodocumento.usuarioMod = current_user.id
 			@tipodocumento.usuarioRes = current_user.id
 			@tipodocumento.fechaCrear = DateTime.now
@@ -38,16 +58,33 @@ class ParametrizacionController < ApplicationController
 			if @ocupacion.save()
 				flash[:notice] = "Nuevo Tipo Documento creado "
 			elsif
-				flash[:notice] = "No se pudo crear la ocupacion"
+				flash[:notice] = "No se pudo crear el tipo de documento"
 			end	
 		end
 		if params.has_key? "ley_acuerdo"
+			@leyAcuerdo = LeyAcuerdo.new(params[:ley_acuerdo])
+			@leyAcuerdo.usuarioMod = current_user.id
+			@leyAcuerdo.usuarioRes = current_user.id
+			@leyAcuerdo.fechaCrear = DateTime.now
+			@leyAcuerdo.fechaMod = DateTime.now
+			if @leyAcuerdo.save()
+				flash[:notice] = "Nueva Ley/Acuerdo creado "
+			elsif
+				flash[:notice] = "No se pudo crear Ley/Acuerdo"
+			end	
 
 		end
 		if params.has_key? "institucion"
-
+			@institucion = Institucion.new(params[:institucion])
+			@institucion.usuarioMod = current_user.id
+			@institucion.usuarioRes = current_user.id
+			@institucion.fechaCrear = DateTime.now
+			@institucion.fechaMod = DateTime.now
+			if @institucion.save()
+				flash[:notice] = "Nueva Ley/Acuerdo creado "
+			elsif
+				flash[:notice] = "No se pudo crear Ley/Acuerdo"
+			end	
 		end
-
-
 	end
 end
