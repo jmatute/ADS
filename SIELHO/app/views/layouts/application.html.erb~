@@ -35,7 +35,7 @@
 		   
                 </ul>
             </li>
-	    <li><%=link_to "Ingresar al Sistema",   new_user_session_path%></li>
+	    <li><%=link_to "Ingresar al Sistema",  new_user_session_path%></li>
         </ul>
         <img style="float:left;" alt="" src="/images/menu_right.png"/>
     </div>
@@ -49,29 +49,22 @@
 
 	<%= yield %>
 	
-	<div id="dockContainer"> 
-		<div id="dockWrapper"> 
-			<div class="cap left"></div> 
-				<ul class="osx-dock">
-					<li class="active"> 
-						<span>Inicio</span> 
-						<a href="/" title="Home"><img src="/images/home.png" /></a> 
-					</li>
-					<li class="active"> 
-						<span>Formulario</span> 
-						<a href="/" title=""><img src="/images/doc.png" /></a> 
-					</li>
-					<li class="active"> 
-						<span>Formulario</span> 
-						<a href="/" title=""><img src="/images/doc1.png" /></a> 
-						</li>
-					<li class="active">
-                                                <span>Login</span>
-                                                <a href="/" title=""><img src="/images/login.png" /></a>
-                                                </li>
-
-				</ul>
-		</div>
-	</div>
+<div id="dockContainer"> 
+<div id="dockWrapper"> 
+<div class="cap left"></div> 
+<ul class="osx-dock">
+<li class="active"> 
+<span>Inicio</span> 
+<a href="/" title="Home"><img src="/images/home.png" /></a> 
+</li>
+<li class="active"> 
+<span>Formulario</span> 
+<a href="/" title=""><img src="/images/doc.png" /></a> 
+</li>
+<li class="active"> 
+<span>Formulario</span> 
+<a href="/" title=""><img src="/images/doc1.png" /></a> 
+</li>
+</ul>
 </body>
 </html>
