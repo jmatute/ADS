@@ -245,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20111121163742) do
   create_table "solicituds", :force => true do |t|
     t.integer  "solicitante_id"
     t.text     "descripcion"
+    t.string   "lugar"
     t.integer  "institucion_id"
     t.datetime "fecha"
     t.integer  "clasificacion_id"

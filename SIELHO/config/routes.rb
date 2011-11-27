@@ -1,5 +1,5 @@
 SIELHO::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "devise/custom/registrations" }
 
   match 'parametrizacion' => "parametrizacion#index",:as => :parametrizacion
   match 'parametrizacion/departamento' => "parametrizacion#create", :as => :departamentos  

@@ -3,7 +3,8 @@ class CreateSolicituds < ActiveRecord::Migration
     create_table :solicituds do |t|
       t.integer :solicitante_id
       t.text :descripcion
-      t.integer :institucion_id
+      t.string :lugar
+	  t.integer :institucion_id
       t.datetime :fecha
       t.integer :clasificacion_id
       t.integer :expediente_id
