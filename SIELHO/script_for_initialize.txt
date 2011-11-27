@@ -1,0 +1,4 @@
+#Crear roles
+Rol.new(:nombre=>"admin",:descripcion=>"administrador completo del sistema",:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>0,:usuarioMod=>0).save()
+Rol.new(:nombre=>"oip",:descripcion=>"oficial de informacion de una institucion",:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>1,:usuarioMod=>1).save()
+Rol.new(:nombre=>"enlace",:descripcion=>"enlace de un departamento dentro de una institucion",:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>1,:usuarioMod=>1).save()

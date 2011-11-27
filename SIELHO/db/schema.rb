@@ -210,6 +210,11 @@ ActiveRecord::Schema.define(:version => 20111121163742) do
     t.datetime "updated_at"
   end
 
+  create_table "permisos_rols", :id => false, :force => true do |t|
+    t.integer "rol_id"
+    t.integer "permiso_id"
+  end
+
   create_table "rols", :force => true do |t|
     t.string   "nombre"
     t.text     "descripcion"

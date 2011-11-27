@@ -19,9 +19,12 @@
                 
             </li>
             <li><a href="#">Inicio</a></li>
+
+			<% unless user_signed_in? %>    
             <li><a href="#">Realizar Solicitud de Informacion</a>
                 <ul id="help">
-                    <li>
+ 
+	               <li>
                         <img class="corner_inset_left" alt="" src="/images/corner_inset_left.png"/>
                         <a href="#">Formulario para Persona Natural</a>
                         <img class="corner_inset_right" alt="" src="/images/corner_inset_right.png"/>
@@ -35,6 +38,7 @@
 		   
                 </ul>
             </li>
+			<%end%>
 	    <li><%=link_to "Ingresar al Sistema",   new_user_session_path%></li>
         </ul>
         <img style="float:left;" alt="" src="/images/menu_right.png"/>
@@ -48,7 +52,8 @@
 
 
 	<%= yield %>
-	
+
+	<% if user_signed_in? %>	
 	<div id="dockContainer"> 
 		<div id="dockWrapper"> 
 			<div class="cap left"></div> 
@@ -67,11 +72,13 @@
 						</li>
 					<li class="active">
                                                 <span>Login</span>
-                                                <a href="/" title=""><img src="/images/login.png" /></a>
+                                                <a href="/users/sign_in" title=""><img src="/images/login.png" /></a>
                                                 </li>
 
 				</ul>
 		</div>
 	</div>
+	<% end %>
+
 </body>
 </html>

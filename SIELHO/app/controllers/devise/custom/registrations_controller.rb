@@ -5,12 +5,10 @@ class Devise::Custom::RegistrationsController < Devise::RegistrationsController
 	end
 
 	def create
-		a = params[:user]
+		a= params[:user]
 		super
 		user = User.find_by_email(a[:email])
-		user.activo = false
-		user.username = a[:username]
-		user.save
+		user.agregar_admin(params)
 	end
 	
 	def update
