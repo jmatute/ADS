@@ -1,22 +1,49 @@
 <%if user_signed_in?%>
 
 	<%if current_user.rol.nombre.eql? "admin"%>
-		<table>
+		<table class="sortable"   id="sortabletable" >
 			<tr>
 				<th>Nombre </th> <th> Institucion </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
 			</tr>
 		<% @oips.each do |e| %>
 			<tr>
-				<td> <%=" #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} " %></td>
+				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} ", edit_oip_path(e) %></td>
 				<td> <%=" #{Institucion.find(e.institucion_id).nombre } "%> </td>
 				<td> <%=" #{e.email}"%></td>
 				<td> <%=" #{e.email2}"%></td>
 				<td> <%=" #{e.tlf}"%></td>
-			    <td> <%=" #{User.find(e.usuario_id).activo }"%> </td>	
+			    <td> <%if User.find(e.usuario_id).activo %>
+                        <%= link_to image_tag("/images/check_box_on.gif"), activar_oip_path(e) %>
+					 <%else%>
+                        <%= link_to image_tag("/images/checkbox_off.gif"), activar_oip_path(e) %>
+					
+                     <%end%>		
+				</td>	
 			</tr>
 		<% end %>	
 		</table>
 	<%elsif current_user.rol.nombre.eql? "oip" %>
+		<table class="sortable"   id="sortabletable" >
+			<tr>
+				<th>Nombre </th> <th> Institucion </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
+			</tr>
+		<% @enlaces.each do |e| %>
+			<tr>
+				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} ", edit_enlace_path(e) %></td>
+				<td> <%=" #{Institucion.find(e.institucion_id).nombre } "%> </td>
+				<td> <%=" #{e.email}"%></td>
+				<td> <%=" #{e.email2}"%></td>
+				<td> <%=" #{e.tlf}"%></td>
+			    <td> <%if User.find(e.usuario_id).activo %>
+                        <%= link_to image_tag("/images/check_box_on.gif"), activar_enlace_path(e) %>
+					 <%else%>
+                        <%= link_to image_tag("/images/checkbox_off.gif"), activar_enlace_path(e) %>
+					
+                     <%end%>		
+				</td>	
+			</tr>
+		<% end %>	
+		</table>
 
 	<%end%>
 

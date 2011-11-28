@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
 	self.username = params[:user][:username]
     self.save()
 	x = Administrador.new
-	x.email = params[:user][:username]
+	x.email = params[:user][:email]
 	x.usuario_id = id
 	x.save()	
   end
+
 end

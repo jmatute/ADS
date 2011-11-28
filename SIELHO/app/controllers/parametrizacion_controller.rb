@@ -14,7 +14,7 @@ class ParametrizacionController < ApplicationController
 	def create
 		if params.has_key? "departamento"
 			@departamento = Departamento.new(params[:departamento])
-			@departamento.agregar(current_user.id)
+			@departamento.agregar(  Oip.find_by_usuario_id(current_user.id).institucion_id,current_user.id)
 			if @departamento.save()
 				flash[:notice] = "Nueva Departamento creada "
 			elsif

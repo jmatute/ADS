@@ -40,7 +40,17 @@
 
 	 		   <li><%=link_to "Ingresar al Sistema",   new_user_session_path%></li>
 			<%else%>
-				<li><%="Bienvenido #{current_user.username} , #{ current_user.rol.nombre}"%> </li>
+			<li>		<%if current_user.rol.nombre.eql? "admin"%>
+						<%="Bienvenido #{Administrador.find_by_usuario_id(current_user.id).nombre }" %>
+					<%end%>
+					<%if current_user.rol.nombre.eql? "oip"%>
+						<%="Bienvenido #{Oip.find_by_usuario_id(current_user.id).nombre }, #{Institucion.find(Oip.find_by_usuario_id(current_user.id).institucion_id).nombre}" %>
+
+					<%end%>
+					<%if current_user.rol.nombre.eql? "enlace"%>
+						<%="Bienvenido #{Enlace.find_by_usuario_id(current_user.id).nombre }, #{Institucion.find(Enlace.find_by_usuario_id(current_user.id).institucion_id).nombre}, #{Departamento.find(Enlace.find_by_usuario_id(current_user.id).departamento_id).nombre }" %>
+
+					<%end%> </li>
 			<%end%>
 			
 
@@ -59,7 +69,7 @@
 
 	<%= yield %>
 
-	<% if user_signed_in? %>	
+	<% if user_signed_in? and current_user.activo %>	
 	<div id="dockContainer"> 
 		<div id="dockWrapper"> 
 			<div class="cap left"></div> 
@@ -77,7 +87,7 @@
 						<span>Crear OIP</span> 
 					<%elsif current_user.rol.nombre.eql? "oip" %>
 						<li class="active"> 
-						<span>Crear Enlace</span>
+						<span>Enlace</span>
 					<%end%>
                         <%= link_to image_tag("/images/add-user.png"), new_user_path %>
 					</li>
@@ -94,16 +104,28 @@
 						<span>Institucion</span> 
 						<a href="/parametrizacion?parametrizar=institucion" title=""><img src="/images/edificio.png" /></a> 
 						</li>
-
-
-
-
 					<%end%>
+					
+					<%if current_user.rol.nombre.eql? "oip" %>
+						<li class="active"> 
+						<span>Departamento</span> 
+						<a href="/parametrizacion?parametrizar=departamento" title=""><img src="/images/departamento.jpg" /></a> 
+						</li>
+					<%end%>
+
+
+
 					<li class="active"> 
 						<span>Formulario</span> 
 						<a href="/" title=""><img src="/images/doc1.png" /></a> 
 						</li>
 					
+						<li class="active"> 
+						<span> Contraseña</span> 
+                          <%= link_to image_tag("/images/login.png"), edit_user_registration_path %>
+						
+						</li>
+
 					<li class="active">
                            <span>Logout</span>
                            <%= link_to image_tag("/images/logout.png"), destroy_user_session_path, :method => :delete %>

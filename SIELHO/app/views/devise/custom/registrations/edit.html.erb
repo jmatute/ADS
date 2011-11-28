@@ -1,0 +1,21 @@
+<h2>Editar Contraseña </h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= "Correo" %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= "Nueva Contraseña" %> <i>(Dejar en blanco si no desea cambiar)</i><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= "Repita nueva Contraseña " %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= "Contraseña Actual" %> <i>(Para poder confirmar los cambios es necesaria su contraseña actual)</i><br />
+  <%= f.password_field :current_password %></div>
+
+  <div><%= f.submit "Actualizar" %></div>
+<% end %>
+
+

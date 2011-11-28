@@ -10,7 +10,9 @@
 				<%= f.input  :nombre%>
 				<%= f.input :descripcion%>
 			<% end %>
-			<%= f.buttons %>
+			<% f.buttons do %>
+				<%= f.commit_button :label =>"Crear"%>
+			<% end %>
 		<% end %>
     </div>
 	
@@ -66,7 +68,8 @@
        <!--Content-->
     </div>
 	<%end%>
-
+	
+	<% if @parametrizar.eql? "ocupacion" %>
     <div id="tab5" class="tab_content">
 		<h2>Ocupacion </h2>
         <%semantic_form_for @ocupacion do |f| %>
@@ -77,8 +80,9 @@
 		<% end %>
        <!--Content-->
     </div>
+	<%end%>
 
-
+	<% if @parametrizar.eql? "leyAcuerdo" %>
 
     <div id="tab6" class="tab_content">
 		<h2>Ley/Acuerdo </h2>
@@ -93,7 +97,7 @@
 		<% end %>
        <!--Content-->
     </div>
-
+	<%end%>
 
 </div>
 

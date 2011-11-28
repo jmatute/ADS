@@ -1,0 +1,14 @@
+<%= semantic_form_for @oip do |f| %>
+	<% f.inputs do %>
+		<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion",:collection => @instituciones %>
+		<%=f.input :pnombre, :label => "Primer nombre:"%>
+		<%=f.input :snombre, :label => "Segundo nombre:"%>
+		<%=f.input :papellido, :label => "Primer apellido:"%>
+		<%=f.input :sapellido, :label => "Segundo apellido:"%>
+		<%=f.input :email, :label => "Correo principal:"%>
+		<%=f.input :email2, :label => "Correo alterno:"%>
+		<%=f.input :tlf, :label => "Telefono:"%>
+
+	<%end%>
+	<%= f.buttons %>
+<% end %>
