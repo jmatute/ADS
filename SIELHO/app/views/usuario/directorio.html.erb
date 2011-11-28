@@ -25,13 +25,13 @@
 	<%elsif current_user.rol.nombre.eql? "oip" %>
 		<table class="sortable"   id="sortabletable" >
 			<tr>
-				<th>Nombre </th> <th> Institucion </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
+				<th>Nombre </th> <th> Departamento </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
 			</tr>
 		<% @enlaces.each do |e| %>
 			<tr>
 				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} ", edit_enlace_path(e) %></td>
-				<td> <%=" #{Institucion.find(e.institucion_id).nombre } "%> </td>
-				<td> <%=" #{e.email}"%></td>
+				<td> <%=" #{Departamento.where( :institucion_id=> e.institucion_id,:id=>e.departamento_id).first.nombre}"%>
+			<td> <%=" #{e.email}"%></td>
 				<td> <%=" #{e.email2}"%></td>
 				<td> <%=" #{e.tlf}"%></td>
 			    <td> <%if User.find(e.usuario_id).activo %>

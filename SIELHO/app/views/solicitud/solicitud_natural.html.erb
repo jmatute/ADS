@@ -1,0 +1,37 @@
+<h2>Solicitud de Informacion para Persona Natural </h2>
+<%= semantic_form_for @solicitud do |f| %>
+	<%= semantic_fields_for @solicitante do |s| %>
+		<%=semantic_fields_for @documento do |d| %>	
+
+			<%= f.inputs do%>
+				<%= s.inputs do%>
+
+				<%= f.input :lugar %>	
+				<%= s.input :nombre ,:label=>"Nombre Completo del Solicitante"%>
+		
+
+				<%= d.input :numero ,:label	=>"Numero de Documento"%>
+				<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion",:collection => @instituciones %>
+				<%= f.input :descripcion, :input_html => { :style => "width:70em; height: 10em" }%>
+
+				<h3>Modo de Contacto </h3>		
+					<%=s.input :telefono%>
+					<%=s.input :fax%>
+					<%=s.input :email%>
+					<%=s.input :direccion_postal, :input_html => { :style => "width:70em; height: 5em" } %>
+					 
+				<h3>Informacion Estadistica (Opcional ) </h3>
+					<%=s.input :genero, :as => :select, :label => "Genero",:collection => [["Masculino","M"],["Femenino","F"]] %>
+			
+					<%=s.input :nivel_educativo,:as => :select, :label => "Nivel Educativo",:collection => [["Primario","Primario"],["Secundario","Secundario"],["Universitario","Universitario"]] %>
+
+					<%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion",:collection => @ocupaciones %>
+				<%end%>		
+			<%end%>
+		<%end%>
+	<%end%>
+	<%= f.buttons do%>
+		<% f.commit_button :label=>"Crear Solicitud"%>
+	<%end%>
+<%end%>
+
