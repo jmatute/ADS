@@ -1,5 +1,25 @@
 <%if user_signed_in?%>
 
+	<%if current_user.rol.nombre.eql? "admin"%>
+		<table>
+			<tr>
+				<th>Nombre </th> <th> Institucion </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
+			</tr>
+		<% @oips.each do |e| %>
+			<tr>
+				<td> <%=" #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} " %></td>
+				<td> <%=" #{Institucion.find(e.institucion_id).nombre } "%> </td>
+				<td> <%=" #{e.email}"%></td>
+				<td> <%=" #{e.email2}"%></td>
+				<td> <%=" #{e.tlf}"%></td>
+			    <td> <%=" #{User.find(e.usuario_id).activo }"%> </td>	
+			</tr>
+		<% end %>	
+		</table>
+	<%elsif current_user.rol.nombre.eql? "oip" %>
+
+	<%end%>
+
 
 
 

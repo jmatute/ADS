@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
 
   def agregar_admin(params)
 	
-	p "llega"
 	self.rol_id = 1
 	self.activo = true
 	self.username = params[:user][:username]

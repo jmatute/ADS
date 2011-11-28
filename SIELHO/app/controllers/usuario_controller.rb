@@ -9,7 +9,7 @@ class UsuarioController < ApplicationController
 		if params.has_key? "oip"
 			oip = Oip.new(params[:oip])
 			if oip.save
-				oip.crear
+				oip.crear(current_user.id)
 				redirect_to root_path
 			else
 				redirect_to root_path
@@ -20,5 +20,11 @@ class UsuarioController < ApplicationController
 	def directorio
 		@oips = Oip.all
 		@enlaces = Enlace.all
+	end
+
+	def activar
+
+
+		redirect_to root_path
 	end
 end
