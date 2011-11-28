@@ -1,7 +1,6 @@
 class CreateInstitucions < ActiveRecord::Migration
   def self.up
     create_table :institucions do |t|
-      t.integer :oip_id
       t.text :descripcion
       t.string :nombre
       t.string :tipo_institucion

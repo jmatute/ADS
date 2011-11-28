@@ -1,5 +1,24 @@
-class Usuarios::SessionsController < Devise::SessionsController
+class UsuarioController < ApplicationController
 	def new
-		@user = User.new
+		@oip = Oip.new
+		@enlace = Enlace.new
+		@instituciones = Institucion.instituciones()
+	end
+
+	def create
+		if params.has_key? "oip"
+			oip = Oip.new(params[:oip])
+			if oip.save
+				oip.crear
+				redirect_to root_path
+			else
+				redirect_to root_path
+			end
+		end
+	end
+
+	def directorio
+		@oips = Oip.all
+		@enlaces = Enlace.all
 	end
 end

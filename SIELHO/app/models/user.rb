@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    has_one :rols
 
 	has_many :administradors
 	has_many :enlaces
@@ -20,8 +19,20 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
  end
 
- def agregar_admin(params)
-	p params
+	def rol()
+		Rol.find(rol_id)
+	end
 
- end
+  def agregar_admin(params)
+	
+	p "llega"
+	self.rol_id = 1
+	self.activo = true
+	self.username = params[:user][:username]
+    self.save()
+	x = Administrador.new
+	x.email = params[:user][:username]
+	x.usuario_id = id
+	x.save()	
+  end
 end

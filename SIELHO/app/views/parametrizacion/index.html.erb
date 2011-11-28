@@ -1,26 +1,8 @@
 
 <% if user_signed_in? %>
-<ul class="tabs">
-	<%if current_user.rol_id == 2%>
-	    <li><a href="#tab1">Departamento</a></li>
-    <%end%>
-
-	<%if current_user.rol_id == 1%>
-	 <li><a href="#tab2">Documento</a></li>
-     <li><a href="#tab3">Estado</a></li>
-     <li><a href="#tab4">Institucion</a></li>
-     <li><a href="#tab5">Ocupacion</a></li>
-    <%end%>
-
-	<%if current_user.rol_id == 2%>
-	 <li><a href="#tab6">Leyes</a></li>
-	<%end%>
-
-</ul>
-
 <div class="tab_container">
 	
-	<%if current_user.rol_id == 2%>
+	<% if @parametrizar.eql? "departamento" %>
     <div id="tab1" class="tab_content">
 		<h2>Departamento </h2>
         <%semantic_form_for @departamento do |f| %>
@@ -31,10 +13,10 @@
 			<%= f.buttons %>
 		<% end %>
     </div>
-
-	<%end%>
 	
-	<%if current_user.rol_id == 1%>
+	<%end%>
+
+	<% if @parametrizar.eql? "tipodocumento" %>
     <div id="tab2" class="tab_content">
 		<h2>Documento </h2>
         <%semantic_form_for @tipodocumento do |f| %>
@@ -48,7 +30,11 @@
       
     </div>
 
+	<%end%>
 	
+
+
+	<% if @parametrizar.eql? "estado" %>
     <div id="tab3" class="tab_content">
 		<h2>Estado </h2>
         
@@ -59,8 +45,12 @@
 			<% end %>
 			<%= f.buttons %>
 		<% end %>
-       <!--Content-->
     </div>
+
+	<%end%>
+
+	<% if @parametrizar.eql? "institucion" %>
+	
     <div id="tab4" class="tab_content">
 		<h2>Institucion </h2>
         <%semantic_form_for @institucion do |f| %>
@@ -69,10 +59,14 @@
 				<%= f.input :tipo_institucion, :as => :select,:label => "Tipo de Institucion", :collection =>  [["Centralizada","Centralizada"],["ONG","ONG"],["Descentralizada","Descentralizada"]] %>
 				<%= f.input :descripcion %>
 			<% end %>
-			<%= f.buttons %>
+			<% f.buttons do %>
+				<%= f.commit_button :label =>"Crear"%>
+			<% end %>
 		<% end %>
        <!--Content-->
     </div>
+	<%end%>
+
     <div id="tab5" class="tab_content">
 		<h2>Ocupacion </h2>
         <%semantic_form_for @ocupacion do |f| %>
@@ -84,9 +78,7 @@
        <!--Content-->
     </div>
 
-	<%end%>
 
-	<%if current_user.rol_id == 2%>
 
     <div id="tab6" class="tab_content">
 		<h2>Ley/Acuerdo </h2>
@@ -101,7 +93,6 @@
 		<% end %>
        <!--Content-->
     </div>
-	<% end%>
 
 
 </div>

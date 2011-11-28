@@ -7,16 +7,14 @@ class ParametrizacionController < ApplicationController
 		@ocupacion = Ocupacion.new()
 		@leyAcuerdo = LeyAcuerdo.new()
 		@estados = Estado.all()
+		@parametrizar = params[:parametrizar]
 		flash[:notice] = ""
 	end
 
 	def create
 		if params.has_key? "departamento"
 			@departamento = Departamento.new(params[:departamento])
-			@departamento.usuarioMod = current_user.id
-			@departamento.usuarioRes = current_user.id
-			@departamento.fechaCrear = DateTime.now
-			@departamento.fechaMod = DateTime.now
+			@departamento.agregar(current_user.id)
 			if @departamento.save()
 				flash[:notice] = "Nueva Departamento creada "
 			elsif
@@ -76,10 +74,7 @@ class ParametrizacionController < ApplicationController
 		end
 		if params.has_key? "institucion"
 			@institucion = Institucion.new(params[:institucion])
-			@institucion.usuarioMod = current_user.id
-			@institucion.usuarioRes = current_user.id
-			@institucion.fechaCrear = DateTime.now
-			@institucion.fechaMod = DateTime.now
+			@institucion.agregar(current_user.id)
 			if @institucion.save()
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif

@@ -9,7 +9,10 @@ SIELHO::Application.routes.draw do
   match 'parametrizacion/tipodocumento' => "parametrizacion#create", :as => :tipo_documentos  
   match 'parametrizacion/leyacuerdo' => "parametrizacion#create", :as => :ley_acuerdos  
   root :to => "static#index"
-
+  match 'usuario/new' => "usuario#new" ,:as => :new_user 
+  match 'usuario/create_oip' => "usuario#create", :as => :oips
+  match 'usuario/create_enlace' => "usuario#create", :as => :enlaces
+  match 'usuario/directorio' => "usuario#directorio", :as => :directorio
 # The priority is based upon order of creation:
   # first created -> highest priority.
 

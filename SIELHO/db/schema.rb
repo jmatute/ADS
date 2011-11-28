@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(:version => 20111121163742) do
   end
 
   create_table "institucions", :force => true do |t|
-    t.integer  "oip_id"
     t.text     "descripcion"
     t.string   "nombre"
     t.string   "tipo_institucion"
