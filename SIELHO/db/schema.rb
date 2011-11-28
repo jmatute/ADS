@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121163742) do
+ActiveRecord::Schema.define(:version => 20111128211419) do
 
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(:version => 20111121163742) do
     t.integer  "usuarioMod"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "leido"
+    t.boolean  "borrado"
   end
 
   create_table "ocupacions", :force => true do |t|
@@ -260,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20111121163742) do
     t.integer  "usuarioMod"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "numero"
   end
 
   create_table "tipo_documentos", :force => true do |t|

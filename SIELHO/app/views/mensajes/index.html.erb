@@ -1,0 +1,27 @@
+<table class="sortable"   id="sortabletable" >
+<tr>
+	<th>Titulo </th> <th> Fecha </th> <th>Emisor </th> <th> Marcar Leido </th> <th> Borrar </th>
+</tr>
+<% @mensajes.each do |m| %>
+<tr>
+	<td><%="#{m.titulo}"%> </td>
+	<td><%="#{m.fecha}"%> </td>
+	<%if m.emisor_id.eql? 0%>
+		<td><%="Sistema "%> </td>
+	<%else%>
+		<td><%="#{User.find(m.emisor_id).username }"%>
+	<%end%>
+     <td> <%if m.leido %>
+             <img src="/images/check_box_on.gif" />
+		  <%else%>
+             <%= link_to image_tag("/images/checkbox_off.gif"), root_path %>
+		  <%end%>		
+	</td>	
+     <td> 
+             <%= link_to image_tag("/images/checkbox_off.gif"), root_path %>
+	</td>	
+
+	
+</tr>
+<% end%>
+		</table>

@@ -17,6 +17,7 @@ class SolicitudController < ApplicationController
 	end
 
 	def create
+		Mensaje.NuevaSolicitud(params)
 		redirect_to root_path
 	end
 end

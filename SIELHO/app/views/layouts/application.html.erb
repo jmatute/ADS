@@ -16,7 +16,7 @@
   <div class = "menufinal">
         <ul id="menu">
             <li class="logo">
-                <img style="float:left;" alt="" src="/images/menu_left.png"/>
+                <a href="/"><img style="float:left;" alt="" src="/images/menu_left.png"/></a>
                 
             </li>
 			<% unless user_signed_in? %>    
@@ -139,10 +139,19 @@
 						</li>
 
 	<% end %>
-
+					<%if current_user.activo%>
+					<li class="active">
+                           <span>Inbox</span>
+						<%if Mensaje.HasMensajeNoLeido(current_user.id) %>
+                          <%= link_to image_tag("/images/inbox_full.png"), inbox_path(current_user) %>
+						<% else%>
+                          <%= link_to image_tag("/images/inbox_empty.png"), inbox_path(current_user) %>
+						<% end%>	
+                     </li>
+					<% end%>
 					<li class="active">
                            <span>Logout</span>
-                          <%= link_to image_tag("/images/logout.png"), destroy_user_session_path,:method=>:delete %>
+                          <%= link_to image_tag("/images/logout.png"), destroy_user_session_path %>
 							
                      </li>
 
