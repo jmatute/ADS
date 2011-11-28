@@ -16,12 +16,13 @@ SIELHO::Application.routes.draw do
   match 'usuario/modificar_oip/:id' => "usuario#modificar_oip", :as => :edit_oip
   match 'usuario/:id/edit' => "usuario#editoip", :as => :oip
   match 'usuario/:id/editEnlace' => "usuario#editenlace", :as => :enlace
-
   match 'usuario/:id/activarOip' => "usuario#activar_oip",:as => :activar_oip
   match 'usuario/:id/activarEnlace' => "usuario#activar_enlace",:as => :activar_enlace
   match 'usuario/modificar_enlace/:id' => "usuario#modificar_enlace", :as => :edit_enlace
 
-
+  match 'solicitud/natural/new' => "solicitud#solicitud_natural", :as => :solicitud_natural
+  match 'solicitud/juridica/new' => "solicitud#solicitud_juridica", :as => :solicitud_juridica
+  match 'solicitud/create' => "solicitud#create", :as => :solicituds
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -3,6 +3,7 @@
 <head>
   <title>SIELHO</title>
   <%= stylesheet_link_tag :all %>
+
   <%= javascript_include_tag :defaults %>
  <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
   <%= csrf_meta_tag %>
@@ -24,10 +25,13 @@
  
 	               <li>
                         <img class="corner_inset_left" alt="" src="/images/corner_inset_left.png"/>
-                        <a href="#">Formulario para Persona Natural</a>
+                          <%= link_to "Formulario para Persona Natural",solicitud_natural_path %>
                         <img class="corner_inset_right" alt="" src="/images/corner_inset_right.png"/>
                     </li>
-                    <li><a href="#">Formulario para Persona Juridica</a></li>
+
+                    <li>
+                          <%= link_to "Formulario para Persona Juridica",solicitud_juridica_path %>
+					</li>
                     <li class="last">
                         <img class="corner_left" alt="" src="/images/corner_left.png"/>
                         <img class="middle" alt="" src="/images/dot.gif"/>
@@ -69,11 +73,14 @@
 
 	<%= yield %>
 
-	<% if user_signed_in? and current_user.activo %>	
+					<%if user_signed_in? %>
 	<div id="dockContainer"> 
 		<div id="dockWrapper"> 
 			<div class="cap left"></div> 
 				<ul class="osx-dock">
+					<% if user_signed_in? and current_user.activo %>	
+					
+
 					<li class="active"> 
 						<span>Inicio</span> 
 						<a href="/" title="Home"><img src="/images/home.png" /></a> 
@@ -104,37 +111,45 @@
 						<span>Institucion</span> 
 						<a href="/parametrizacion?parametrizar=institucion" title=""><img src="/images/edificio.png" /></a> 
 						</li>
+				
+						<li class="active"> 
+						<span>Ocupacion</span> 
+						<a href="/parametrizacion?parametrizar=ocupacion" title=""><img src="/images/ocupacion.png" /></a> 
+						</li>
+					
+						<li class="active"> 
+						<span>Documentos</span> 
+						<a href="/parametrizacion?parametrizar=tipodocumento" title=""><img src="/images/doc1.png" /></a> 
+						</li>
+
 					<%end%>
 					
 					<%if current_user.rol.nombre.eql? "oip" %>
 						<li class="active"> 
 						<span>Departamento</span> 
-						<a href="/parametrizacion?parametrizar=departamento" title=""><img src="/images/departamento.jpg" /></a> 
+						<a href="/parametrizacion?parametrizar=departamento" title=""><img src="/images/departamento.png" /></a> 
 						</li>
 					<%end%>
 
-
-
-					<li class="active"> 
-						<span>Formulario</span> 
-						<a href="/" title=""><img src="/images/doc1.png" /></a> 
-						</li>
-					
+	
 						<li class="active"> 
 						<span> Contraseña</span> 
                           <%= link_to image_tag("/images/login.png"), edit_user_registration_path %>
 						
 						</li>
 
+	<% end %>
+
 					<li class="active">
                            <span>Logout</span>
-                           <%= link_to image_tag("/images/logout.png"), destroy_user_session_path, :method => :delete %>
+                          <%= link_to image_tag("/images/logout.png"), destroy_user_session_path,:method=>:delete %>
+							
                      </li>
 
 				</ul>
 		</div>
 	</div>
-	<% end %>
 
+					<%end%>
 </body>
 </html>

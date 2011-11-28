@@ -1,0 +1,11 @@
+<%= semantic_form_for @solicitud do |f| %>
+	<%= semantic_fields_for @solicitante do |s| %>
+	
+	<%= f.inputs%>
+
+	<%= s.inputs%>
+
+	<%end%>
+
+	<%= f.buttons%>
+<%end%>
