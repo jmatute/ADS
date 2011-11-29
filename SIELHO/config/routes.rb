@@ -25,8 +25,9 @@ SIELHO::Application.routes.draw do
   match 'solicitud/create' => "solicitud#create", :as => :solicituds
 
   match 'usuario/:id/mensajes/index' => "mensajes#index", :as=>:inbox
-
-  # The priority is based upon order of creation:
+  match 'usuario/:id/mensajes/:mensaje_id/leido' => "mensajes#leido", :as=>:leido
+  match 'usuario/:id/mensajes/:mensaje_id/show' => "mensajes#show", :as =>:ver_mensaje
+ # The priority is based upon order of creation:	
   # first created -> highest priority.
 
   # Sample of regular route:

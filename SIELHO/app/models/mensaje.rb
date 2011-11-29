@@ -19,7 +19,15 @@ class Mensaje < ActiveRecord::Base
 		crear = Mensaje.new(:emisor_id=>0,:destinatario_id=>Administrador.last.usuario_id,:titulo=>"Nueva Solicitud de Informacion",:texto=>x,:fecha=>DateTime.now,
 									:leido=>false,:borrado=>false,:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>0,:usuarioMod=>0)
 		crear.save()
-
-
 	end
+
+	def esNuevaSolicitud()
+		return self.titulo.eql? "Nueva Solicitud de Informacion"
+	end
+
+	def parsear()
+		mensaje = JSON.parse(self.texto)
+		return mensaje
+	end
+	
 end

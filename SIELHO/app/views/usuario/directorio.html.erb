@@ -29,7 +29,7 @@
 			</tr>
 		<% @enlaces.each do |e| %>
 			<tr>
-				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} ", edit_enlace_path(e) %></td>
+				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.snombre} ", edit_enlace_path(e) %></td>
 				<td> <%=" #{Departamento.where( :institucion_id=> e.institucion_id,:id=>e.departamento_id).first.nombre}"%>
 			<td> <%=" #{e.email}"%></td>
 				<td> <%=" #{e.email2}"%></td>

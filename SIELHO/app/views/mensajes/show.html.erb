@@ -1,0 +1,28 @@
+
+<%if @mensaje.titulo.eql? "Nueva Solicitud de Informacion" %>
+	<h2><%=@mensaje.titulo %></h2>
+
+	<h3>Informacion del Solicitante </h3>
+		<p> <strong>Nombre:   </strong><%=@informacion["solicitante"]["nombre"]%></p>	
+		<p> <strong>Tipo de Documento:  </strong> </p>
+		<p> <strong>Documento:  </strong><%=@informacion["documento"]["numero"]%> </p>
+		<%unless @informacion["solicitante"]["poder"].blank? %>
+			<p> <%="Persona Juridica, actua bajo poder #{@informacion["solicitante"]["poder"]}"%></p>
+		<%end%>
+
+	<h3>Informacion de Solicitud </h3>
+		<p> <strong>Hacia Institucion:  </strong><%=Institucion.find(@informacion["solicitud"]["institucion_id"]).nombre%> </p>
+		<p> <strong>Descripcion de Informacion: </strong> </br>
+			<%=@informacion["solicitud"]["descripcion"]%>
+		</p> 
+	
+	<button>Solicitud se encuentra incompleta</button>
+	
+	<button>Solicitud no compete a la institucion</button>
+
+	<button>La informacion de la solicitud se encuentra clasificada </button>
+
+	<button>Crear Expediente </button>	
+<%else%>
+	Otro mensaje
+<%end%>

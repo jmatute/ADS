@@ -20,4 +20,5 @@ class SolicitudController < ApplicationController
 		Mensaje.NuevaSolicitud(params)
 		redirect_to root_path
 	end
+
 end

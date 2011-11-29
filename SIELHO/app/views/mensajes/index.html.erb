@@ -4,7 +4,7 @@
 </tr>
 <% @mensajes.each do |m| %>
 <tr>
-	<td><%="#{m.titulo}"%> </td>
+	<td><%= link_to m.titulo,ver_mensaje_path(current_user,m) %> </td>
 	<td><%="#{m.fecha}"%> </td>
 	<%if m.emisor_id.eql? 0%>
 		<td><%="Sistema "%> </td>
@@ -14,7 +14,7 @@
      <td> <%if m.leido %>
              <img src="/images/check_box_on.gif" />
 		  <%else%>
-             <%= link_to image_tag("/images/checkbox_off.gif"), root_path %>
+             <%= link_to image_tag("/images/checkbox_off.gif"), leido_path(current_user,m) %>
 		  <%end%>		
 	</td>	
      <td> 
