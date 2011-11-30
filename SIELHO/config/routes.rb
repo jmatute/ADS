@@ -35,6 +35,9 @@ SIELHO::Application.routes.draw do
   match 'solicitud/natural/new' => "solicitud#solicitud_natural", :as => :solicitud_natural
   match 'solicitud/juridica/new' => "solicitud#solicitud_juridica", :as => :solicitud_juridica
   match 'solicitud/create' => "solicitud#create", :as => :solicituds
+  match 'solicitud/:usuario_id/pendiente' => "solicitud#pendiente" , :as => :solicitudes_pendientes
+
+
 
   match 'usuario/:id/mensajes/index' => "mensajes#index", :as=>:inbox
   match 'usuario/:id/mensajes/:mensaje_id/leido' => "mensajes#leido", :as=>:leido
@@ -44,7 +47,9 @@ SIELHO::Application.routes.draw do
   match 'usuario/:id/mensajes/:mensaje_id/show' => "mensajes#show", :as =>:ver_mensaje
   match 'usuario/:id/mensajes/historial' => "mensajes#historial" , :as=>:historial
   match 'solicitud/:mensaje_id/clasificar' => "solicitud#clasificar", :as => :clasificar_solicitud
- # The priority is based upon order of creation:	
+  match 'solicitud/:mensaje_id/justificar' => "solicitud#justificar", :as=> :justificacions
+
+  # The priority is based upon order of creation:	
   # first created -> highest priority.
 
   # Sample of regular route:
