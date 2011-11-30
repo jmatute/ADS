@@ -17,7 +17,7 @@
 		</p> 
 
  <%unless current_user.rol.nombre.eql? "admin"%>	
-	<button><%=link_to "Crear Expediente",crear_solicitud_path(@mensaje)%> </button>	
+	<button><%=link_to "Clasificar solicitud",clasificar_solicitud_path(@mensaje)%> </button>	
   <%end%>
 <%else%>
 	Otro mensaje

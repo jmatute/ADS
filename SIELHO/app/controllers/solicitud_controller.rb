@@ -44,7 +44,9 @@ class SolicitudController < ApplicationController
 	end
 
 	def clasificar
-
+		@clasificaciones = Clasificacion.all
+		@leyes= LeyAcuerdo.all
+		@justificacion = Justificacion.new
 	end
 	
 end

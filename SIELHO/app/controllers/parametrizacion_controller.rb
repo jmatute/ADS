@@ -67,6 +67,7 @@ class ParametrizacionController < ApplicationController
 		if params.has_key? "tipo_documento"
 			@tipodocumento = TipoDocumento.new(params[:tipo_documento])
 			@tipodocumento.usuarioMod = current_user.id
+			
 			@tipodocumento.usuarioRes = current_user.id
 			@tipodocumento.fechaCrear = DateTime.now
 			@tipodocumento.fechaMod = DateTime.now
