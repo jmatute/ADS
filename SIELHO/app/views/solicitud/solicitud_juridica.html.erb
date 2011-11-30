@@ -3,12 +3,19 @@
 	<%= semantic_fields_for @solicitante do |s| %>
 		<%=semantic_fields_for @documento do |d| %>	
 
+			<%unless @errores.nil? %>
+					<ul>
+					<%@errores.each do |e|%>
+						<li><%=e%></li>
+					<%end%>
+					</ul>
+			<%end%></br></br>
 			<%= f.inputs do%>
 				<%= s.inputs do%>
 
 				<%= f.input :lugar %>	
 				<%= s.input :nombre ,:label=>"Nombre Completo del Solicitante"%>
-		
+				 <%=d.input :tipoDocumento_id, :as => :select, :label => "Tipo de Documento",:collection => @tipoDocumentos %>
 
 				<%= d.input :numero ,:label	=>"Numero de Documento"%>
 				<%= s.input :poder ,:label => "Poder en que actua"%>

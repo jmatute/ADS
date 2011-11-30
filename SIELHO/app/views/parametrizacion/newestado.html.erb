@@ -4,6 +4,12 @@
 		<%semantic_form_for @estado do |f| %>
 			<% f.inputs do%>
 				<%= f.input :anterior_id, :as => :select,:label => "Estado anterior", :collection => @estados %>
+				<label>Estados Siguiente:  </label>
+				<select name="siguiente">
+					<%@estados.each do |e|%>
+						<%=raw("<option value='#{e[1]}'>#{e[0] }</option> ")%>
+					<%end%>
+				</select>
 				<%= f.input :nombre %>
 				<%= f.input :descripcion , :input_html => { :style => "width:70em; height: 10em" }%>
 	

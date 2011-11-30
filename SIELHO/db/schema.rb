@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129195120) do
+ActiveRecord::Schema.define(:version => 20111130053104) do
 
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20111129195120) do
     t.integer  "usuarioMod"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tipoDocumento_id"
   end
 
   create_table "enlaces", :force => true do |t|

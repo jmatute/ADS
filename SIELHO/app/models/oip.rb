@@ -1,7 +1,6 @@
 class Oip < ActiveRecord::Base
 	validates_presence_of :pnombre,:snombre,:papellido,:sapellido,:email,:institucion_id
-	validates_uniqueness_of :email
-	
+	validates_uniqueness_of :email	
 
 	def nombre()
 		return self.pnombre + "  " + self.papellido
