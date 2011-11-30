@@ -1,7 +1,9 @@
 class Mensaje < ActiveRecord::Base
 
-has_attached_file :document
+has_attached_file :document ,:path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
+
 attr_accessor :avatar_file_name
+
 
 	validates_presence_of :destinatario_id,:emisor_id,:titulo,:texto,:fecha
 	def self.HasMensajeNoLeido(usuario)
