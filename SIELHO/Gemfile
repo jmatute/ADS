@@ -9,7 +9,8 @@ gem 'thin'
 gem 'devise'
 gem 'formtastic'
 gem "pg", "~> 0.11.0"
-
+gem "paperclip", "~> 2.4"
+gem "rufus-scheduler"
 # Use unicorn as the web server
 # gem 'unicorn'
 

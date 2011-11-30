@@ -16,6 +16,7 @@ class MensajesController < ApplicationController
 		@mensaje = Mensaje.new
 		@usuarios = User.all
 		@destinos = User.destinos(current_user.id)
+	#	send_file('/home/javier/Dropbox/Analisis/SIELHO/public/images/1.jpg')
 	end
 
 	def borrado

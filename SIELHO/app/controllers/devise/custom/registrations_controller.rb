@@ -8,6 +8,7 @@ class Devise::Custom::RegistrationsController < Devise::RegistrationsController
 		a= params[:user]
 		super
 		user = User.find_by_email(a[:email])
+		
 		user.agregar_admin(params)
 	end
 	

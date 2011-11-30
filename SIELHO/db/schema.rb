@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130053104) do
+ActiveRecord::Schema.define(:version => 20111130094437) do
 
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20111130053104) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "anterior_id"
+    t.integer  "siguiente_id"
   end
 
   create_table "expedientes", :force => true do |t|
@@ -172,6 +173,10 @@ ActiveRecord::Schema.define(:version => 20111130053104) do
     t.datetime "updated_at"
     t.boolean  "leido"
     t.boolean  "borrado"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "ocupacions", :force => true do |t|
@@ -211,11 +216,6 @@ ActiveRecord::Schema.define(:version => 20111130053104) do
     t.integer  "usuarioMod"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "permisos_rols", :id => false, :force => true do |t|
-    t.integer "rol_id"
-    t.integer "permiso_id"
   end
 
   create_table "rols", :force => true do |t|

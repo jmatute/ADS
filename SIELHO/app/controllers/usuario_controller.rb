@@ -11,6 +11,8 @@ class UsuarioController < ApplicationController
 			oip = Oip.new(params[:oip])
 			if oip.save
 				oip.crear(current_user.id)
+				p "asd"
+				AplicationMailer.enviar_correo(oip)
 				redirect_to directorio_path
 			else
 				redirect_to directorio_path

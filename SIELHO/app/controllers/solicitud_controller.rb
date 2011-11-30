@@ -7,6 +7,7 @@ class SolicitudController < ApplicationController
 		@solicitud = Solicitud.new
 		@documento = Documento.new
 		@tipoDocumentos = TipoDocumento.documentos(1)
+		AplicationMailer.enviar_correo("javier_suazo@live.com").deliver
 	end
 
 	def solicitud_juridica
