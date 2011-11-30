@@ -44,4 +44,8 @@ class MensajesController < ApplicationController
 		redirect_to root_path
 	end
 
+	def historial
+		@mensajes = Mensaje.where(:emisor_id=>params[:id])
+	end
+
 end
