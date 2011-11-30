@@ -1,0 +1,13 @@
+		<h2>Institucion </h2>
+        <%semantic_form_for @institucion do |f| %>
+			<% f.inputs do %>
+				<%= f.input :nombre %>
+				<%= f.input :tipo_institucion, :as => :select,:label => "Tipo de Institucion", :collection =>  [["Centralizada","Centralizada"],["ONG","ONG"],["Descentralizada","Descentralizada"]] %>
+				<%= f.input :descripcion , :input_html => { :style => "width:70em; height: 10em" }%>
+	
+			<% end %>
+			<% f.buttons do %>
+				<%= f.commit_button :label =>"Crear"%>
+			<% end %>
+		<% end %>
+ 

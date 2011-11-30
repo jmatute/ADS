@@ -1,0 +1,11 @@
+
+		<h2>Ley/Acuerdo </h2>
+        <%semantic_form_for @leyAcuerdo do |f| %>
+			<% f.inputs do%>
+				<%= f.input :noLey %>
+				<%= f.input :noAcuerdo %>
+				<%= f.input :fechaGaceta %>
+				<%= f.input :descripcion %>
+			<% end %>
+			<%= f.buttons %>
+		<% end %>

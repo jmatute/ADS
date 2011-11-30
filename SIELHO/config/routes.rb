@@ -1,13 +1,25 @@
 SIELHO::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "devise/custom/registrations" }
 
-  match 'parametrizacion' => "parametrizacion#index",:as => :parametrizacion
+  match 'parametrizacion/ocupacion/new' => "parametrizacion#newocupacion", :as => :nueva_ocupacion
+  match 'parametrizacion/ocupacion/create' => "parametrizacion#create", :as => :ocupacions  
+  
+  match 'parametrizacion/departamento/new' => "parametrizacion#newdepartamento", :as => :nuevo_departamento
   match 'parametrizacion/departamento' => "parametrizacion#create", :as => :departamentos  
-  match 'parametrizacion/ocupacion' => "parametrizacion#create", :as => :ocupacions  
+  
+  match 'parametrizacion/estado/new' => "parametrizacion#newestado", :as => :nuevo_estado
   match 'parametrizacion/estado' => "parametrizacion#create", :as => :estados  
+
+
+  match 'parametrizacion/institucion/new' => "parametrizacion#newinstitucion", :as => :nueva_institucion
   match 'parametrizacion/institucion' => "parametrizacion#create", :as => :institucions  
+
+  match 'parametrizacion/tipodocumento/new' => "parametrizacion#newtipodocumento", :as => :nuevo_tipo_documento
   match 'parametrizacion/tipodocumento' => "parametrizacion#create", :as => :tipo_documentos  
+  
+  match 'parametrizacion/leyacuerdo/new' => "parametrizacion#newleyacuerdo", :as => :nuevo_leyacuerdo
   match 'parametrizacion/leyacuerdo' => "parametrizacion#create", :as => :ley_acuerdos  
+
   root :to => "static#index"
   match 'usuario/new' => "usuario#new" ,:as => :new_user 
   match 'usuario/create_oip' => "usuario#create", :as => :oips

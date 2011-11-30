@@ -1,16 +1,33 @@
 class ParametrizacionController < ApplicationController
 	def index
-		@departamento = Departamento.new()
-		@tipodocumento = TipoDocumento.new()
-		@estado = Estado.new()
-		@estados = Estado.estados
-		@institucion = Institucion.new()
-		@ocupacion = Ocupacion.new()
-		@leyAcuerdo = LeyAcuerdo.new()
-		@parametrizar = params[:parametrizar]
-		flash[:notice] = ""
 	end
 
+	def newocupacion
+		@ocupacion = Ocupacion.new()
+	end
+
+	def newdepartamento
+		@departamento = Departamento.new()
+	end
+
+	def newestado
+		@estado = Estado.new()
+		@estados = Estado.estados
+	end
+
+	def newleyacuerdo
+		@leyAcuerdo = LeyAcuerdo.new()
+	end
+
+	def newinstitucion
+		@institucion = Institucion.new()
+	end
+
+	def newtipodocumento
+		@tipodocumento = TipoDocumento.new()
+	end
+	
+	
 	def create
 		if params.has_key? "departamento"
 			@departamento = Departamento.new(params[:departamento])
@@ -18,8 +35,7 @@ class ParametrizacionController < ApplicationController
 			if @departamento.save()
 				flash[:notice] = "Nueva Departamento creado "
 			elsif
-				@errores = @departamento.errors
-				
+				render :action => "newdepartamento"
 			end	
 
 		end
@@ -32,8 +48,7 @@ class ParametrizacionController < ApplicationController
 			if @ocupacion.save()
 	    			flash[:notice] = "Nueva Ocupacion creada "
 			else
-					@errores = @ocupacion.errors
-					
+					render :action => "newocupacion"
 			end
 		end
 		if params.has_key? "estado"
@@ -45,9 +60,7 @@ class ParametrizacionController < ApplicationController
 			if @estado.save()
 				flash[:notice] = "Nuevo Estado creado "
 			elsif
-				@errores = @estado.errors
-	   			
-			
+					render :action => "newestado"
 			end	
 
 		end
@@ -60,9 +73,7 @@ class ParametrizacionController < ApplicationController
 			if @tipodocumento.save()
 				flash[:notice] = "Nuevo Tipo Documento creado "
 			elsif
-	   		
-				@errores = @tipodocumento.errors
-	   			
+	   			render :action => "newtipodocumento"	
 			end
 		end
 		if params.has_key? "ley_acuerdo"
@@ -74,8 +85,7 @@ class ParametrizacionController < ApplicationController
 			if @leyAcuerdo.save()
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif
-				@errores = @leyAcuerdo.errors
-	   			
+	   			render :action => "newleyacuerdo"	
 			end	
 
 		end
@@ -85,7 +95,7 @@ class ParametrizacionController < ApplicationController
 			if @institucion.save()
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif
-				@errores = @institucion.errors
+				render :action => "newinstitucion"
 			end	
 		end
 	end

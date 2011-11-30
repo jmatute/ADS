@@ -69,13 +69,6 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-	<%unless @errores.blank?%>
-			<ul>
-			<% @errores.each do |e| %>
-				<li><%=e%></li>
-			<%end%>
-			</ul>
-	<%end%>
 	<%= yield %>
 
 
@@ -115,27 +108,27 @@
 					<%if current_user.rol.nombre.eql? "admin" %>
 						<li class="active"> 
 						<span>Institucion</span> 
-						<a href="/parametrizacion?parametrizar=institucion" title=""><img src="/images/edificio.png" /></a> 
+						<a href="/parametrizacion/institucion/new" title=""><img src="/images/edificio.png" /></a> 
 						</li>
 				
 						<li class="active"> 
 						<span>Ocupacion</span> 
-						<a href="/parametrizacion?parametrizar=ocupacion" title=""><img src="/images/ocupacion.png" /></a> 
+						<a href="/parametrizacion/ocupacion/new" title=""><img src="/images/ocupacion.png" /></a> 
 						</li>
 						
 						<li class="active"> 
 						<span>Estados</span> 
-						<a href="/parametrizacion?parametrizar=estado" title=""><img src="/images/estado.png" /></a> 
+						<a href="/parametrizacion/estado/new" title=""><img src="/images/estado.png" /></a> 
 						</li>
 					
 						<li class="active"> 
 						<span>Documentos</span> 
-						<a href="/parametrizacion?parametrizar=tipodocumento" title=""><img src="/images/doc1.png" /></a> 
+						<a href="/parametrizacion/tipodocumento/new" title=""><img src="/images/doc1.png" /></a> 
 						</li>
 						
 						<li class="active"> 
 						<span>Leyes</span> 
-						<a href="/parametrizacion?parametrizar=ley_acuerdo" title=""><img src="/images/leyes.gif" /></a> 
+						<a href="/parametrizacion/leyacuerdo/new" title=""><img src="/images/leyes.gif" /></a> 
 						</li>
 
 					<%end%>
@@ -143,7 +136,7 @@
 					<%if current_user.rol.nombre.eql? "oip" %>
 						<li class="active"> 
 						<span>Departamento</span> 
-						<a href="/parametrizacion?parametrizar=departamento" title=""><img src="/images/departamento.png" /></a> 
+						<a href="/parametrizacion/departamento/new" title=""><img src="/images/departamento.png" /></a> 
 						</li>
 					<%end%>
 
