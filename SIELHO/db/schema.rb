@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(:version => 20111129195120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "anterior_id"
-    t.integer  "siguiente_id"
   end
 
   create_table "expedientes", :force => true do |t|

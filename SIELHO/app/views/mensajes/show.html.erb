@@ -17,12 +17,6 @@
 		</p> 
 
  <%unless current_user.rol.nombre.eql? "admin"%>	
-	<button>Solicitud se encuentra incompleta</button>
-	</br>	
-	<button>Solicitud no compete a la institucion</button>
-	</br>
-	<button>La informacion de la solicitud se encuentra clasificada </button>
-	</br>
 	<button><%=link_to "Crear Expediente",crear_solicitud_path(@mensaje)%> </button>	
   <%end%>
 <%else%>

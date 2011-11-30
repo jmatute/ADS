@@ -1,8 +1,8 @@
 		class Institucion < ActiveRecord::Base
 			validates_presence_of :nombre, :tipo_institucion
 			validates_uniqueness_of :nombre
-			validates :nombre, :format => { :with => /\A[a-zA-Z]+\z/, :message => " - Solo se permiten letras" } 
-    validates :descripcion, :format => { :with => /\A[a-zA-Z]+\z/, :message => " - Solo se permiten letras" } 
+			validates :nombre, :format => { :with => /\A[a-zA-Z ]+\z/, :message => " - Solo se permiten letras" } 
+    		validates :descripcion, :format => { :with => /\A[a-zA-Z ]+\z/, :message => " - Solo se permiten letras" } 
 
 	def agregar(usuario)
 		 self.usuarioMod = usuario

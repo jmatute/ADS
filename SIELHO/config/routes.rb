@@ -42,8 +42,9 @@ SIELHO::Application.routes.draw do
   match 'usuario/:id/mensajes/new' => "mensajes#new", :as => :mensaje_nuevo
 	match 'usuario/:id/mensajes/create' =>  "mensajes#create" , :as => :mensajes
  
- match 'usuario/:id/mensajes/:mensaje_id/show' => "mensajes#show", :as =>:ver_mensaje
-  match 'solicitud/:mensaje_id/crear' => "solicitud#crear", :as => :crear_solicitud
+  match 'usuario/:id/mensajes/:mensaje_id/show' => "mensajes#show", :as =>:ver_mensaje
+	
+  match 'solicitud/:mensaje_id/clasificar' => "solicitud#clasificar", :as => :clasificar_solicitud
  # The priority is based upon order of creation:	
   # first created -> highest priority.
 

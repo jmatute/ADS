@@ -1,7 +1,7 @@
 class Estado < ActiveRecord::Base
-	validates_presence_of :nombre,:descripcion,:anterior_id,:siguiente_id
-    validates :nombre, :format => { :with => /\A[a-zA-Z]+\z/, :message => " - Solo se permiten letras" } 
-    validates :descripcion, :format => { :with => /\A[a-zA-Z]+\z/, :message => " - Solo se permiten letras" } 
+	validates_presence_of :nombre,:descripcion,:anterior_id
+    validates :nombre, :format => { :with => /\A[a-zA-Z ]+\z/, :message => " - Solo se permiten letras" } 
+    validates :descripcion, :format => { :with => /\A[a-zA-Z ]+\z/, :message => " - Solo se permiten letras" } 
 	
 	def self.estados()
 		x = []

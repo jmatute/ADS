@@ -93,7 +93,7 @@ class ParametrizacionController < ApplicationController
 			@institucion = Institucion.new(params[:institucion])
 			@institucion.agregar(current_user.id)
 			if @institucion.save()
-				flash[:notice] = "Nueva Ley/Acuerdo creado "
+				flash[:notice] = "Nueva Institucion creada "
 			elsif
 				render :action => "newinstitucion"
 			end	

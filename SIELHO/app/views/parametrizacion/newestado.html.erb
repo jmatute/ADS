@@ -4,7 +4,6 @@
 		<%semantic_form_for @estado do |f| %>
 			<% f.inputs do%>
 				<%= f.input :anterior_id, :as => :select,:label => "Estado anterior", :collection => @estados %>
-				<%= f.input :siguiente_id, :as => :select,:label => "Estado siguiente", :collection => @estados %>
 				<%= f.input :nombre %>
 				<%= f.input :descripcion , :input_html => { :style => "width:70em; height: 10em" }%>
 	

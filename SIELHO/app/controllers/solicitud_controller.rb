@@ -24,7 +24,7 @@ class SolicitudController < ApplicationController
 		end	
 	end
 
-	def crear
+	def clasificar
 
 	end
 	
