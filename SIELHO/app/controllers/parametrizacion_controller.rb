@@ -3,10 +3,10 @@ class ParametrizacionController < ApplicationController
 		@departamento = Departamento.new()
 		@tipodocumento = TipoDocumento.new()
 		@estado = Estado.new()
+		@estados = Estado.estados
 		@institucion = Institucion.new()
 		@ocupacion = Ocupacion.new()
 		@leyAcuerdo = LeyAcuerdo.new()
-		@estados = Estado.all()
 		@parametrizar = params[:parametrizar]
 		flash[:notice] = ""
 	end
@@ -16,9 +16,10 @@ class ParametrizacionController < ApplicationController
 			@departamento = Departamento.new(params[:departamento])
 			@departamento.agregar(  Oip.find_by_usuario_id(current_user.id).institucion_id,current_user.id)
 			if @departamento.save()
-				flash[:notice] = "Nueva Departamento creada "
+				flash[:notice] = "Nueva Departamento creado "
 			elsif
-				flash[:notice] = "No se pudo crear la departamento"
+				@errores = @departamento.errors
+				
 			end	
 
 		end
@@ -29,10 +30,11 @@ class ParametrizacionController < ApplicationController
 			@ocupacion.fechaCrear = DateTime.now
 			@ocupacion.fechaMod = DateTime.now
 			if @ocupacion.save()
-				flash[:notice] = "Nueva Ocupacion creada "
-			elsif
-				flash[:notice] = "No se pudo crear la ocupacion"
-			end	
+	    			flash[:notice] = "Nueva Ocupacion creada "
+			else
+					@errores = @ocupacion.errors
+					
+			end
 		end
 		if params.has_key? "estado"
 			@estado = Estado.new(params[:estado])
@@ -43,7 +45,9 @@ class ParametrizacionController < ApplicationController
 			if @estado.save()
 				flash[:notice] = "Nuevo Estado creado "
 			elsif
-				flash[:notice] = "No se pudo crear el estado"
+				@errores = @estado.errors
+	   			
+			
 			end	
 
 		end
@@ -53,11 +57,13 @@ class ParametrizacionController < ApplicationController
 			@tipodocumento.usuarioRes = current_user.id
 			@tipodocumento.fechaCrear = DateTime.now
 			@tipodocumento.fechaMod = DateTime.now
-			if @ocupacion.save()
+			if @tipodocumento.save()
 				flash[:notice] = "Nuevo Tipo Documento creado "
 			elsif
-				flash[:notice] = "No se pudo crear el tipo de documento"
-			end	
+	   		
+				@errores = @tipodocumento.errors
+	   			
+			end
 		end
 		if params.has_key? "ley_acuerdo"
 			@leyAcuerdo = LeyAcuerdo.new(params[:ley_acuerdo])
@@ -68,7 +74,8 @@ class ParametrizacionController < ApplicationController
 			if @leyAcuerdo.save()
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif
-				flash[:notice] = "No se pudo crear Ley/Acuerdo"
+				@errores = @leyAcuerdo.errors
+	   			
 			end	
 
 		end
@@ -78,7 +85,7 @@ class ParametrizacionController < ApplicationController
 			if @institucion.save()
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif
-				flash[:notice] = "No se pudo crear Ley/Acuerdo"
+				@errores = @institucion.errors
 			end	
 		end
 	end

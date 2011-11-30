@@ -1,6 +1,7 @@
 class Departamento < ActiveRecord::Base
 	validates_presence_of :nombre	
-
+    validates :nombre, :format => { :with => /\A[a-zA-Z]+\z/, :message => " - Solo se permiten letras" } 
+	
 
 	def agregar(institucion,usuario)
 		 self.institucion_id = institucion

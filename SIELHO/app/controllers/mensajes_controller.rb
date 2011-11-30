@@ -12,6 +12,22 @@ class MensajesController < ApplicationController
 		redirect_to inbox_path
 	end
 
+	def new
+		@mensaje = Mensaje.new
+		@usuarios = User.all
+		@destinos = User.destinos(current_user.id)
+	end
+
+	def borrado
+		m = Mensaje.find(params[:mensaje_id])
+		m.borrado = true
+		m.fechaMod = DateTime.now
+		m.usuarioMod = current_user.id
+		m.save
+		redirect_to inbox_path
+	
+	end
+
 	def show
 		@mensaje = Mensaje.find(params[:mensaje_id])
 		@mensaje.leido = true
@@ -22,4 +38,10 @@ class MensajesController < ApplicationController
 			@informacion = @mensaje.parsear
 		end		
 	end
+
+	def create
+		x = Mensaje.crear(params)
+		redirect_to root_path
+	end
+
 end

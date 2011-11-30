@@ -69,9 +69,15 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-
+	<%unless @errores.blank?%>
+			<ul>
+			<% @errores.each do |e| %>
+				<li><%=e%></li>
+			<%end%>
+			</ul>
+	<%end%>
 	<%= yield %>
+
 
 					<%if user_signed_in? %>
 	<div id="dockContainer"> 
@@ -126,6 +132,11 @@
 						<span>Documentos</span> 
 						<a href="/parametrizacion?parametrizar=tipodocumento" title=""><img src="/images/doc1.png" /></a> 
 						</li>
+						
+						<li class="active"> 
+						<span>Leyes</span> 
+						<a href="/parametrizacion?parametrizar=ley_acuerdo" title=""><img src="/images/leyes.gif" /></a> 
+						</li>
 
 					<%end%>
 					
@@ -145,6 +156,17 @@
 
 	<% end %>
 					<%if current_user.activo%>
+
+						<li class="active"> 
+						<span> Mensaje</span> 
+                          <%= link_to image_tag("/images/mensaje.png"), mensaje_nuevo_path(current_user) %>
+						
+						</li>
+
+
+
+
+
 					<li class="active">
                            <span>Inbox</span>
 						<%if Mensaje.HasMensajeNoLeido(current_user.id) %>

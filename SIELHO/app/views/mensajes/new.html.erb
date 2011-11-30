@@ -1,0 +1,11 @@
+<%=semantic_form_for @mensaje do |f|%
+	<%= f.inputs do%>
+				<%= f.input :titulo %>
+				<%= f.input :destinatario_id, :as => :select,:label => "Destinatario:", :collection => @destinos %>
+				
+				
+				<%= f.input :texto, :input_html => { :style => "width:70em; height: 10em" }%>
+
+	<%end%>
+	<%= f.buttons%>
+<%end%>

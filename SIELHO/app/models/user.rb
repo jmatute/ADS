@@ -19,6 +19,21 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
  end
 
+ def self.destinos(usuario)
+		x = []
+		todos =User.all
+		normal = User.find usuario
+		
+		todos.each do |i|
+			if normal.rol.nombre.eql? "admin"
+				if i.rol.nombre.eql? "oip"
+					x << [ i.username, i.id]
+				end
+			end
+		end
+		return x
+end
+
 	def rol()
 		Rol.find(rol_id)
 	end

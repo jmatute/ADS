@@ -1,5 +1,4 @@
 class Mensaje < ActiveRecord::Base
-	belongs_to :expedientes
 	validates_presence_of :destinatario_id,:emisor_id,:titulo,:texto,:fecha
 	def self.HasMensajeNoLeido(usuario)
 		return Mensaje.where(:leido=>false,:borrado=>false,:destinatario_id=>usuario) != []
@@ -21,6 +20,37 @@ class Mensaje < ActiveRecord::Base
 		crear.save()
 	end
 
+	def self.solicitudValida(informacion) 
+		info = JSON.parse( informacion.to_json.to_s )
+		correcta = true
+		errores = []
+		if info["solicitud"]["lugar"].blank?
+			correcta = false
+			errores << "Lugar no puede estar en blanco"
+		end
+
+		if info["solicitante"]["nombre"].blank?
+		   correcta = false
+			errores << "Nombre del solicitante no puede estar en blanco"
+		end
+		
+		if info["solicitud"]["descripcion"].blank?
+			correcta = false
+			errores << "Debe hacer una descripcion de su solicitud"
+		end
+		if info["solicitud"]["institucion_id"].blank?
+			correcta = false
+			errores << "Debe de elegir una institucion"
+		end
+
+		unless info["solicitante"]["telefono"].blank? or info["solicitante"]["fax"].blank? or info["solicitante"]["email"].blank? or info["solicitante"]["direccion_postal"].blank?
+			correcta = false
+			errores << "Debe de al menos una forma de contacto"
+		end
+
+		return errores
+	end
+
 	def esNuevaSolicitud()
 		return self.titulo.eql? "Nueva Solicitud de Informacion"
 	end
@@ -30,4 +60,16 @@ class Mensaje < ActiveRecord::Base
 		return mensaje
 	end
 	
+	def self.crear(parametros)
+		temp = Mensaje.new(parametros[:mensaje])
+		temp.emisor_id = parametros[:id]
+		temp.fecha = DateTime.now
+		temp.usuarioMod = parametros[:id]
+		temp.usuarioRes = parametros[:id]
+		temp.fechaCrear = DateTime.now
+		temp.fechaMod = DateTime.now
+		temp.leido = false
+		temp.borrado = false
+		temp.save
+	end
 end

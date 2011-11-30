@@ -7,7 +7,7 @@
 			</tr>
 		<% @oips.each do |e| %>
 			<tr>
-				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.papellido} ", edit_oip_path(e) %></td>
+				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.snombre} ", edit_oip_path(e) %></td>
 				<td> <%=" #{Institucion.find(e.institucion_id).nombre } "%> </td>
 				<td> <%=" #{e.email}"%></td>
 				<td> <%=" #{e.email2}"%></td>

@@ -17,8 +17,15 @@ class SolicitudController < ApplicationController
 	end
 
 	def create
-		Mensaje.NuevaSolicitud(params)
-		redirect_to root_path
+		if Mensaje.solicitudValida(params) == []
+			Mensaje.NuevaSolicitud(params)
+		else
+			@errores = Mensaje.solicitudValida(params)
+		end	
 	end
 
+	def crear
+
+	end
+	
 end
