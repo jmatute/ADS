@@ -6,8 +6,7 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("1m") do
- @a = User.all
- puts @a.size
+#AplicationMailer.enviar_correo("javier_suazo@live.com").deliver
 end
 
 ## Prints the message every day at noon
