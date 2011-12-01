@@ -1,7 +1,7 @@
 
 <table class="sortable"   id="sortabletable" >
 <tr>
-	<th>Titulo </th> <th> Fecha </th> <th>Emisor </th> <th> Marcar Leido </th> <th> Borrar </th>
+	<th>Titulo </th> <th> Fecha </th> <th>Emisor </th> <th> Marcar Leido </th> 
 </tr>
 <% @mensajes.each do |m| %>
 <tr>
@@ -15,13 +15,10 @@
      <td> <%if m.leido %>
              <img src="/images/check_box_on.gif" />
 		  <%else%>
-             <%= link_to image_tag("/images/checkbox_off.gif"), leido_path(current_user,m) %>
-		  <%end%>		
+             <img src="/images/check_box_off.gif" />
+         <%end%>
+		
 	</td>	
-     <td> 
-             <%= link_to image_tag("/images/checkbox_off.gif"), borrado_path(current_user,m) %>
-	</td>	
-
 	
 </tr>
 <% end%>

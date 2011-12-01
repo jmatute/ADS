@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20111130094437) do
+=======
+ActiveRecord::Schema.define(:version => 20111130073919) do
+>>>>>>> b1efbaf99e666f8472d60a856e68b4f82bddbb5f
 
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
