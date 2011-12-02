@@ -20,5 +20,13 @@
 	<button><%=link_to "Clasificar solicitud",clasificar_solicitud_path(@mensaje)%> </button>	
   <%end%>
 <%else%>
-	Otro mensaje
+	<h2><%=@mensaje.titulo %></h2>
+
+	<p><strong>Emisor:</strong>  <%=  User.find(@mensaje.emisor_id).username%></p>
+	
+	<p><strong>Mensaje:</strong></br> <%=@mensaje.texto%></p>
+
+
 <%end%>
+
+

@@ -21,18 +21,33 @@ class User < ActiveRecord::Base
 
  def self.destinos(usuario)
 		x = []
-		todos =User.all
+		todos = User.all
 		normal = User.find usuario
-		
 		todos.each do |i|
 			if normal.rol.nombre.eql? "admin"
 				if i.rol.nombre.eql? "oip"
 					x << [ i.username, i.id]
 				end
 			end
+			
+			if normal.rol.nombre.eql? "oip"
+				if i.rol.nombre.eql? "admin"
+					x << [i.username,i.id]
+				end
+				if i.rol.nombre.eql?("enlace") && (Enlace.find_by_usuario_id(i.id).institucion_id.eql? Oip.find_by_usuario_id(normal.id).institucion_id)
+					x << [i.username,i.id]
+				end
+			end
+			
+			if normal.rol.nombre.eql? "enlace"
+				if i.rol.nombre.eql?("oip") && (Enlace.find_by_usuario_id(normal.id).institucion_id.eql? Oip.find_by_usuario_id(i.id).institucion_id)
+					x << [i.username,i.id]
+				end
+			end
 		end
+
 		return x
-end
+	end
 
 	def rol()
 		Rol.find(rol_id)

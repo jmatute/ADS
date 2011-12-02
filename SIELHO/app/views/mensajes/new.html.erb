@@ -1,6 +1,7 @@
 <%=semantic_form_for @mensaje , :html => {:multipart =>  true}  do |f|%>
 	<%= f.inputs do%>
 				<%= f.input :titulo %>
+				<%= f.input :expediente_id,:as => :select,:label=> "Relativo a solicitud",:collection => @solicitudes %>
 				<%= f.input :destinatario_id, :as => :select,:label => "Destinatario:", :collection => @destinos %>
 				<%= f.file_field :document, :label =>"Adjuntar Archivo:" %>
 				<%= f.input :texto, :input_html => { :style => "width:70em; height: 10em" }%>

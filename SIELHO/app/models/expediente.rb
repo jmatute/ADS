@@ -13,4 +13,12 @@ class Expediente < ActiveRecord::Base
 		self.save
 		
 	end
+
+	def cambiadaClasificacion(id)
+		clasificacion = Clasificacion.find(id).nombre
+		if clasificacion.eql?"publica"		
+			self.estado_id = Estado.find_by_nombre("En tramite").id
+			self.save
+		end
+	end
 end

@@ -1,0 +1,22 @@
+<%=semantic_form_for @justificacion do |f|%>
+	
+		<label>Clasificacion : </label>
+		<select name="clasificacion">
+			<%@estados.each do |e|%>
+				<%=raw("<option value='#{e.id}'>#{e.nombre }</option> ")%>
+			<%end%>
+		</select>
+		<label>Ley/Acuerdo : </label>
+		<select name="ley">
+			<%@leyes.each do |e|%>
+				<%=raw("<option value='#{e.id}'>Ley: #{e.noLey}, Acuerdo: #{e.noAcuerdo}</option> ")%>
+			<%end%>
+		</select>
+	</br></br>	
+	<%=f.inputs do%>
+				<%= f.input :descripcion , :input_html => { :style => "width:70em; height: 10em" }%>
+	<%end%>
+	<%=f.buttons%>
+	
+<%end%>
+
