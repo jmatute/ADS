@@ -48,7 +48,11 @@ SIELHO::Application.routes.draw do
   match 'usuario/:id/mensajes/historial' => "mensajes#historial" , :as=>:historial
   match 'solicitud/:mensaje_id/clasificar' => "solicitud#clasificar", :as => :clasificar_solicitud
   match 'solicitud/:mensaje_id/justificar' => "solicitud#justificar", :as=> :justificacions
-
+  #match 'solicitud/:solicitud_id/expediente/:expediente_id/justificar' => "solicitud#justificar", :as=> :justificacions  
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/asignar' => "solicitud#asignar", :as => :asignar
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/estado' => "solicitud#estado", :as => :cambiar_estado
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/show' => "solicitud#show", :as=> :ver_expediente
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/creat' => "solicitud#asignaEnlace", :as=> :asignacions
   # The priority is based upon order of creation:	
   # first created -> highest priority.
 

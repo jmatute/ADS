@@ -1,0 +1,37 @@
+<%if current_user.rol.nombre.eql? "oip" %>
+<table class="sortable"   id="sortabletable" >
+<tr>
+	<th>Numero de solicitud</th> <th> Fecha </th> <th> Responsable </th> <th> Estado </th> 
+</tr>
+<% @solicitudes.each do |m| %>
+<tr>
+	<td><%= link_to m.numero,ver_expediente_path(m,Expediente.find( m.expediente_id)) %> </td>
+	<td><%="#{m.fecha}"%> </td>
+		<td><%="#{User.find(Expediente.find(m.expediente_id).creador ).username }"%>
+     <td> 
+		<%=Estado.find(Expediente.find(m.expediente_id).estado_id).nombre %>
+	</td>	
+
+	
+</tr>
+<% end%>
+		</table>
+	
+	
+<%elsif current_user.rol.nombre.eql? "enlace" %>
+<table class="sortable"   id="sortabletable" >
+	<tr>
+		 <th>Solicitud </th><th> Plazo </th> <th> Descripcion </th> <th> Fecha Inicio </th>
+	</tr>
+<% @asignacion.each do |m| %>
+<tr>
+	<td><%=Solicitud.find_by_expediente_id( m.expediente_id).numero%> </td>
+	<td><%="#{m.plazo}"%> </td>
+	<td><%="#{m.descripcion}"%></td>
+	<td><%="#{m.fechaInic}"%></td>
+</tr>
+<% end%>
+		</table>
+
+
+<%end%>

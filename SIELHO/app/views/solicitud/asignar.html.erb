@@ -1,0 +1,12 @@
+<%=semantic_form_for @asignar do |f| %>
+	<%=f.inputs do%>
+		<%=f.input :expediente_id ,:as=>:select,:label=>"Solicitud",:collection=>@solicitudes %>
+		<%=f.input :enlace_id ,:as=> :select,:label=>"Seleccione enlace",:collection => @enlaces%>
+		<%=f.input :plazo%>
+		<%=f.input :descripcion%>
+	<%end%>
+
+	<%=f.buttons%>
+
+
+<%end%>

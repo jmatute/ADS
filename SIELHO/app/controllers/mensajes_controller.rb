@@ -13,9 +13,14 @@ class MensajesController < ApplicationController
 	end
 
 	def new
-		@mensaje = Mensaje.new
-		@usuarios = User.all
+		@mensaje = Mensaje.new()
+		@usuarios = User.all()
 		@destinos = User.destinos(current_user.id)
+		temp = Solicitud.solicitudes(current_user.id)
+		@solicitudes = []
+		temp.each do |t|
+			@solicitudes << [t.numero,t.expediente_id]
+		end
 	end
 
 	def borrado
@@ -34,6 +39,7 @@ class MensajesController < ApplicationController
 		@mensaje.fechaMod = DateTime.now
 		@mensaje.usuarioMod = current_user.id
 		@mensaje.save
+		@solicitudes = Solicitud.all
 		if @mensaje.esNuevaSolicitud
 			@informacion = @mensaje.parsear
 		end		

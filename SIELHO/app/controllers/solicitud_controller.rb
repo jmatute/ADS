@@ -60,7 +60,7 @@ class SolicitudController < ApplicationController
 		solicitud.save	
 		temp = Mensaje.find(params[:mensaje_id])
 		temp.expediente_id = expediente.id
-		
+	    temp.save	
 		@clasificaciones = Clasificacion.all
 		@leyes= LeyAcuerdo.all
 		@justificacion = Justificacion.new
@@ -68,13 +68,62 @@ class SolicitudController < ApplicationController
 
 	def pendiente
 		@solicitudes = Solicitud.all
+	
+		if current_user.rol.nombre.eql? "enlace"
+			@asignacion = Asignacion.where(:enlace_id => current_user.id )
+		end
 	end
 
 	def justificar
 		@justificacion = Justificacion.new(params[:justificacion])
 		@justificacion.leyAcuerdos << LeyAcuerdo.find(params[:ley])
-		@justificacion.expediente_id = Mensaje.find(params[:mensaje_id]).expediente_id
-		p @justificacion
-		@justificacion.save		
+		e =Mensaje.find(params[:mensaje_id]).expediente_id
+
+		Expediente.find(e).cambiadaClasificacion(params[:clasificacion])
+
+		@justificacion.expediente_id = e	
+		@justificacion.save	
+		Solicitud.find_by_expediente_id(e).update_attributes(:clasificacion_id=>params[:clasificacion]	)
+		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
+	end
+
+	def	show
+		@solicitud = Solicitud.find(params[:solicitud_id])
+		@expediente = Expediente.find(params[:expediente_id])
+		@mensajes = Mensaje.where(:expediente_id=>params[:expediente_id])
+		@asignacion = Asignacion.where(:expediente_id=>params[:expediente_id])	
 	end	
+
+	def estado
+		@estados = Estado.all
+		@leyes= LeyAcuerdo.all
+		@justificacion = Justificacion.new
+		
+	end
+
+	def asignar
+		temp = Enlace.where(:institucion_id=> Oip.find_by_usuario_id(current_user.id).institucion_id)
+		@enlaces = []
+		temp.each do |t|
+			@enlaces << [t.nombre,t.usuario_id]
+		end
+		temp2 = Solicitud.where( :institucion_id=> Oip.find_by_usuario_id(current_user.id).institucion_id)
+		@solicitudes = []
+		temp2.each do |t|
+			@solicitudes << [t.numero,t.expediente_id]
+		end	
+		@asignar = Asignacion.new
+	end
+
+	def asignaEnlace
+		@asignacion = Asignacion.new(params[:asignacion])
+		@asignacion.fechaInic = DateTime.now
+		@asignacion.usuarioMod = current_user.id
+		@asignacion.usuarioRes = current_user.id
+		@asignacion.fechaCrear = DateTime.now
+		@asignacion.fechaMod = DateTime.now
+		@asignacion.save
+		redirect_to root_path
+
+	end
 end
