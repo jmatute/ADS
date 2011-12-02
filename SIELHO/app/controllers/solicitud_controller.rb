@@ -7,7 +7,7 @@ class SolicitudController < ApplicationController
 		@solicitud = Solicitud.new
 		@documento = Documento.new
 		@tipoDocumentos = TipoDocumento.documentos(1)
-		AplicationMailer.enviar_correo("javier_suazo@live.com").deliver
+#		AplicationMailer.enviar_correo("javier_suazo@live.com").deliver
 	end
 
 	def solicitud_juridica
@@ -47,7 +47,7 @@ class SolicitudController < ApplicationController
 	def clasificar
 		temp = Mensaje.find(params[:mensaje_id]).parsear
 		Mensaje.find(params[:mensaje_id]).update_attributes(:borrado=>true)
-
+		
 		doc = Documento.new
 		solicitante = Solicitante.new
 		solicitud = Solicitud.new

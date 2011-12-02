@@ -3,7 +3,7 @@ class AplicationMailer < ActionMailer::Base
 
   default :from => "iaip.sielho@gmail.com"  
   
-  def enviar_correo(user)  
-    mail(:to => user, :subject => "Solicitud Realizada con Exito")  
+  def enviarcorreo(user)  
+    mail(:to => user, :subject => "Solicitud de Informacion Realizada con Exito")  
   end  
 end
