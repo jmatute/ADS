@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20111130231905) do
 
-
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
     t.string   "pnombre"
@@ -147,11 +146,6 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "expediente_id"
-  end
-
-  create_table "justificacions_ley_acuerdos", :id => false, :force => true do |t|
-    t.integer "justificacion_id"
-    t.integer "ley_acuerdo_id"
   end
 
   create_table "ley_acuerdos", :force => true do |t|

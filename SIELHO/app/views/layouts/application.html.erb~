@@ -3,30 +3,91 @@
 <head>
   <title>SIELHO</title>
   <%= stylesheet_link_tag :all %>
+
   <%= javascript_include_tag :defaults %>
  <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
   <%= csrf_meta_tag %>
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
 <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
    
+ <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.ad-gallery.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.ad-gallery.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
+    $('img.image1').data('ad-title', 'Title through $.data');
+    $('img.image4').data('ad-desc', 'This image is wider than the wrapper, so it has been scaled down');
+    $('img.image5').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
+    var galleries = $('.ad-gallery').adGallery();
+    $('#switch-effect').change(
+      function() {
+        galleries[0].settings.effect = $(this).val();
+        return false;
+      }
+    );
+    $('#toggle-slideshow').click(
+      function() {
+        galleries[0].slideshow.toggle();
+        return false;
+      }
+    );
+    $('#toggle-description').click(
+      function() {
+        if(!galleries[0].settings.description_wrapper) {
+          galleries[0].settings.description_wrapper = $('#descriptions');
+        } else {
+          galleries[0].settings.description_wrapper = false;
+        }
+        return false;
+      }
+    );
+  });
+  </script>
+
+  <style>
+ #gallery {
+    padding: 30px;
+    background: #e1eef5;
+  }
+  #descriptions {
+    position: relative;
+    height: 50px;
+    background: #EEE;
+    margin-top: 10px;
+    width: 640px;
+    padding: 10px;
+    overflow: hidden;
+  }
+    #descriptions .ad-image-description {
+      position: absolute;
+    }
+      #descriptions .ad-image-description .ad-description-title {
+        display: block;
+      }
+  </style>
 </head>
 <body>
 
   <div class = "menufinal">
         <ul id="menu">
             <li class="logo">
-                <img style="float:left;" alt="" src="/images/menu_left.png"/>
+                <a href="/"><img style="float:left;" alt="" src="/images/menu_left.png"/></a>
                 
             </li>
-            <li><a href="#">Inicio</a></li>
+			<% unless user_signed_in? %>    
             <li><a href="#">Realizar Solicitud de Informacion</a>
                 <ul id="help">
-                    <li>
+ 
+	               <li>
                         <img class="corner_inset_left" alt="" src="/images/corner_inset_left.png"/>
-                        <a href="#">Formulario para Persona Natural</a>
+                          <%= link_to "Formulario para Persona Natural",solicitud_natural_path %>
                         <img class="corner_inset_right" alt="" src="/images/corner_inset_right.png"/>
                     </li>
-                    <li><a href="#">Formulario para Persona Juridica</a></li>
+
+                    <li>
+                          <%= link_to "Formulario para Persona Juridica",solicitud_juridica_path %>
+					</li>
                     <li class="last">
                         <img class="corner_left" alt="" src="/images/corner_left.png"/>
                         <img class="middle" alt="" src="/images/dot.gif"/>
@@ -35,7 +96,26 @@
 		   
                 </ul>
             </li>
-	    <li><%=link_to "Ingresar al Sistema",  new_user_session_path%></li>
+
+
+	 		   <li><%=link_to "Login",   new_user_session_path%></li>
+			<%else%>
+			<li>		<%if current_user.rol.nombre.eql? "admin"%>
+						<%="Bienvenido #{Administrador.find_by_usuario_id(current_user.id).nombre }" %>
+					<%end%>
+					<%if current_user.rol.nombre.eql? "oip"%>
+						<%="Bienvenido #{Oip.find_by_usuario_id(current_user.id).nombre }, #{Institucion.find(Oip.find_by_usuario_id(current_user.id).institucion_id).nombre}" %>
+
+					<%end%>
+					<%if current_user.rol.nombre.eql? "enlace"%>
+						<%="Bienvenido #{Enlace.find_by_usuario_id(current_user.id).nombre }, #{Institucion.find(Enlace.find_by_usuario_id(current_user.id).institucion_id).nombre}, #{Departamento.find(Enlace.find_by_usuario_id(current_user.id).departamento_id).nombre }" %>
+
+					<%end%> </li>
+			<%end%>
+			
+
+
+			
         </ul>
         <img style="float:left;" alt="" src="/images/menu_right.png"/>
     </div>
@@ -45,26 +125,122 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-
 	<%= yield %>
+
+
+					<%if user_signed_in? %>
+	<div id="dockContainer"> 
+		<div id="dockWrapper"> 
+			<div class="cap left"></div> 
+				<ul class="osx-dock">
+					<% if user_signed_in? and current_user.activo %>	
+					
+
+					<li class="active"> 
+						<span>Inicio</span> 
+						<a href="/" title="Home"><img src="/images/home.png" /></a> 
+					</li>
+
+
+					<%unless current_user.rol.nombre.eql? "enlace"%>
+					 <%if current_user.rol.nombre.eql? "admin" %> 
+
+						<li class="active"> 
+						<span>Crear OIP</span> 
+					<%elsif current_user.rol.nombre.eql? "oip" %>
+						<li class="active"> 
+						<span>Enlace</span>
+					<%end%>
+                        <%= link_to image_tag("/images/add-user.png"), new_user_path %>
+					</li>
+						<li class="active"> 
+						<span>Directorio</span> 
+                        <%= link_to image_tag("/images/directorio.png"), directorio_path %>
+						</li>
+
+
+					<%end%>
+			
+					<%if current_user.rol.nombre.eql? "admin" %>
+						<li class="active"> 
+						<span>Institucion</span> 
+						<a href="/parametrizacion/institucion/new" title=""><img src="/images/edificio.png" /></a> 
+						</li>
+				
+						<li class="active"> 
+						<span>Ocupacion</span> 
+						<a href="/parametrizacion/ocupacion/new" title=""><img src="/images/ocupacion.png" /></a> 
+						</li>
+						
+						<li class="active"> 
+						<span>Estados</span> 
+						<a href="/parametrizacion/estado/new" title=""><img src="/images/estado.png" /></a> 
+						</li>
+					
+						<li class="active"> 
+						<span>Documentos</span> 
+						<a href="/parametrizacion/tipodocumento/new" title=""><img src="/images/doc1.png" /></a> 
+						</li>
+						
+						<li class="active"> 
+						<span>Leyes</span> 
+						<a href="/parametrizacion/leyacuerdo/new" title=""><img src="/images/leyes.gif" /></a> 
+						</li>
+
+					<%end%>
+					
+					<%if current_user.rol.nombre.eql? "oip" %>
+						<li class="active"> 
+						<span>Departamento</span> 
+						<a href="/parametrizacion/departamento/new" title=""><img src="/images/departamento.png" /></a> 
+						</li>
+					<%end%>
+
 	
-<div id="dockContainer"> 
-<div id="dockWrapper"> 
-<div class="cap left"></div> 
-<ul class="osx-dock">
-<li class="active"> 
-<span>Inicio</span> 
-<a href="/" title="Home"><img src="/images/home.png" /></a> 
-</li>
-<li class="active"> 
-<span>Formulario</span> 
-<a href="/" title=""><img src="/images/doc.png" /></a> 
-</li>
-<li class="active"> 
-<span>Formulario</span> 
-<a href="/" title=""><img src="/images/doc1.png" /></a> 
-</li>
-</ul>
+						<li class="active"> 
+						<span> Contraseña</span> 
+                          <%= link_to image_tag("/images/login.png"), edit_user_registration_path %>
+						
+						</li>
+
+	<% end %>
+					<%if current_user.activo%>
+
+						<li class="active"> 
+						<span> Mensaje</span> 
+                          <%= link_to image_tag("/images/mensaje.png"), mensaje_nuevo_path(current_user) %>
+						
+						</li>
+						
+						<li class="active"> 
+						<span> Pendiente</span> 
+                          <%= link_to image_tag("/images/expediente.jpg"), solicitudes_pendientes_path(current_user) %>
+						
+						</li>
+
+
+
+
+
+					<li class="active">
+                           <span>Inbox</span>
+						<%if Mensaje.HasMensajeNoLeido(current_user.id) %>
+                          <%= link_to image_tag("/images/inbox_full.png"), inbox_path(current_user) %>
+						<% else%>
+                          <%= link_to image_tag("/images/inbox_empty.png"), inbox_path(current_user) %>
+						<% end%>	
+                     </li>
+					<% end%>
+					<li class="active">
+                           <span>Logout</span>
+                          <%= link_to image_tag("/images/logout.png"), destroy_user_session_path %>
+							
+                     </li>
+
+				</ul>
+		</div>
+	</div>
+
+					<%end%>
 </body>
 </html>

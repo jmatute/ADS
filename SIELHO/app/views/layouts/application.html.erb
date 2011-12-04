@@ -10,6 +10,64 @@
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
 <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
    
+ <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.ad-gallery.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.ad-gallery.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
+    $('img.image1').data('ad-title', 'Title through $.data');
+    $('img.image4').data('ad-desc', 'This image is wider than the wrapper, so it has been scaled down');
+    $('img.image5').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
+    var galleries = $('.ad-gallery').adGallery();
+    $('#switch-effect').change(
+      function() {
+        galleries[0].settings.effect = $(this).val();
+        return false;
+      }
+    );
+    $('#toggle-slideshow').click(
+      function() {
+        galleries[0].slideshow.toggle();
+        return false;
+      }
+    );
+    $('#toggle-description').click(
+      function() {
+        if(!galleries[0].settings.description_wrapper) {
+          galleries[0].settings.description_wrapper = $('#descriptions');
+        } else {
+          galleries[0].settings.description_wrapper = false;
+        }
+        return false;
+      }
+    );
+  });
+  </script>
+
+  <style>
+ #gallery {
+    padding: 30px;
+    background: #e1eef5;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #descriptions {
+    position: relative;
+    height: 50px;
+    background: #EEE;
+    margin-top: 10px;
+    width: 640px;
+    padding: 10px;
+    overflow: hidden;
+  }
+    #descriptions .ad-image-description {
+      position: absolute;
+    }
+      #descriptions .ad-image-description .ad-description-title {
+        display: block;
+      }
+  </style>
 </head>
 <body>
 
@@ -42,7 +100,7 @@
             </li>
 
 
-	 		   <li><%=link_to "Ingresar al Sistema",   new_user_session_path%></li>
+	 		   <li><%=link_to "Login",   new_user_session_path%></li>
 			<%else%>
 			<li>		<%if current_user.rol.nombre.eql? "admin"%>
 						<%="Bienvenido #{Administrador.find_by_usuario_id(current_user.id).nombre }" %>
