@@ -26,6 +26,7 @@
 	
 	<p><strong>Mensaje:</strong></br> <%=@mensaje.texto%></p>
 
+	<button> <%=link_to @mensaje.document_file_name, download_path(@mensaje)%></button>
 
 <%end%>
 
