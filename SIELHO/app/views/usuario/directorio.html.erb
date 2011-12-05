@@ -28,6 +28,7 @@
 				<th>Nombre </th> <th> Departamento </th> <th>Correo Principal </th> <th>Correo Alterno </th> <th> Telefono </th> <th>Activo </th>
 			</tr>
 		<% @enlaces.each do |e| %>
+			<%if e.institucion_id.eql?  Oip.find_by_usuario_id(current_user.id).institucion_id%>
 			<tr>
 				<td><%=link_to " #{e.papellido + " " + e.sapellido} , #{e.pnombre + " " + e.snombre} ", edit_enlace_path(e) %></td>
 				<td> <%=" #{Departamento.where( :institucion_id=> e.institucion_id,:id=>e.departamento_id).first.nombre}"%>
@@ -42,6 +43,7 @@
                      <%end%>		
 				</td>	
 			</tr>
+				<%end%>
 		<% end %>	
 		</table>
 

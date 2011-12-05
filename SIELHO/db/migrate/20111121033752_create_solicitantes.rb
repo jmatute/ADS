@@ -17,7 +17,7 @@ class CreateSolicitantes < ActiveRecord::Migration
       t.datetime :fechaMod
       t.integer :usuarioRes
       t.integer :usuarioMod
-
+	  t.integer :responsable
       t.timestamps
     end
   end

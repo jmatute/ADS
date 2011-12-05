@@ -6,4 +6,10 @@ class AplicationMailer < ActionMailer::Base
   def enviarcorreo(user)  
     mail(:to => user, :subject => "Solicitud de Informacion Realizada con Exito")  
   end  
+	
+  def bienvenido(user,pass)
+	@password=pass
+	@user = user
+	mail(:to => user.email, :subject => "Su usuario ha sido creado")
+  end
 end

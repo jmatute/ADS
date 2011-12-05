@@ -20,5 +20,10 @@ class Expediente < ActiveRecord::Base
 			self.estado_id = Estado.find_by_nombre("En tramite").id
 			self.save
 		end
+		if clasificacion.eql?"incompleta"
+			self.estado_id = Estado.find_by_nombre("Finalizada por incompletitud").id
+			self.save
+				
+		end
 	end
 end

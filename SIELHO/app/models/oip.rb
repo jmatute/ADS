@@ -21,15 +21,18 @@ class Oip < ActiveRecord::Base
 		end
 	
 		
+		pass = ActiveSupport::SecureRandom.base64(7)
 		User.create! do |u|
 			 u.username = self.pnombre.slice(0,1) + self.snombre + self.papellido
 			 u.rol_id = 2
 			 u.activo = false
 			 u.email = self.email
-			 u.password = 'password'
-			 u.password_confirmation = 'password'
-		end
 
+			 u.password = pass
+			 u.password_confirmation = pass
+		end
+				
+		AplicationMailer.bienvenido(User.last,pass).deliver	
 		self.usuario_id = User.last.id
 		self.save
 	end
