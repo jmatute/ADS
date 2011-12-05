@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "anterior_id"
-    t.integer  "siguiente_id"
   end
 
   create_table "expedientes", :force => true do |t|
@@ -146,6 +145,11 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "expediente_id"
+  end
+
+  create_table "justificacions_ley_acuerdos", :id => false, :force => true do |t|
+    t.integer "justificacion_id"
+    t.integer "ley_acuerdo_id"
   end
 
   create_table "ley_acuerdos", :force => true do |t|
@@ -220,6 +224,11 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "updated_at"
   end
 
+  create_table "permisos_rols", :id => false, :force => true do |t|
+    t.integer "rol_id"
+    t.integer "permiso_id"
+  end
+
   create_table "rols", :force => true do |t|
     t.string   "nombre"
     t.text     "descripcion"
@@ -248,6 +257,7 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
+    t.integer  "responsable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -264,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20111130231905) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
+    t.integer  "responsable"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "numero"

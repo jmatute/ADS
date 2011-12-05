@@ -11,8 +11,6 @@ class UsuarioController < ApplicationController
 			oip = Oip.new(params[:oip])
 			if oip.save
 				oip.crear(current_user.id)
-				p "asd"
-				AplicationMailer.enviar_correo(oip)
 				redirect_to directorio_path
 			else
 				redirect_to directorio_path
@@ -68,6 +66,11 @@ class UsuarioController < ApplicationController
 		@oip = Oip.find( params[:id])
 		@oip.fechaMod = DateTime.now
 		@oip.usuarioMod = current_user.id
+		username = @oip.pnombre.slice(0,1) + @oip.snombre + @oip.papellido
+		usuario = User.find(@oip.usuario_id)
+		usuario.username = username
+		usuario.save
+		@oip.save
 		@oip.update_attributes(params[:oip])
 		redirect_to directorio_path		
 	end
@@ -77,6 +80,15 @@ class UsuarioController < ApplicationController
 		@enlace.fechaMod = DateTime.now
 		@enlace.usuarioMod = current_user.id
 		@enlace.update_attributes(params[:oip])
+		username = @enlace.pnombre.slice(0,1) + @enlace.snombre + @enlace.papellido
+		usuario = User.find(@enlace.usuario_id)
+		usuario.username = username
+		usuario.save
+		@oip.save
+		@oip.update_attributes(params[:oip])
+		
+
+
 		redirect_to directorio_path		
 
 	end

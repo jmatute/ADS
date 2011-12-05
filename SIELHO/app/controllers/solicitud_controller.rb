@@ -7,7 +7,6 @@ class SolicitudController < ApplicationController
 		@solicitud = Solicitud.new
 		@documento = Documento.new
 		@tipoDocumentos = TipoDocumento.documentos(1)
-#		AplicationMailer.enviar_correo("javier_suazo@live.com").deliver
 	end
 
 	def solicitud_juridica
@@ -22,6 +21,7 @@ class SolicitudController < ApplicationController
 	def create
 		if Mensaje.solicitudValida(params) == []
 			Mensaje.NuevaSolicitud(params)
+			AplicationMailer.enviarcorreo(params["solicitante"]["email"]).deliver
 		else
 			@errores = Mensaje.solicitudValida(params)
 			unless params[:documento][:tipoDocumento_id].blank?
@@ -48,20 +48,21 @@ class SolicitudController < ApplicationController
 		temp = Mensaje.find(params[:mensaje_id]).parsear
 		Mensaje.find(params[:mensaje_id]).update_attributes(:borrado=>true)
 		
-		doc = Documento.new
-		solicitante = Solicitante.new
-		solicitud = Solicitud.new
-		expediente = Expediente.new
-		
-		doc.crear(temp["documento"],current_user.id)
-		solicitante.crear(temp["solicitante"],current_user.id,doc.id)	
-		solicitud.crear(temp["solicitud"],Mensaje.find(params[:mensaje_id]).fecha,solicitante.id,current_user.id)
-		expediente.crear(solicitud.id,current_user.id)
-		solicitud.expediente_id = expediente.id
-		solicitud.save	
-		temp = Mensaje.find(params[:mensaje_id])
-		temp.expediente_id = expediente.id
-	    temp.save	
+		if Solicitud.where(:fecha=>Mensaje.find(params[:mensaje_id]).fecha() ).blank?
+			doc = Documento.new
+			solicitante = Solicitante.new
+			solicitud = Solicitud.new
+			expediente = Expediente.new		
+			doc.crear(temp["documento"],current_user.id)
+			solicitante.crear(temp["solicitante"],current_user.id,doc.id)	
+			solicitud.crear(temp["solicitud"],Mensaje.find(params[:mensaje_id]).fecha,solicitante.id,current_user.id)
+			expediente.crear(solicitud.id,current_user.id)
+			solicitud.expediente_id = expediente.id
+			solicitud.save	
+			temp = Mensaje.find(params[:mensaje_id])
+			temp.expediente_id = expediente.id
+	    	temp.save
+		end	
 		@clasificaciones = Clasificacion.all
 		@leyes= LeyAcuerdo.all
 		@justificacion = Justificacion.new
@@ -79,11 +80,9 @@ class SolicitudController < ApplicationController
 		@justificacion = Justificacion.new(params[:justificacion])
 		@justificacion.leyAcuerdos << LeyAcuerdo.find(params[:ley])
 		e =Mensaje.find(params[:mensaje_id]).expediente_id
-
-		Expediente.find(e).cambiadaClasificacion(params[:clasificacion])
-
 		@justificacion.expediente_id = e	
 		@justificacion.save	
+		Expediente.find(e).cambiadaClasificacion(params[:clasificacion])
 		Solicitud.find_by_expediente_id(e).update_attributes(:clasificacion_id=>params[:clasificacion]	)
 		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
 	end

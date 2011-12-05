@@ -16,15 +16,11 @@ class MensajesController < ApplicationController
 		@mensaje = Mensaje.new()
 		@usuarios = User.all()
 		@destinos = User.destinos(current_user.id)
-<<<<<<< HEAD
-	#	send_file('/home/javier/Dropbox/Analisis/SIELHO/public/images/1.jpg')
-=======
 		temp = Solicitud.solicitudes(current_user.id)
 		@solicitudes = []
 		temp.each do |t|
 			@solicitudes << [t.numero,t.expediente_id]
 		end
->>>>>>> af835e36b7b57157574616f1a3211086a565c1c9
 	end
 
 	def borrado
