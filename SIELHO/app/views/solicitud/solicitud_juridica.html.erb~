@@ -1,37 +1,36 @@
 <div class= "solicitud">
-<h2 class = "titulo">Solicitud de Informacion para Persona Natural </h2>
+<h2 class="titulo">Solicitud de Informacion para Persona Juridica </h2>
 <%= semantic_form_for @solicitud do |f| %>
 	<%= semantic_fields_for @solicitante do |s| %>
 		<%=semantic_fields_for @documento do |d| %>	
+		  
 			<%unless @errores.nil? %>
-			  <div class = "mensajes2">
+<div class = "mensajes2">
 					<ul>
 					<%@errores.each do |e|%>
 						<li><%=e%></li>
 					<%end%>
 					</ul>
-			 </div>
 			<%end%></br></br>
-
 			<%= f.inputs do%>
 				<%= s.inputs do%>
 
 				<%= f.input :lugar %>	
 				<%= s.input :nombre ,:label=>"Nombre Completo del Solicitante"%>
 				 <%=d.input :tipoDocumento_id, :as => :select, :label => "Tipo de Documento",:collection => @tipoDocumentos %>
-		
 
 				<%= d.input :numero ,:label	=>"Numero de Documento"%>
+				<%= s.input :poder ,:label => "Poder en que actua"%>
 				<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion",:collection => @instituciones %>
 				<%= f.input :descripcion, :input_html => { :style => "width:40em; height: 10em" }%>
 
-				<h3 class = "titulo">Modo de Contacto </h3>		
+				<h3 class="titulo">Modo de Contacto </h3>		
 					<%=s.input :telefono%>
 					<%=s.input :fax%>
 					<%=s.input :email%>
 					<%=s.input :direccion_postal, :input_html => { :style => "width:40em; height: 5em" } %>
 					 
-				<h3 class = "titulo">Informacion Estadistica (Opcional ) </h3>
+				<h3 class="titulo">Informacion Estadistica (Opcional ) </h3>
 					<table class = "tablaEst">
 					<tr>
 					<td><%=s.input :genero, :as => :select, :label => "Genero: ",:collection => [["Masculino","M"],["Femenino","F"]] %></th>
@@ -41,15 +40,12 @@
 					<td><%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion: ",:collection => @ocupaciones %></th>
 					  </tr>
 					</table>
-				<%end%>		
+			      <%end%>		
 			<%end%>
 		<%end%>
 	<%end%>
-	
 	<%= f.buttons do%>
 		<% f.commit_button :label=>"Crear Solicitud"%>
 	<%end%>
-	
 <%end%>
 </div>
-
