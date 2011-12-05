@@ -119,7 +119,18 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 	-webkit-border-radius: 2px;
 	-border-radius: 2px;  
 	}
-	
+	input {
+	  border: 1px solid #CBCBCB;
+	   padding: 6px;
+	  color: gray;
+	  font-size: 18px;
+	  background-color: #FCFCFC;
+	  -moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-border-radius: 2px;
+	  
+	}
 	.loginform input {
 	   border: 1px solid #CBCBCB;
 	   padding: 6px;
@@ -177,11 +188,11 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
  {z-index:-2;}
 
 div.cap { z-index: 2;display: block; height: 45px; width: 75px; background: url(http://img813.imageshack.us/img813/8111/dockbg.png) bottom left no-repeat; }
-div.cap.left { position: absolute; bottom: 0px; left: -20px; }
-div.cap.right { background-position: right bottom; position: absolute; top: 0px; right: 0px; }
-ul.osx-dock { display: inline-block; height: 130px; padding: 0 70px 0 0; background: url(http://img813.imageshack.us/img813/8111/dockbg.png) no-repeat right bottom; overflow: hidden; margin: 0 0 0 40px; }
-ul.osx-dock li { display: block; position: relative; float: left; width: 55px; height: 50px; margin: 60px 5px 5px 5px; -webkit-transition: 0.15s linear; -webkit-transition-property: -webkit-transform margin; text-align: center; }
-ul.osx-dock li a { display: block; height: 50px; padding: 0 1px; -webkit-transition: 0.15s linear; -webkit-transition-property: -webkit-transform margin; margin: 0;
+div.cap.left {z-index: 2; position: absolute; bottom: 0px; left: -20px; }
+div.cap.right { z-index: 2;background-position: right bottom; position: absolute; top: 0px; right: 0px; }
+ul.osx-dock {z-index: 2; display: inline-block; height: 130px; padding: 0 70px 0 0; background: url(http://img813.imageshack.us/img813/8111/dockbg.png) no-repeat right bottom; overflow: hidden; margin: 0 0 0 40px; }
+ul.osx-dock li { z-index: 2;display: block; position: relative; float: left; width: 55px; height: 50px; margin: 60px 0px 0px 0px; -webkit-transition: 0.15s linear; -webkit-transition-property: -webkit-transform margin; text-align: center; }
+ul.osx-dock li a {z-index: 2; display: block; height: 50px; padding: 0 1px; -webkit-transition: 0.15s linear; -webkit-transition-property: -webkit-transform margin; margin: 0;
 -webkit-box-reflect: below 6px
 -webkit-gradient(linear, left top, left bottom, from(transparent),
 color-stop(0.45, transparent), to(rgba(255, 255, 255, 0.25)));
@@ -189,24 +200,36 @@ color-stop(0.45, transparent), to(rgba(255, 255, 255, 0.25)));
 ul.osx-dock li a img { width: 55px; }
 ul.osx-dock li:hover { 
 margin-left: 5px; margin-right: 5px;
-z-index: 200;
+z-index: 2;
 }
 ul.osx-dock li:hover a { 
 -webkit-transform-origin: center bottom;
--webkit-transform: scale(1.25);
+-webkit-transform: scale(1.35);
+z-index: 2;
 }
 ul.osx-dock li.nearby { 
-margin-left: 6px; margin-right: 6px;
-z-index: 100;
+margin-left: 1px; margin-right: 1px;
+z-index: 2;
 }
-ul.osx-dock li.nearby a { 
+ul.osx-dock li.nearby a li{ 
 -webkit-transform-origin: center bottom;
--webkit-transform: scale(1.40);
+-webkit-transform: scale(1.25);
+z-index: 2;
 }
-ul.osx-dock li span { border: 1px solid #91bd30; font-family: 'Signika', sans-serif;background-color:#91bd30;position: absolute; bottom: 60px; margin: 0 auto; display: none; height: 18px; width:auto; font-size: 12px; -webkit-border-radius: 6px; color: #FFF; }
-ul.osx-dock li:hover span { display: block; }
-div#dockContainer { position: fixed; bottom: 12px; height: 120px; padding: 90px 0 0; text-align: center; -webkit-border-radius: 6px; -moz-border-radius: 6px; width: 100%; line-height: 1; z-index: 100; }
-div#dockWrapper { width: auto; display: inline-block; position: relative; border-bottom: solid 2px rgba(255,255,255,.35); line-height: 0; }
+ul.osx-dock li span { 
+  
+ z-index: 2;
+  border: 1px solid #91bd30; font-family: 'Signika', sans-serif;background-color:#c8c8c8;position: absolute; bottom: 68px; margin-left:auto;margin-right:auto; display: none; height: 18px; width:auto; font-size: 12px; -webkit-border-radius: 6px; color: #FFF; }
+
+ul.osx-dock p {
+  z-index: 2;
+  vertical-align:middle;
+  
+}  
+  
+ul.osx-dock li:hover span { z-index: 2;display: inline; }
+div#dockContainer {z-index: 2; position: fixed; bottom: 12px; height: 120px; padding: 90px 0 0; text-align: center; -webkit-border-radius: 6px; -moz-border-radius: 6px; width: 100%; line-height: 1; z-index: 100; }
+div#dockWrapper { z-index: 2;width: auto; display: inline-block; position: relative; border-bottom: solid 2px rgba(255,255,255,.35); line-height: 0; }
 
 .cuerpoDoc {
   margin-left:auto;

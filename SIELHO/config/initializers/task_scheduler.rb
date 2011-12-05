@@ -11,10 +11,10 @@ end
 
 ## Prints the message every day at noon
 scheduler.cron("0,2 * * * *") do
-  puts("HI #{Time.now}")
+ # puts("HI #{Time.now}")
 end
 
 scheduler.in '20m' do
-  puts "order butter"
+#  puts "order butter"
 end
 
