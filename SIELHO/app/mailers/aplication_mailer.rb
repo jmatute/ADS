@@ -12,4 +12,14 @@ class AplicationMailer < ActionMailer::Base
 	@user = user
 	mail(:to => user.email, :subject => "Su usuario ha sido creado")
   end
+
+  def incompleta(nombre,descripcion,ley,instituto,correo)
+		@nombre=nombre
+		@instituto = instituto
+		@descripcion=descripcion
+		@noley = ley.noLey
+		@noacuerdo = ley.noAcuerdo
+		@descripcion_ley = ley.descripcion
+		mail(:to => correo, :subject => "Su solicitud se encuentra incompleta")
+  end
 end
