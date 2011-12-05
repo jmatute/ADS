@@ -186,13 +186,14 @@ o con el administrador del sistema</p>
 
 	<% end %>
 					<%if current_user.activo%>
-
+					
+						<%unless current_user.rol.nombre.eql? "enlace"%>
 						<li class="active"> 
 						<span> <p>Mensaje</p></span> 
                           <%= link_to image_tag("/images/mensaje.png"), mensaje_nuevo_path(current_user) %>
 						
 						</li>
-						
+						<%end%>
 						<li class="active"> 
 						<span> <p>Pendiente</p></span> 
                           <%= link_to image_tag("/images/expediente.jpg"), solicitudes_pendientes_path(current_user) %>

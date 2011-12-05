@@ -12,7 +12,8 @@ class Solicitud < ActiveRecord::Base
         self.usuarioRes = usuario
         self.fechaCrear = DateTime.now
         self.fechaMod = DateTime.now
-
+		self.responsable = usuario
+		self.finalizada = false
 		cad = (Solicitud.all.size() +1).to_s
 		while cad.size < 6 do
 			cad = "0" + cad

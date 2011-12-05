@@ -22,4 +22,46 @@ class AplicationMailer < ActionMailer::Base
 		@descripcion_ley = ley.descripcion
 		mail(:to => correo, :subject => "Su solicitud se encuentra incompleta")
   end
+  
+	def incompetente(nombre,descripcion,ley,instituto,correo)
+		@nombre=nombre
+		@instituto = instituto
+		@descripcion=descripcion
+		@noley = ley.noLey
+		@noacuerdo = ley.noAcuerdo
+		@descripcion_ley = ley.descripcion
+		mail(:to => correo, :subject => "Su solicitud no compete a la institucion")
+  end
+
+	def clasificada(nombre,descripcion,ley,instituto,correo)
+		@nombre=nombre
+		@instituto = instituto
+		@descripcion=descripcion
+		@noley = ley.noLey
+		@noacuerdo = ley.noAcuerdo
+		@descripcion_ley = ley.descripcion
+		mail(:to => correo, :subject => "La informacion de su solicitud se encuentra clasificada")
+  end
+
+
+
+
+  def nueva(correo,institucion)
+		@institucion
+		mail(:to=>correo, :subject => "Existe una nueva solicitud de informacion")
+  end
+
+  def recibo(correo)
+		mail(:to=>correo,:subject => "Acuse de Recibo")
+  end
+
+  def cambioEstado(correo,estado,descripcion) 
+		@estado = estado
+		@descripcion = descripcion
+		mail(:to=>correo,:subject => "Su solicitud ha cambiado de estado")
+  end
+
+  def asignacion(correo)
+		mail(:to=>correo,:subject => "Tiene una nueva asignacion de informacion")
+  end
 end

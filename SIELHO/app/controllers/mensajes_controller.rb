@@ -23,6 +23,15 @@ class MensajesController < ApplicationController
 		end
 	end
 
+
+    def nuevo
+		@mensaje = Mensaje.new()
+		@solicitud = Solicitud.find(params[:solicitud_id])
+		@destinos = [ [ User.find(@solicitud.responsable).username , @solicitud.responsable] ]
+		@solicitudes = [ [@solicitud.numero,@solicitud.expediente_id]]
+		render :action => "new"
+	end
+
 	def borrado
 		m = Mensaje.find(params[:mensaje_id])
 		m.borrado = true
