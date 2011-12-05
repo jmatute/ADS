@@ -43,12 +43,13 @@ SIELHO::Application.routes.draw do
   match 'usuario/:id/mensajes/:mensaje_id/leido' => "mensajes#leido", :as=>:leido
   match 'usuario/:id/mensajes/:mensaje_id/borrado' => "mensajes#borrado", :as=>:borrado
   match 'usuario/:id/mensajes/new' => "mensajes#new", :as => :mensaje_nuevo
+  match 'usuario/:id/mensajes/:solicitud_id/new' => "mensajes#nuevo", :as => :contestar
   match 'usuario/:id/mensajes/create' =>  "mensajes#create" , :as => :mensajes
   match 'usuario/:id/mensajes/:mensaje_id/show' => "mensajes#show", :as =>:ver_mensaje
   match 'usuario/:id/mensajes/historial' => "mensajes#historial" , :as=>:historial
   match 'solicitud/:mensaje_id/clasificar' => "solicitud#clasificar", :as => :clasificar_solicitud
   match 'solicitud/:mensaje_id/justificar' => "solicitud#justificar", :as=> :justificacions
-  #match 'solicitud/:solicitud_id/expediente/:expediente_id/justificar' => "solicitud#justificar", :as=> :justificacions  
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/justificarEstado' => "solicitud#justificarCambio", :as=> :justificacionCambio 
   match 'solicitud/:solicitud_id/expediente/:expediente_id/asignar' => "solicitud#asignar", :as => :asignar
   match 'solicitud/:solicitud_id/expediente/:expediente_id/estado' => "solicitud#estado", :as => :cambiar_estado
   match 'solicitud/:solicitud_id/expediente/:expediente_id/show' => "solicitud#show", :as=> :ver_expediente

@@ -46,7 +46,7 @@ class SolicitudController < ApplicationController
 
 	def clasificar
 		temp = Mensaje.find(params[:mensaje_id]).parsear
-		Mensaje.find(params[:mensaje_id]).update_attributes(:borrado=>true)
+		Mensaje.find(params[:mensaje_id]).update_attributes(:leido=>true)
 		
 		if Solicitud.where(:fecha=>Mensaje.find(params[:mensaje_id]).fecha() ).blank?
 			doc = Documento.new
@@ -58,7 +58,8 @@ class SolicitudController < ApplicationController
 			solicitud.crear(temp["solicitud"],Mensaje.find(params[:mensaje_id]).fecha,solicitante.id,current_user.id)
 			expediente.crear(solicitud.id,current_user.id)
 			solicitud.expediente_id = expediente.id
-			solicitud.save	
+			solicitud.save
+			AplicationMailer.recibo(solicitante.email).deliver	
 			temp = Mensaje.find(params[:mensaje_id])
 			temp.expediente_id = expediente.id
 	    	temp.save
@@ -81,9 +82,32 @@ class SolicitudController < ApplicationController
 		@justificacion.leyAcuerdos << LeyAcuerdo.find(params[:ley])
 		e =Mensaje.find(params[:mensaje_id]).expediente_id
 		@justificacion.expediente_id = e	
+		@justificacion.fecha_cambio = DateTime.now
+		@justificacion.basics(current_user.id)
 		@justificacion.save	
 		Expediente.find(e).cambiadaClasificacion(params[:clasificacion])
 		Solicitud.find_by_expediente_id(e).update_attributes(:clasificacion_id=>params[:clasificacion]	)
+		@justificacion.clasificacion = Clasificacion.find(Solicitud.find_by_expediente_id(e).clasificacion_id).nombre
+		@justificacion.estado = Estado.find(Expediente.find(e).estado_id).nombre
+		@justificacion.save
+		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
+	end
+
+
+	def justificarCambio
+		@justificacion = Justificacion.new(:descripcion=>params[:descripcion])
+		@justificacion.leyAcuerdos << LeyAcuerdo.find(params[:ley])
+		@justificacion.fecha_cambio = DateTime.now
+		@justificacion.expediente_id = params[:expediente_id]
+		@justificacion.basics(current_user.id)
+		@justificacion.estado = Estado.find(params[:Estado]).nombre
+		if @justificacion.estado.starts_with? "Entregado"
+			Solicitud.find_by_expediente_id(@justificacion.expediente_id).update_attributes(:finalizada=>true)
+		end
+		@justificacion.clasificacion = 	Clasificacion.find(Solicitud.find_by_expediente_id(params[:expediente_id]).clasificacion_id).nombre
+		@expediente = Expediente.find(params[:expediente_id]).update_attributes(:estado_id=>params[:Estado])
+		@justificacion.save
+		AplicationMailer.cambioEstado(	Solicitante.find(Solicitud.find_by_expediente_id(@justificacion.expediente_id).solicitante_id).email,@justificacion.estado,@justificacion.descripcion).deliver
 		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
 	end
 
@@ -92,12 +116,15 @@ class SolicitudController < ApplicationController
 		@expediente = Expediente.find(params[:expediente_id])
 		@mensajes = Mensaje.where(:expediente_id=>params[:expediente_id])
 		@asignacion = Asignacion.where(:expediente_id=>params[:expediente_id])	
+	    @cambios = Justificacion.where(:expediente_id=>params[:expediente_id])
 	end	
 
 	def estado
-		@estados = Estado.all
+		@estados = Estado.where(:anterior_id=> Expediente.find(params[:expediente_id]).estado_id)
 		@leyes= LeyAcuerdo.all
 		@justificacion = Justificacion.new
+		@solicitud = params[:solicitud_id]
+		@expediente = params[:expediente_id]
 		
 	end
 
@@ -107,10 +134,12 @@ class SolicitudController < ApplicationController
 		temp.each do |t|
 			@enlaces << [t.nombre,t.usuario_id]
 		end
-		temp2 = Solicitud.where( :institucion_id=> Oip.find_by_usuario_id(current_user.id).institucion_id)
+		temp2 = Solicitud.where( :responsable=> current_user.id)
 		@solicitudes = []
 		temp2.each do |t|
-			@solicitudes << [t.numero,t.expediente_id]
+			unless t.finalizada
+				@solicitudes << [t.numero,t.expediente_id]
+			end
 		end	
 		@asignar = Asignacion.new
 	end
@@ -122,6 +151,7 @@ class SolicitudController < ApplicationController
 		@asignacion.usuarioRes = current_user.id
 		@asignacion.fechaCrear = DateTime.now
 		@asignacion.fechaMod = DateTime.now
+		AplicationMailer.asignacion(User.find(@asignacion.enlace_id).email).deliver
 		@asignacion.save
 		redirect_to root_path
 

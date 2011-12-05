@@ -4,6 +4,8 @@
 	<th>Numero de solicitud</th> <th> Fecha </th> <th> Responsable </th> <th> Estado </th> 
 </tr>
 <% @solicitudes.each do |m| %>
+
+<%if m.responsable.eql? current_user.id%>
 <tr>
 	<td><%= link_to m.numero,ver_expediente_path(m,Expediente.find( m.expediente_id)) %> </td>
 	<td><%="#{m.fecha}"%> </td>
@@ -14,6 +16,8 @@
 
 	
 </tr>
+
+<%end%>
 <% end%>
 		</table>
 	
@@ -25,7 +29,7 @@
 	</tr>
 <% @asignacion.each do |m| %>
 <tr>
-	<td><%=Solicitud.find_by_expediente_id( m.expediente_id).numero%> </td>
+	<td><%=link_to Solicitud.find_by_expediente_id( m.expediente_id).numero, contestar_path(current_user,Solicitud.find_by_expediente_id( m.expediente_id))%> </td>
 	<td><%="#{m.plazo}"%> </td>
 	<td><%="#{m.descripcion}"%></td>
 	<td><%="#{m.fechaInic}"%></td>

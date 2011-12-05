@@ -7,8 +7,27 @@
 <p><strong>Estado : </strong> <%=Estado.find(@expediente.estado_id).nombre%></p>
 <p><strong>Descripcion: </strong> <%=@solicitud.descripcion%></p>
 
+<%unless @solicitud.finalizada%>
 <button><%= link_to "Cambiar de estado",cambiar_estado_path(@solicitud,@expediente) %></button></br>
 <button><%= link_to "Asignar Recopilacion de informacion a enlaces",asignar_path(@solicitud,@expediente)%> </button>
+
+<%end%>
+
+<h3>Cambios </h3>
+<table class="sortable"   id="sortabletable" >
+<tr>
+	<th>Fecha </th> <th> Descripcion </th> <th> Estado </th> <th> Clasificacion </th>
+</tr>
+
+<% @cambios.each do |c| %>
+<tr>
+	<td><%=c.fecha_cambio%></td>
+	<td><%=c.descripcion[0..25]%></td>
+	<td><%=c.estado%></td>
+	<td><%=c.clasificacion%></td>
+</tr>	
+<%end%>
+</table>
 <h3>Asignaciones de recopilacion </h3>
 <table class="sortable"   id="sortabletable" >
 <tr>
