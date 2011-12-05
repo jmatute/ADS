@@ -32,11 +32,11 @@
 				<h3 class = "titulo">Informacion Estadistica (Opcional ) </h3>
 					<table class = "tablaEst">
 					<tr>
-					<th><%=s.input :genero, :as => :select, :label => "Genero: ",:collection => [["Masculino","M"],["Femenino","F"]] %></th>
+					<td><%=s.input :genero, :as => :select, :label => "Genero: ",:collection => [["Masculino","M"],["Femenino","F"]] %></th>
 			
-					<th><%=s.input :nivel_educativo,:as => :select, :label => "Nivel Educativo: ",:collection => [["Primario","Primario"],["Secundario","Secundario"],["Universitario","Universitario"]] %></th>
+					<td><%=s.input :nivel_educativo,:as => :select, :label => "Nivel Educativo: ",:collection => [["Primario","Primario"],["Secundario","Secundario"],["Universitario","Universitario"]] %></th>
 
-					<th><%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion: ",:collection => @ocupaciones %></th>
+					<td><%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion: ",:collection => @ocupaciones %></th>
 					  </tr>
 					</table>
 				<%end%>		

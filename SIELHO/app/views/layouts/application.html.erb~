@@ -127,15 +127,15 @@ o con el administrador del sistema</p>
 					 <%if current_user.rol.nombre.eql? "admin" %> 
 
 						<li class="active"> 
-						<span>Crear OIP</span> 
+						<span><p>Crear OIP</p></span> 
 					<%elsif current_user.rol.nombre.eql? "oip" %>
 						<li class="active"> 
-						<span>Enlace</span>
+						<span><p>Enlace</p></span>
 					<%end%>
                         <%= link_to image_tag("/images/add-user.png"), new_user_path %>
 					</li>
 						<li class="active"> 
-						<span>Directorio</span> 
+						<span><p>Directorio</p></span> 
                         <%= link_to image_tag("/images/directorio.png"), directorio_path %>
 						</li>
 
@@ -144,27 +144,27 @@ o con el administrador del sistema</p>
 			
 					<%if current_user.rol.nombre.eql? "admin" %>
 						<li class="active"> 
-						<span>Institucion</span> 
+						<span><p>Institucion</p></span> 
 						<a href="/parametrizacion/institucion/new" title=""><img src="/images/edificio.png" /></a> 
 						</li>
 				
 						<li class="active"> 
-						<span>Ocupacion</span> 
+						<span><p>Ocupacion</p></span> 
 						<a href="/parametrizacion/ocupacion/new" title=""><img src="/images/ocupacion.png" /></a> 
 						</li>
 						
 						<li class="active"> 
-						<span>Estados</span> 
+						<span><p>Estados</p></span> 
 						<a href="/parametrizacion/estado/new" title=""><img src="/images/estado.png" /></a> 
 						</li>
 					
 						<li class="active"> 
-						<span>Documentos</span> 
+						<span><p>Documentos</p></span> 
 						<a href="/parametrizacion/tipodocumento/new" title=""><img src="/images/doc1.png" /></a> 
 						</li>
 						
 						<li class="active"> 
-						<span>Leyes</span> 
+						<span><p>Leyes</p></span> 
 						<a href="/parametrizacion/leyacuerdo/new" title=""><img src="/images/leyes.gif" /></a> 
 						</li>
 
@@ -172,14 +172,14 @@ o con el administrador del sistema</p>
 					
 					<%if current_user.rol.nombre.eql? "oip" %>
 						<li class="active"> 
-						<span>Departamento</span> 
+						<span><p>Departamento</p></span> 
 						<a href="/parametrizacion/departamento/new" title=""><img src="/images/departamento.png" /></a> 
 						</li>
 					<%end%>
 
 	
 						<li class="active"> 
-						<span> Contraseña</span> 
+						<span> <p>Contraseña</p></span> 
                           <%= link_to image_tag("/images/login.png"), edit_user_registration_path %>
 						
 						</li>
@@ -188,13 +188,13 @@ o con el administrador del sistema</p>
 					<%if current_user.activo%>
 
 						<li class="active"> 
-						<span> Mensaje</span> 
+						<span> <p>Mensaje</p></span> 
                           <%= link_to image_tag("/images/mensaje.png"), mensaje_nuevo_path(current_user) %>
 						
 						</li>
 						
 						<li class="active"> 
-						<span> Pendiente</span> 
+						<span> <p>Pendiente</p></span> 
                           <%= link_to image_tag("/images/expediente.jpg"), solicitudes_pendientes_path(current_user) %>
 						
 						</li>
@@ -204,7 +204,7 @@ o con el administrador del sistema</p>
 
 
 					<li class="active">
-                           <span>Inbox</span>
+                           <span><p>Inbox</p></span>
 						<%if Mensaje.HasMensajeNoLeido(current_user.id) %>
                           <%= link_to image_tag("/images/inbox_full.png"), inbox_path(current_user) %>
 						<% else%>
@@ -213,7 +213,7 @@ o con el administrador del sistema</p>
                      </li>
 					<% end%>
 					<li class="active">
-                           <span>Logout</span>
+                           <span><p>Logout</p></span>
                           <%= link_to image_tag("/images/logout.png"), destroy_user_session_path %>
 							
                      </li>

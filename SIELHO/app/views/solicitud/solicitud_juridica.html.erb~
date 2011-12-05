@@ -3,8 +3,9 @@
 <%= semantic_form_for @solicitud do |f| %>
 	<%= semantic_fields_for @solicitante do |s| %>
 		<%=semantic_fields_for @documento do |d| %>	
-
+		  
 			<%unless @errores.nil? %>
+<div class = "mensajes2">
 					<ul>
 					<%@errores.each do |e|%>
 						<li><%=e%></li>
