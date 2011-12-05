@@ -11,6 +11,7 @@
 						<li><%=e%></li>
 					<%end%>
 					</ul>
+</div>
 			<%end%></br></br>
 			<%= f.inputs do%>
 				<%= s.inputs do%>
