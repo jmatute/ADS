@@ -1,4 +1,5 @@
-<h2>Solicitud de Informacion para Persona Natural </h2>
+<div class= "solicitud">
+<h2 class = "titulo">Solicitud de Informacion para Persona Natural </h2>
 <%= semantic_form_for @solicitud do |f| %>
 	<%= semantic_fields_for @solicitante do |s| %>
 		<%=semantic_fields_for @documento do |d| %>	
@@ -20,26 +21,33 @@
 
 				<%= d.input :numero ,:label	=>"Numero de Documento"%>
 				<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion",:collection => @instituciones %>
-				<%= f.input :descripcion, :input_html => { :style => "width:70em; height: 10em" }%>
+				<%= f.input :descripcion, :input_html => { :style => "width:40em; height: 10em" }%>
 
-				<h3>Modo de Contacto </h3>		
+				<h3 class = "titulo">Modo de Contacto </h3>		
 					<%=s.input :telefono%>
 					<%=s.input :fax%>
 					<%=s.input :email%>
-					<%=s.input :direccion_postal, :input_html => { :style => "width:70em; height: 5em" } %>
+					<%=s.input :direccion_postal, :input_html => { :style => "width:40em; height: 5em" } %>
 					 
-				<h3>Informacion Estadistica (Opcional ) </h3>
-					<%=s.input :genero, :as => :select, :label => "Genero",:collection => [["Masculino","M"],["Femenino","F"]] %>
+				<h3 class = "titulo">Informacion Estadistica (Opcional ) </h3>
+					<table class = "tablaEst">
+					<tr>
+					<td><%=s.input :genero, :as => :select, :label => "Genero: ",:collection => [["Masculino","M"],["Femenino","F"]] %></th>
 			
-					<%=s.input :nivel_educativo,:as => :select, :label => "Nivel Educativo",:collection => [["Primario","Primario"],["Secundario","Secundario"],["Universitario","Universitario"]] %>
+					<td><%=s.input :nivel_educativo,:as => :select, :label => "Nivel Educativo: ",:collection => [["Primario","Primario"],["Secundario","Secundario"],["Universitario","Universitario"]] %></th>
 
-					<%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion",:collection => @ocupaciones %>
+					<td><%=s.input :ocupacion_id, :as => :select, :label => "Ocupacion: ",:collection => @ocupaciones %></th>
+					  </tr>
+					</table>
 				<%end%>		
 			<%end%>
 		<%end%>
 	<%end%>
+	
 	<%= f.buttons do%>
 		<% f.commit_button :label=>"Crear Solicitud"%>
 	<%end%>
+	
 <%end%>
+</div>
 

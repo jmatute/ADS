@@ -3,7 +3,7 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-  <div>Correo Electronico:<br />
+  <div>Nombre de usuario<br />
   <%= f.text_field :login %></div>
 	   	
   <div><%="Contraseña" %><br />

@@ -9,63 +9,19 @@
   <%= csrf_meta_tag %>
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
 <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-   
+<script src="/javascripts/video.js" type="text/javascript" charset="utf-8"></script>
  <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.ad-gallery.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="/javascripts/jquery.ad-gallery.js"></script>
+ <link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
-  $(function() {
-    $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
-    $('img.image1').data('ad-title', 'Title through $.data');
-    $('img.image4').data('ad-desc', 'This image is wider than the wrapper, so it has been scaled down');
-    $('img.image5').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
-    var galleries = $('.ad-gallery').adGallery();
-    $('#switch-effect').change(
-      function() {
-        galleries[0].settings.effect = $(this).val();
-        return false;
-      }
-    );
-    $('#toggle-slideshow').click(
-      function() {
-        galleries[0].slideshow.toggle();
-        return false;
-      }
-    );
-    $('#toggle-description').click(
-      function() {
-        if(!galleries[0].settings.description_wrapper) {
-          galleries[0].settings.description_wrapper = $('#descriptions');
-        } else {
-          galleries[0].settings.description_wrapper = false;
-        }
-        return false;
-      }
-    );
-  });
+    VideoJS.setupAllWhenReady();
+
   </script>
 
-  <style>
- #gallery {
-    padding: 30px;
-    background: #e1eef5;
-  }
-  #descriptions {
-    position: relative;
-    height: 50px;
-    background: #EEE;
-    margin-top: 10px;
-    width: 640px;
-    padding: 10px;
-    overflow: hidden;
-  }
-    #descriptions .ad-image-description {
-      position: absolute;
-    }
-      #descriptions .ad-image-description .ad-description-title {
-        display: block;
-      }
-  </style>
+  <!-- Include the VideoJS Stylesheet -->
+  <link rel="stylesheet" href="/stylesheets/video-js.css" type="text/css" media="screen" title="Video JS">
 </head>
 <body>
 
@@ -98,7 +54,11 @@
             </li>
 
 
-	 		   <li><%=link_to "Login",   new_user_session_path%></li>
+	    <li><%=link_to "Login",   new_user_session_path%>
+		
+
+
+	    </li>
 			<%else%>
 			<li>		<%if current_user.rol.nombre.eql? "admin"%>
 						<%="Bienvenido #{Administrador.find_by_usuario_id(current_user.id).nombre }" %>
@@ -121,13 +81,34 @@
     </div>
     <div style="float:none; clear:both;"></div>
 
-     
-
+    <%if notice.nil? && alert.nil?%>
+    <br/>
+    <%end%>
+    
+    <%unless notice.nil?%> 
+    <div class= "mensajes">
     <p class="notice"><%= notice %></p>
+    </div>
+    <%end%>
+
+    <%unless alert.nil?%> 
+    <div class = "mensajes2">
     <p class="alert"><%= alert %></p>
+    </div>
+    <%end%>
+    <%unless user_signed_in?%>
+
+<%end%>
+<%if user_signed_in? and !current_user.activo %>
+	<p> Por los momentos su usuario no se encuentra habilitado para trabajar en el sistema.</p>
+	<p>Favor contactarse con un oficial de informacion de su institucion
+o con el administrador del sistema</p>
+
+<%end%>
+      <div class = "cuerpoDoc">
 	<%= yield %>
-
-
+      </div>
+  <br/><br/><br/>
 					<%if user_signed_in? %>
 	<div id="dockContainer"> 
 		<div id="dockWrapper"> 
@@ -137,7 +118,7 @@
 					
 
 					<li class="active"> 
-						<span>Inicio</span> 
+						<span><p>Inicio</p></span> 
 						<a href="/" title="Home"><img src="/images/home.png" /></a> 
 					</li>
 
