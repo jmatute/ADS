@@ -35,10 +35,28 @@ class SolicitudController < ApplicationController
 					render :action => "solicitud_natural"
 					return
 				else
+					@solicitante = Solicitante.new
+					@instituciones = Institucion.instituciones()
+					@ocupaciones = Ocupacion.ocupaciones()
+					@solicitud = Solicitud.new
+					@documento = Documento.new
+					@tipoDocumentos = TipoDocumento.documentos(1)
 			
+
+
+
 					render :action => "solicitud_juridica"
 					return
 				end
+			else
+					@solicitante = Solicitante.new
+					@instituciones = Institucion.instituciones()
+					@ocupaciones = Ocupacion.ocupaciones()
+					@solicitud = Solicitud.new
+					@documento = Documento.new
+					@tipoDocumentos = TipoDocumento.documentos(1)
+				render :action => "solicitud_natural"
+				return
 			end
 		end
 		redirect_to root_path	
