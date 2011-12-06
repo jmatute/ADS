@@ -6,6 +6,7 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("1m") do
+	puts User.last
 #AplicationMailer.enviarcorreo("javier_suazo@live.com").deliver
 end
 
@@ -15,6 +16,6 @@ scheduler.cron("0,2 * * * *") do
 end
 
 scheduler.in '20m' do
-#  puts "order butter"
+
 end
 

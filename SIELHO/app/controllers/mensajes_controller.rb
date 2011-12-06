@@ -9,9 +9,15 @@ class MensajesController < ApplicationController
 		m.fechaMod = DateTime.now
 		m.usuarioMod = current_user.id
 		m.save
-		redirect_to inbox_path
+		redirect_to inbox_path 
 	end
 
+	def download
+		@mensaje = Mensaje.find(params[:mensaje_id])
+		unless @mensaje.document_file_name.nil?
+			send_file "public/mensajes/documents/#{@mensaje.id}/original_#{@mensaje.document_file_name}",:type=>@mensaje.document_content_type
+		end
+	end
 	def new
 		@mensaje = Mensaje.new()
 		@usuarios = User.all()
