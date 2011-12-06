@@ -269,7 +269,6 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "numero"
-    t.boolean  "finalizada"
   end
 
   create_table "tipo_documentos", :force => true do |t|
