@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205160557) do
+ActiveRecord::Schema.define(:version => 20111206160233) do
 
   create_table "administradors", :force => true do |t|
     t.integer  "usuario_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "plazo"
+    t.boolean  "completada"
   end
 
   create_table "clasificacions", :force => true do |t|
