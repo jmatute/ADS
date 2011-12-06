@@ -39,7 +39,9 @@ class SolicitudController < ApplicationController
 					render :action => "solicitud_juridica"
 					return
 				end
+				
 			end
+				
 		end
 		redirect_to root_path	
 	end
