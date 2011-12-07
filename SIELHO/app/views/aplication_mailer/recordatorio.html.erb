@@ -1,0 +1,16 @@
+<h2>Recordatorio </h2>
+
+<p> Este es un recordatorio para la solicitud <%=Solicitud.find_by_expediente_id(@asignacion.expediente_id).numero%> </p>
+
+<p>Debe recopilar la siguiente informacion: </p>
+
+<ul>
+<li>
+	<%=@asignacion.descripcion%>
+</li>
+</ul>
+
+<p>Su plazo se ha cumplido. Favor responder a su Oficial de informacion de forma temprana </p>
+
+Atte.</br>
+SIELHO

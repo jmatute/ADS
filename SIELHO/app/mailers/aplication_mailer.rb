@@ -42,6 +42,16 @@ class AplicationMailer < ActionMailer::Base
 		@descripcion_ley = ley.descripcion
 		mail(:to => correo, :subject => "La informacion de su solicitud se encuentra clasificada")
   end
+	
+	def reservacion(nombre,descripcion,ley,instituto,correo)
+		@nombre=nombre
+		@instituto = instituto
+		@descripcion=descripcion
+		@noley = ley.noLey
+		@noacuerdo = ley.noAcuerdo
+		@descripcion_ley = ley.descripcion
+		mail(:to => correo, :subject => "La informacion de su solicitud se encuentra en tramite de reservacion")
+  end
 
 
 
@@ -63,5 +73,10 @@ class AplicationMailer < ActionMailer::Base
 
   def asignacion(correo)
 		mail(:to=>correo,:subject => "Tiene una nueva asignacion de informacion")
+  end
+
+  def recordatorio(correo,asignacion)
+		@asignacion = asignacion
+		mail(:to=>correo,:subject => "Recordatorio para la asignacion de informacion")
   end
 end

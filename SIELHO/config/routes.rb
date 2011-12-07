@@ -58,7 +58,10 @@ SIELHO::Application.routes.draw do
  
   match 'plazo/new' => "usuario#newPlazo" ,:as => :new_plazo
   match 'plazo/create' => "usuario#createPlazo" ,:as => :create_plazo
-# The priority is based upon order of creation:	
+
+  match 'solicitud/:solicitud_id/expediente/:expediente_id/reclasificar' => "solicitud#reclasificar", :as=> :reclasificar
+ 
+  # The priority is based upon order of creation:	
   # first created -> highest priority.
 
   # Sample of regular route:

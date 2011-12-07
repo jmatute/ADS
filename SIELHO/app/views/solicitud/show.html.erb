@@ -7,10 +7,14 @@
 <p><strong>Estado : </strong> <%=Estado.find(@expediente.estado_id).nombre%></p>
 <p><strong>Descripcion: </strong> <%=@solicitud.descripcion%></p>
 
-<%unless @solicitud.finalizada%>
+<%unless @solicitud.finalizada %>
+	<%unless Estado.find(@expediente.estado_id).nombre.eql? "Suspendida"%>
 <button><%= link_to "Cambiar de estado",cambiar_estado_path(@solicitud,@expediente) %></button></br>
 <button><%= link_to "Asignar Recopilacion de informacion a enlaces",asignar_path(@solicitud,@expediente)%> </button>
-
+	<%else%>
+<button><a href=<%="/solicitud/#{@solicitud.id}/expediente/#{@expediente.id}/reclasificar?clasificacion=publica"%> > Clasificacion Publica</a></button>
+<button><a href=<%="/solicitud/#{@solicitud.id}/expediente/#{@expediente.id}/reclasificar?clasificacion=reservada"%> > Clasificacion Reservada</a></button>
+	<%end%>
 <%end%>
 
 <h3>Cambios </h3>

@@ -13,7 +13,7 @@ scheduler.every("1m") do
 	todas = Solicitud.where(:finalizada => false)
 	todas.each do |t|
 		if Estado.find(Expediente.find(t.expediente_id).estado_id).nombre.eql?("En tramite")
-			diferencia = (DateTime.now.to_i - t.fechaCrear.to_i)/(60*60*24.0)
+			diferencia = (DateTime.now.to_i - t.fecha.to_i)/(60*60*24.0)
 			if diferencia > plazo
 				justificacion = Justificacion.new(:descripcion=>"Se ha cumplido el plazo maximo, se creara una prorroga para la recopilacion de informacion")
 				justificacion.leyAcuerdos << LeyAcuerdo.first
@@ -31,7 +31,7 @@ scheduler.every("1m") do
 
 			end
 		elsif Estado.find(Expediente.find(t.expediente_id).estado_id).nombre.eql?("Prorroga")
-			diferencia = (DateTime.now.to_i - t.fechaCrear.to_i)/(60*60*24.0)
+			diferencia = (DateTime.now.to_i - t.fecha.to_i)/(60*60*24.0)
 			if diferencia > (2*plazo) && t.finalizada == false
 				justificacion = Justificacion.new(:descripcion=>"Se ha cumplido el plazo maximo, la solicitud ha sido cerrada insatisfactoriamente")
 				e = t.expediente_id
@@ -54,6 +54,17 @@ scheduler.every("1m") do
 
 
 
+	end
+
+
+	asignaciones = Asignacion.where(:completada=>false)
+	asignaciones.each do |a|
+		diferencia = (DateTime.now.to_i - a.fechaInic.to_i)/(60*60*24.0)
+		cantidad = a.plazo
+		if diferencia >= cantidad
+			correo = User.find(a.enlace_id).email
+			AplicationMailer.recordatorio(correo, a).deliver	
+		end
 	end
 end
 
