@@ -41,6 +41,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    fastercsv (1.5.4)
     formtastic (2.0.2)
       rails (~> 3.0)
     i18n (0.4.2)
@@ -97,6 +98,7 @@ PLATFORMS
 
 DEPENDENCIES
   devise
+  fastercsv
   formtastic
   json
   paperclip (~> 2.4)

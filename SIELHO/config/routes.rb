@@ -1,4 +1,6 @@
 SIELHO::Application.routes.draw do
+  get "estadisticas/index"
+
   get "buscar/index"
 
   match "/buscar" => "buscar#index"

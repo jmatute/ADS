@@ -4,6 +4,8 @@ gem 'rails', '3.0.1'
 gem 'json'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+#gem 'simple_xlsx'
+gem 'fastercsv'
 gem "rake","0.8.7"
 gem 'thin'
 gem 'devise'
