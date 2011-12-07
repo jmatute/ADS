@@ -10,15 +10,17 @@
   
 <% end %>
 
+<%unless @encontrados.nil?%>
 <%if @encontrados.size > 0 %>
 <h2 class= "titulo">Solicitudes Encontradas</h2>
 
 	<%@encontrados.each do |t|%>
 		<span class = "ResBus">
 			<h3 class= "titulo">Solicitud <%=t.numero%> <h3>
-			<p>Realizada por:  <%=Solicitante.find_by_id(t.solicitante_id).nombre%> <p>
-			<p>Dirigida a: <%=Institucion.find(t.institucion_id).nombre%> <p>
+			Realizada por:  <%=Solicitante.find_by_id(t.solicitante_id).nombre%> 
+			Dirigida a: <%=Institucion.find(t.institucion_id).nombre%> 
 		</span>
 	<%end%>
+<%end%>
 
 <%end%>

@@ -1,27 +1,30 @@
 class Solicitud < ActiveRecord::Base
 
 	def self.buscar(codigo,institucion,incio,final)
-		solicitudes = []   	
-		unless codigo.nil? && codigo.blank?
-			solicitudes <<  Solicitud.where("numero = ?",codigo)			
-		end
-
-		if solicitudes.nil? == true
+#		solicitudes = []		
+#		unless codigo.nil? || codigo.blank?
+#			solicitudes = []
+##			todas = Solicitud.all
+#			todas.each do |t|	
+#				if t.numero == codigo.to_s
+#					solicitudes << t
+#				end
+#			end		
 		
-			if institucion.blank? == false  &&  institucion.nil? == false
-				solicitudes = []
-				todas = Solicitud.all
-				todas.each do |t|
-					if t.institucion_id == institucion
-						solicitudes << t
-					end		
-				end
-								
-			end	
-		end
-
-		
-	      	return	solicitudes	    	
+#		else
+#				if institucion.blank? == false  ||  institucion.nil? == false
+#					solicitudes = []
+#					todas = Solicitud.all
+#					todas.each do |t|
+#						if t.institucion_id == institucion.to_i
+#							solicitudes << t
+#						end		
+##					end
+#									
+#				end	
+#		end
+#		
+#	      	return	solicitudes	    	
 	end
 
 	def crear(doc,fechaM,solicitante,usuario)
