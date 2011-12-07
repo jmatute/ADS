@@ -35,6 +35,7 @@ class MensajesController < ApplicationController
 		@solicitud = Solicitud.find(params[:solicitud_id])
 		@destinos = [ [ User.find(@solicitud.responsable).username , @solicitud.responsable] ]
 		@solicitudes = [ [@solicitud.numero,@solicitud.expediente_id]]
+		@asignacion = Asignacion.where(:enlace_id=>current_user.id,:expediente_id=>@solicitud.expediente_id,:completada=>false)[0]
 		render :action => "new"
 	end
 

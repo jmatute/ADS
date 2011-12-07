@@ -60,7 +60,8 @@ SIELHO::Application.routes.draw do
   match 'plazo/create' => "usuario#createPlazo" ,:as => :create_plazo
 
   match 'solicitud/:solicitud_id/expediente/:expediente_id/reclasificar' => "solicitud#reclasificar", :as=> :reclasificar
- 
+
+  match 'solicitud/:solicitud_id/reasignar' => "solicitud#reasignar",:as => :reasignar 
   # The priority is based upon order of creation:	
   # first created -> highest priority.
 

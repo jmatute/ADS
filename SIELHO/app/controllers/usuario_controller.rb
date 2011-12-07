@@ -40,6 +40,13 @@ class UsuarioController < ApplicationController
 		user = User.find(Oip.find(params[:id]).usuario_id)
 		user.activo = !user.activo
 		user.save
+
+		unless user.activo
+			responsabilidad = Solicitud.where(:finalizada => false,:responsable=>user.id)
+			responsabilidad.each do |r|
+				r.update_attributes(:responsable=>current_user.id)
+			end				
+		end
 		redirect_to directorio_path
 	end
 

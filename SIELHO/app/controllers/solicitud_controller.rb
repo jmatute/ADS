@@ -77,6 +77,7 @@ class SolicitudController < ApplicationController
 			expediente.crear(solicitud.id,current_user.id)
 			solicitud.expediente_id = expediente.id
 			solicitud.save
+			@s = solicitud
 			AplicationMailer.recibo(solicitante.email).deliver	
 			temp = Mensaje.find(params[:mensaje_id])
 			temp.expediente_id = expediente.id
@@ -89,7 +90,6 @@ class SolicitudController < ApplicationController
 
 	def pendiente
 		@solicitudes = Solicitud.all
-	
 		if current_user.rol.nombre.eql? "enlace"
 			@asignacion = Asignacion.where(:enlace_id => current_user.id )
 		end
@@ -198,4 +198,14 @@ class SolicitudController < ApplicationController
 
 
  	end
+	
+	def reasignar
+		s = Solicitud.find(params[:solicitud_id])
+		s.update_attributes(:responsable=>params[:nuevo])
+		@solicitudes = Solicitud.all
+		if current_user.rol.nombre.eql? "enlace"
+			@asignacion = Asignacion.where(:enlace_id => current_user.id )
+		end
+		render :action=>"pendiente"
+	end
 end

@@ -37,5 +37,37 @@
 <% end%>
 		</table>
 
+<%elsif current_user.rol.nombre.eql? "admin" %>
+<table class="sortable"   id="sortabletable" >
+<tr>
+	<th>Numero de solicitud</th> <th> Fecha </th> <th> Responsable </th> <th> Estado </th> <th>Oip </th><th>Reasignar </th> 
+</tr>
+<% @solicitudes.each do |m| %>
+
+<%if m.responsable.eql? current_user.id%>
+<tr>
+	<%= form_tag("/solicitud/#{m.id}/reasignar", :method => "post") do %>
+	<td><%= link_to m.numero,ver_expediente_path(m,Expediente.find( m.expediente_id)) %> </td>
+	<td><%="#{m.fecha}"%> </td>
+		<td><%="#{User.find(Expediente.find(m.expediente_id).creador ).username }"%>
+     <td> 
+		<%=Estado.find(Expediente.find(m.expediente_id).estado_id).nombre %>
+	</td>	
+	<td>
+	   <select name="nuevo">
+			<%Solicitud.posibles(m.institucion_id).each do |x|%>
+				<option value=<%=x[1]%>> <%=x[0]%> </option>
+			<%end%>
+		</select>	
+	</td>
+	<td><%= submit_tag("Asignar") %>
+
+	</td>
+	<%end%>
+</tr>
+
+<%end%>
+<% end%>
+		</table>
 
 <%end%>

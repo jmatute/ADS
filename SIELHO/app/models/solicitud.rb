@@ -22,6 +22,17 @@ class Solicitud < ActiveRecord::Base
 		self.save	
 	end
 
+
+	def self.posibles(institucion)
+		a = Oip.where(:institucion_id=>institucion)
+		x = []
+		a.each do |o|
+			if User.find(o.usuario_id).activo
+				x << ["#{o.pnombre} #{o.papellido}",o.usuario_id]
+			end
+		end
+		return x
+	end
 	def self.solicitudes(usuario)
 
 		x =  User.find(usuario)
