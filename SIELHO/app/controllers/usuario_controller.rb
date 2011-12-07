@@ -86,10 +86,37 @@ class UsuarioController < ApplicationController
 		usuario.save
 		@oip.save
 		@oip.update_attributes(params[:oip])
-		
-
-
 		redirect_to directorio_path		
-
 	end
+
+
+   def newPlazo
+		
+   end
+
+   def createPlazo
+       
+		if params[:plazo].blank?
+			flash[:alert] = "Debe ingresar un plazo"
+			render :action=>"newPlazo"
+			return
+		end
+
+		if /\A[0-9]+\z/.match(params[:plazo]).nil?
+			flash[:alert] = "Debe ingresar un plazo numerico"
+			render :action=>"newPlazo"
+			return
+		end
+
+		plazo = params[:plazo].to_i
+ 		if plazo.eql? 0
+			flash[:alert] = "El plazo debe ser mayor que cero"
+			render :action=>"newPlazo"
+			return
+
+		end
+
+		File.open('public/plazo', 'w') {|f| f.write(params[:plazo]) }
+		redirect_to root_path
+   end
 end

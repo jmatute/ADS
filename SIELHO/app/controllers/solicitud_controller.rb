@@ -65,7 +65,7 @@ class SolicitudController < ApplicationController
 
 	def clasificar
 		temp = Mensaje.find(params[:mensaje_id]).parsear
-		Mensaje.find(params[:mensaje_id]).update_attributes(:leido=>true)
+		Mensaje.find(params[:mensaje_id]).update_attributes(:leido=>true,:borrado=>true)
 		
 		if Solicitud.where(:fecha=>Mensaje.find(params[:mensaje_id]).fecha() ).blank?
 			doc = Documento.new
@@ -175,4 +175,28 @@ class SolicitudController < ApplicationController
 		redirect_to root_path
 
 	end
+
+	def reclasificar
+		@justificacion = Justificacion.new(:descripcion=>"Se ha llegado a un consenso sobre la clasificacion de la informacion")
+		@justificacion.leyAcuerdos << LeyAcuerdo.first
+		@justificacion.expediente_id = params[:expediente_id]	
+		e = params[:expediente_id]
+		@justificacion.fecha_cambio = DateTime.now
+		@justificacion.basics(current_user.id)
+		@justificacion.save	
+		id = Clasificacion.find_by_nombre(params[:clasificacion])
+		Expediente.find(e).cambiadaClasificacion(id)
+		Solicitud.find_by_expediente_id(e).update_attributes(:clasificacion_id=>id)
+		@justificacion.clasificacion = Clasificacion.find(Solicitud.find_by_expediente_id(e).clasificacion_id).nombre
+		@justificacion.estado = Estado.find(Expediente.find(e).estado_id).nombre
+		@justificacion.save
+		x = Solicitud.find(params[:solicitud_id])
+		if params[:clasificacion].eql? "publica"
+			x.fecha = DateTime.now
+			x.save
+		end
+		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
+
+
+ 	end
 end

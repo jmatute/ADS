@@ -58,6 +58,17 @@ class Expediente < ActiveRecord::Base
 		
 		end
 
+		if clasificacion.eql? "tramite de reservacion"
+			self.estado_id = Estado.find_by_nombre("Suspendida").id
+			self.save
+			justificacion = Justificacion.find_by_expediente_id(self.id)
+			solicitud = Solicitud.find(self.solicitud_id)
+			instituto = Institucion.find(solicitud.institucion_id)
+			solicitante = Solicitante.find(solicitud.solicitante_id)
+			ley= justificacion.leyAcuerdos[0]
+			AplicationMailer.reservacion(solicitante.nombre,justificacion.descripcion,ley,instituto.nombre,solicitante.email ).deliver
+		
+		end
 
 
 

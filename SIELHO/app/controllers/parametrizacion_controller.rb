@@ -58,7 +58,7 @@ class ParametrizacionController < ApplicationController
 			@estado.fechaCrear = DateTime.now
 			@estado.fechaMod = DateTime.now
 			if @estado.save()
-				flash[:notice] = "Nuevo Estado creado "
+					flash[:notice] = "Nuevo Estado creado "
 			elsif
 					render :action => "newestado"
 			end	

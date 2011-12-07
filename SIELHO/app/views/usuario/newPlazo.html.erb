@@ -1,0 +1,7 @@
+<h3>Elija el nuevo plazo </h3>
+
+<%=form_tag("/plazo/create",:method=>"post") do%>
+    <%= label_tag(:plazo,"Ingrese el nuevo plazo maximo de una solicitud")%>
+	<%= text_field_tag(:plazo)%>
+    <%= submit_tag("Cambiar Plazo")%>
+<%end%>
