@@ -86,7 +86,7 @@
     <%end%>
     
     <%unless notice.nil?%> 
-    <div class= "mensajes">
+    <div class = "mensajes">
     <p class="notice"><%= notice %></p>
     </div>
     <%end%>
@@ -100,15 +100,17 @@
 
 <%end%>
 <%if user_signed_in? and !current_user.activo %>
+	<div class= "mensajes2">
 	<p> Por los momentos su usuario no se encuentra habilitado para trabajar en el sistema.</p>
 	<p>Favor contactarse con un oficial de informacion de su institucion
 o con el administrador del sistema</p>
-
+</div>
 <%end%>
       <div class = "cuerpoDoc">
 	<%= yield %>
-      </div>
-  <br/><br/><br/>
+	<br/><br/> 
+     </div>
+  
 					<%if user_signed_in? %>
 	<div id="dockContainer"> 
 		<div id="dockWrapper"> 
@@ -213,11 +215,17 @@ o con el administrador del sistema</p>
 						<% end%>	
                      </li>
 					<% end%>
-					<li class="active">
+			   
+			<li class="active">
+
+				<span><p>Buscar</p></span>
+				<%= link_to image_tag("/images/search.png"), buscar_path%>
+			</li>
+			<li class="active">
                            <span><p>Logout</p></span>
                           <%= link_to image_tag("/images/logout.png"), destroy_user_session_path %>
 							
-                     </li>
+                     	  </li>
 
 				</ul>
 		</div>

@@ -1,0 +1,13 @@
+<h2 class= "titulo">Buscar Solicitud</h2>
+
+<% form_tag buscar_path, :method => 'get' do %>
+
+   <p>Ingrese el codigo de la solicitud:</p> <%= text_field_tag :search, params[:search] %><br/>
+   <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion, :city_id, Institucion.all, :id, :nombre) %><br/> 
+   <p>Desde:</p>  <%= date_select :Desde, params[:inicio] %><br/>
+   <p>Hasta:</p> <%= date_select :Hasta, params[:final] %><br/>
+   <br/> <%= submit_tag "Search", :name => nil %><br/>
+  
+<% end %>
+
+

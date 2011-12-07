@@ -1,6 +1,12 @@
 class Solicitud < ActiveRecord::Base
 
+	def self.buscar(codigo,institucion,incio,final)
+		unless codigo.nil? && codigo.blank?
+			
+		end
 
+	    	
+	end
 
 	def crear(doc,fechaM,solicitante,usuario)
 		self.descripcion = doc["descripcion"]

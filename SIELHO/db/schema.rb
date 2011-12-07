@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "anterior_id"
-    t.integer  "siguiente_id"
   end
 
   create_table "expedientes", :force => true do |t|
@@ -148,6 +147,11 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.integer  "expediente_id"
     t.string   "clasificacion"
     t.string   "estado"
+  end
+
+  create_table "justificacions_ley_acuerdos", :id => false, :force => true do |t|
+    t.integer "justificacion_id"
+    t.integer "ley_acuerdo_id"
   end
 
   create_table "ley_acuerdos", :force => true do |t|
@@ -250,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
+    t.integer  "responsable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -266,9 +271,11 @@ ActiveRecord::Schema.define(:version => 20111205160557) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
+    t.integer  "responsable"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "numero"
+    t.boolean  "finalizada"
   end
 
   create_table "tipo_documentos", :force => true do |t|

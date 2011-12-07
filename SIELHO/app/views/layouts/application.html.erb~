@@ -86,24 +86,36 @@
     <%end%>
     
     <%unless notice.nil?%> 
-    <div class= "mensajes">
-    <p class="notice"><%= notice %></p>
+ 	<div class="mensajes">    
+	<%if notice.split("-").size > 1 %>
+		<%notice.split("-").each do |t|%>
+			<p class="notice"><%= t %></p><br>
+		<%end%>
+	  <%else%>
+	  <p class="notice"><%= notice %></p>
+	<%end%>
     </div>
     <%end%>
 
-    <%unless alert.nil?%> 
-    <div class = "mensajes2">
-    <p class="alert"><%= alert %></p>
+      <%unless alert.nil?%> 
+ 	<div class="mensajes2">    
+	<%if alert.split("-").size > 1 %>
+		<%alert.split("-").each do |t|%>
+			<p class="alert"><%= t %></p><br>
+		<%end%>
+	  <%else%>
+	  <p class="alert"><%= alert%></p>
+	
+	<%end%>
     </div>
     <%end%>
-    <%unless user_signed_in?%>
-
-<%end%>
+   
 <%if user_signed_in? and !current_user.activo %>
+	<div class= "mensajes2">
 	<p> Por los momentos su usuario no se encuentra habilitado para trabajar en el sistema.</p>
 	<p>Favor contactarse con un oficial de informacion de su institucion
 o con el administrador del sistema</p>
-
+</div>
 <%end%>
       <div class = "cuerpoDoc">
 	<%= yield %>
@@ -186,13 +198,14 @@ o con el administrador del sistema</p>
 
 	<% end %>
 					<%if current_user.activo%>
-
+					
+						<%unless current_user.rol.nombre.eql? "enlace"%>
 						<li class="active"> 
 						<span> <p>Mensaje</p></span> 
                           <%= link_to image_tag("/images/mensaje.png"), mensaje_nuevo_path(current_user) %>
 						
 						</li>
-						
+						<%end%>
 						<li class="active"> 
 						<span> <p>Pendiente</p></span> 
                           <%= link_to image_tag("/images/expediente.jpg"), solicitudes_pendientes_path(current_user) %>
