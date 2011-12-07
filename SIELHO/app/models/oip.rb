@@ -37,4 +37,16 @@ class Oip < ActiveRecord::Base
 		self.save
 	end
 
+
+	def asignaciones
+		s = Solicitud.where(:responsable=> self.usuario_id)
+		arreglo = []
+		s.each do |so|
+			a =Asignacion.where(:expediente_id=>so.expediente_id,:completada=>false)
+			a.each do |o|
+				arreglo << o
+			end
+		end
+		return arreglo
+	end 
 end

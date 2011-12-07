@@ -90,9 +90,13 @@ class SolicitudController < ApplicationController
 
 	def pendiente
 		@solicitudes = Solicitud.all
-		if current_user.rol.nombre.eql? "enlace"
+		unless current_user.rol.nombre.eql? "admin"
 			@asignacion = Asignacion.where(:enlace_id => current_user.id )
 		end
+
+		if current_user.rol.nombre.eql? "oip"
+			@asignaciones = Oip.find_by_usuario_id(current_user.id).asignaciones
+		end	
 	end
 
 	def justificar
@@ -169,6 +173,7 @@ class SolicitudController < ApplicationController
 		@asignacion.usuarioRes = current_user.id
 		@asignacion.fechaCrear = DateTime.now
 		@asignacion.fechaMod = DateTime.now
+		@asignacion.completada = false
 		AplicationMailer.asignacion(User.find(@asignacion.enlace_id).email).deliver
 		@asignacion.save
 		redirect_to root_path
@@ -208,4 +213,15 @@ class SolicitudController < ApplicationController
 		end
 		render :action=>"pendiente"
 	end
+
+	def completar
+		Asignacion.find(params[:asignacion_id]).update_attributes(:completada=>true)
+		@solicitudes = Solicitud.all
+		if current_user.rol.nombre.eql? "enlace"
+			@asignacion = Asignacion.where(:enlace_id => current_user.id )
+		end
+		render :action=>"pendiente"		
+	end
+
 end
+
