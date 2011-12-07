@@ -23,10 +23,10 @@ Estado.new(:nombre=>"Entregado parcial con prorroga",:descripcion=>"Informacion 
 Estado.new(:nombre=>"Entregado completo con prorroga",:descripcion=>"Toda la informacion fue entregada ",:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>1,:usuarioMod=>1,:anterior_id=>6).save()
 
 User.create! do |u|
-	 u.username = "JEnriqueSuazo1"
+	 u.username = "JEnriqueSuaazo1"
 	 u.rol_id = 1
 	 u.activo = true
-	 u.email = "jenriquesuazo1@hotmail.com"
+	 u.email = "jenriquesuazoai@hotmail.com"
 	 u.password = 'password'
 	 u.password_confirmation = 'password'
 	 x = Administrador.new                                                    

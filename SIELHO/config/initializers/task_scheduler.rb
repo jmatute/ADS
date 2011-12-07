@@ -6,10 +6,6 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("1m") do
-<<<<<<< HEAD
-#	puts User.last
-=======
->>>>>>> 6dc0422d71accd9c9e4227c294692018b3a49c4a
 #AplicationMailer.enviarcorreo("javier_suazo@live.com").deliver
 	a = File.open("public/plazo","r")
 	plazo = a.read().gsub("\n","").to_i
@@ -73,15 +69,6 @@ scheduler.every("1m") do
 end
 
 ## Prints the message every day at noon
-<<<<<<< HEAD
-scheduler.cron("0,2 * * * *") do
- # puts("HI #{Time.now}")
-end
-
-scheduler.in '20m' do
-
-end
-=======
 #scheduler.cron("0,2 * * * *") do
 #end
 
@@ -89,5 +76,3 @@ end
 #    puts User.last.username
 #	puts "order butter"
 #end
->>>>>>> 6dc0422d71accd9c9e4227c294692018b3a49c4a
-

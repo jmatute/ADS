@@ -3,11 +3,22 @@
 <% form_tag buscar_path, :method => 'get' do %>
 
    <p>Ingrese el codigo de la solicitud:</p> <%= text_field_tag :search, params[:search] %><br/>
-   <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion, :city_id, Institucion.all, :id, :nombre) %><br/> 
+   <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion,:institucion, Institucion.all, :id, :nombre) %><br/> 
    <p>Desde:</p>  <%= date_select :inicio, params[:inicio] %><br/>
    <p>Hasta:</p> <%= date_select  :final,params[:final] %><br/>
    <br/> <%= submit_tag "Search", :name => nil %><br/>
   
 <% end %>
 
+<%if @encontrados.size > 0 %>
+<h2 class= "titulo">Solicitudes Encontradas</h2>
 
+	<%@encontrados.each do |t|%>
+		<span class = "ResBus">
+			<h3 class= "titulo">Solicitud <%=t.numero%> <h3>
+			<p>Realizada por:  <%=Solicitante.find_by_id(t.solicitante_id).nombre%> <p>
+			<p>Dirigida a: <%=Institucion.find(t.institucion_id).nombre%> <p>
+		</span>
+	<%end%>
+
+<%end%>
