@@ -1,0 +1,36 @@
+<h2 class= "titulo">Buscar Solicitud</h2>
+<div class= "buscarForm">
+<% form_tag buscar_path, :method => 'get' do %>
+   <table>
+   <tr>
+   <td><p>Ingrese el codigo de la solicitud:</p> <%= text_field_tag :search, params[:search] %><td/> 
+   
+    <td><p>Desde:</p>  <input type="text" name = "final" size="12" id="inputField" /> <td/>
+    <td><p>Hasta:</p>  <input type="text" name ="inicio" size="12" id="inputField2" /> <td/>
+   	
+<td> <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion,:institucion, Institucion.all, :id, :nombre) %><td/>
+     </tr>
+	</table>
+      
+   <br/> <%= submit_tag "Search", :name => nil %><br/>
+  
+<% end %>
+</div>
+<%unless @encontrados.nil?%>
+<%if @encontrados.size > 0 %>
+<h3 class= "titulo">Solicitudes Encontradas</h2>
+ <table>
+			 <tr><th>Numero de Solicitud</th><th> Nombre Solicitante</th><th>Institucion Obligada</th></tr>
+	<%@encontrados.each do |t|%>
+		<span class = "ResBus">
+			<tr>
+			<td> <%=t.numero%></td>
+			<td><%=Solicitante.find_by_id(t.solicitante_id).nombre%></td> 
+			<td><%=Institucion.find(t.institucion_id).nombre%> </td>
+			<td><%= link_to "Ver Expediente", ver_expediente_path(t.id,Expediente.find_by_id(t.expediente_id))%></td>
+			</tr>
+		</span>
+	<%end%>
+</table>
+<%end%>
+<%end%>

@@ -1,6 +1,42 @@
 class Solicitud < ActiveRecord::Base
 
+	def self.buscar(codigo,institucion,incio,final)
+		solicitudes = []		
+		unless codigo.nil? || codigo.blank?
+			solicitudes = []
+			todas = Solicitud.all
+			todas.each do |t|	
+				if t.numero == codigo.to_s
+					solicitudes << t				
+				end
+			end		
+	
+		else
+				if institucion.blank? == false  ||  institucion.nil? == false
+					solicitudes = []
+					todas = Solicitud.all
+					todas.each do |t|
+						if t.institucion_id == institucion.to_i
+							solicitudes << t
+						end		
+					end
+				end
 
+				unless incio.blank? && final.blank?
+					solicitudes2 = []
+					solicitudes.each do |y|
+					temp = y.fecha.strftime("%m-%d-%Y")
+					  if temp >= final.to_s && temp <= incio.to_s
+					      solicitudes2 << y
+					  end
+					end
+				
+				end
+	      solicitudes = solicitudes2
+	end
+		
+	      	return	solicitudes	    	
+	end
 
 	def crear(doc,fechaM,solicitante,usuario)
 		self.descripcion = doc["descripcion"]

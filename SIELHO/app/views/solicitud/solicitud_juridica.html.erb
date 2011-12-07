@@ -16,19 +16,19 @@
 			<%= f.inputs do%>
 				<%= s.inputs do%>
 
-				<%= f.input :lugar %>	
-				<%= s.input :nombre ,:label=>"Nombre Completo del Solicitante"%>
-				 <%=d.input :tipoDocumento_id, :as => :select, :label => "Tipo de Documento",:collection => @tipoDocumentos %>
+				<%= f.input :lugar , :label => "Lugar*:" %>	
+				<%= s.input :nombre ,:label=>"Nombre Completo del Solicitante*:"%>
+				 <%=d.input :tipoDocumento_id, :as => :select, :label => "Tipo de Documento*",:collection => @tipoDocumentos %>
 
-				<%= d.input :numero ,:label	=>"Numero de Documento"%>
-				<%= s.input :poder ,:label => "Poder en que actua"%>
-				<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion",:collection => @instituciones %>
-				<%= f.input :descripcion, :input_html => { :style => "width:40em; height: 10em" }%>
+				<%= d.input :numero ,:label	=>"Numero de Documento*"%>
+				<%= s.input :poder ,:label => "Poder en que actua*"%>
+				<%=f.input :institucion_id, :as => :select, :label => "Elija la institucion*",:collection => @instituciones %>
+				<%= f.input :descripcion,:label => "Descripcion*:", :input_html => { :style => "width:40em; height: 10em" }%>
 
 				<h3 class="titulo">Modo de Contacto </h3>		
 					<%=s.input :telefono%>
 					<%=s.input :fax%>
-					<%=s.input :email%>
+					<%=s.input :email, :label => "Correo Electronico*:"%>
 					<%=s.input :direccion_postal, :input_html => { :style => "width:40em; height: 5em" } %>
 					 
 				<h3 class="titulo">Informacion Estadistica (Opcional ) </h3>

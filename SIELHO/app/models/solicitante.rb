@@ -1,4 +1,7 @@
 class Solicitante < ActiveRecord::Base
+
+#validates_presence_of :email, :nombre
+
 	def crear(doc,usuario,id)
 		self.nombre = doc["nombre"]
 		self.documento_id = id

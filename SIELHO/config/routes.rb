@@ -1,4 +1,8 @@
 SIELHO::Application.routes.draw do
+  get "buscar/index"
+
+  match "/buscar" => "buscar#index"
+
   devise_for :users, :controllers => {:registrations => "devise/custom/registrations" }
 
   match 'parametrizacion/ocupacion/new' => "parametrizacion#newocupacion", :as => :nueva_ocupacion
