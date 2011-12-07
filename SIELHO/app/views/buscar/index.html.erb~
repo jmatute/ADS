@@ -1,13 +1,32 @@
 <h2 class= "titulo">Buscar Solicitud</h2>
-
+<div class= "buscarForm">
 <% form_tag buscar_path, :method => 'get' do %>
-
-   <p>Ingrese el codigo de la solicitud:</p> <%= text_field_tag :search, params[:search] %><br/>
-   <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion, :city_id, Institucion.all, :id, :nombre) %><br/> 
-   <p>Desde:</p>  <%= date_select :Desde, params[:inicio] %><br/>
-   <p>Hasta:</p> <%= date_select :Hasta, params[:final] %><br/>
+   <table>
+   <tr>
+   <td><p>Ingrese el codigo de la solicitud:</p> <%= text_field_tag :search, params[:search] %><td/> 
+   
+    <td><p>Desde:</p>  <input type="text" name = "final" size="12" id="inputField" /> <td/>
+    <td><p>Hasta:</p>  <input type="text" name ="inicio" size="12" id="inputField2" /> <td/>
+   	
+<td> <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion,:institucion, Institucion.all, :id, :nombre) %><td/>
+     </tr>
+	</table>
+      
    <br/> <%= submit_tag "Search", :name => nil %><br/>
   
 <% end %>
+</div>
+<%unless @encontrados.nil?%>
+<%if @encontrados.size > 0 %>
+<h2 class= "titulo">Solicitudes Encontradas</h2>
 
+	<%@encontrados.each do |t|%>
+		<span class = "ResBus">
+			<h3 class= "titulo">Solicitud <%=t.numero%> <h3>
+			Realizada por:  <%=Solicitante.find_by_id(t.solicitante_id).nombre%> 
+			Dirigida a: <%=Institucion.find(t.institucion_id).nombre%> 
+		</span>
+	<%end%>
+<%end%>
 
+<%end%>

@@ -26,7 +26,7 @@ class Solicitud < ActiveRecord::Base
 					solicitudes2 = []
 					solicitudes.each do |y|
 					temp = y.fecha.strftime("%m-%d-%Y")
-					  if temp >= final.to_s && temp <= incio.to_s
+					  if temp >= incio.to_s && temp <= final.to_s
 					      solicitudes2 << y
 					  end
 					end
