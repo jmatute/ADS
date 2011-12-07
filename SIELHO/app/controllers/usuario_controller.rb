@@ -54,6 +54,13 @@ class UsuarioController < ApplicationController
 		user = User.find(Enlace.find(params[:id]).usuario_id)
 		user.activo = !user.activo
 		user.save
+		unless user.activo
+			responsabilidad = Asignacion.where(:completada => false,:enlace_id=>user.id)
+			responsabilidad.each do |r|
+
+				r.update_attributes(:enlace_id=>Solicitud.fin_by_expediente_id(r.expediente_id ).responsable    )
+			end				
+		end
 		redirect_to directorio_path
 	end
 

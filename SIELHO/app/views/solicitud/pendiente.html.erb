@@ -46,14 +46,31 @@
 <h2>Re Asignaciones </h2>
 <table class="sortable"   id="sortabletable" >
 	<tr>
-		 <th>Solicitud </th><th> Plazo </th> <th> Descripcion </th> <th> Fecha Inicio </th>
+		 <th>Solicitud </th><th> Plazo </th> <th> Descripcion </th> <th> Fecha Inicio </th> <th>Enlaces </th> <th>Reasignar </th>
 	</tr>
 <% @asignacion.each do |m| %>
-<tr>
+	<tr><%= form_tag("/asignacion/#{m.id}/reasignar", :method => "post") do %>
 	<td><%=link_to Solicitud.find_by_expediente_id( m.expediente_id).numero, contestar_path(current_user,Solicitud.find_by_expediente_id( m.expediente_id))%> </td>
 	<td><%="#{m.plazo}"%> </td>
 	<td><%="#{m.descripcion}"%></td>
 	<td><%="#{m.fechaInic}"%></td>
+	<td> 
+	   <select name="nuevo">
+			<%Enlace.where(:institucion_id=>Solicitud.find_by_expediente_id(m.expediente_id).institucion_id).each do |e|%>
+				<%if User.find(e.usuario_id).activo%>
+				<option value=<%=e.usuario_id%>> <%=e.username%> </option>
+				<%end%>
+			<%end%>
+		</select>	
+		
+
+	</td>
+	<td><%= submit_tag("Asignar") %>
+
+	</td>
+
+
+	 <%end%>
 </tr>
 <% end%>
 		</table>
