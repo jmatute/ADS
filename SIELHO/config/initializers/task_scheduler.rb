@@ -5,6 +5,7 @@ require "rufus/scheduler"
 scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
+
 scheduler.every("1m") do
 #AplicationMailer.enviarcorreo("javier_suazo@live.com").deliver
 	a = File.open("public/plazo","r")
