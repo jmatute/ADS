@@ -14,18 +14,18 @@ def logC
 		fecha = DateTime.now.to_s
 		mod = self.usuarioRes
 		rol = User.find(self.usuarioRes).rol.nombre
-		descripcion = "creacion de institucion"
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" + "\t" + "descripcion" + "\t" + "N/A" + "\t" + self.descripcion + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" + "\t" + "fechaCambio" + "\t" + "N/A" + "\t" + self.fecha_cambio.to_s + "\t" + descripcion + "\n")
+		descripcion = "creacion de justificacion"
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" + "\t" + "descripcion" + "\t" + "N/A" + "\t" + self.descripcion + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" + "\t" + "fechaCambio" + "\t" + "N/A" + "\t" + self.fecha_cambio.to_s + "\t" + descripcion + "\n")
 
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "expediente_id" + "\t" + "N/A" + "\t" + self.expediente_id + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "clasificacion" + "\t" + "N/A" + "\t" + self.clasificacion + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "estado" + "\t" + "N/A" + "\t" + self.estado + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "expediente_id" + "\t" + "N/A" + "\t" + self.expediente_id.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "clasificacion" + "\t" + "N/A" + "\t" + self.clasificacion + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "estado" + "\t" + "N/A" + "\t" + self.estado + "\t" + descripcion + "\n")
 
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "fechaCrear" + "\t" + "N/A" + "\t" + self.fechaCrear.to_s + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "fechaMod" + "\t" + "N/A" + "\t" + self.fechaMod.to_s + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" +  "\t" + "usuarioRes" + "\t" + "N/A" + "\t" + self.usuarioRes.to_s + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "institucion" + "\t" + "usuarioMod" + "\t" + "N/A" + "\t" + self.usuarioMod.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "fechaCrear" + "\t" + "N/A" + "\t" + self.fechaCrear.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "fechaMod" + "\t" + "N/A" + "\t" + self.fechaMod.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" +  "\t" + "usuarioRes" + "\t" + "N/A" + "\t" + self.usuarioRes.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "justificacion" + "\t" + "usuarioMod" + "\t" + "N/A" + "\t" + self.usuarioMod.to_s + "\t" + descripcion + "\n")
 
 		file.close()
 

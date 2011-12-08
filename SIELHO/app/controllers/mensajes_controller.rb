@@ -63,7 +63,7 @@ class MensajesController < ApplicationController
 
 	def create
 		x = Mensaje.crear(params)
-		x.logC
+		Mensaje.last.logC
 		redirect_to root_path
 	end
 
