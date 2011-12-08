@@ -109,5 +109,43 @@ class Mensaje < ActiveRecord::Base
 		temp.leido = false
 		temp.borrado = false
 		temp.save
+		if temp.destinatario_id.eql? 0
+			unless temp.expediente_id.blank?
+				s = Solicitud.find_by_expediente_id(temp.expediente_id)
+				soli = Solicitante.find(s.solicitante_id)
+				AplicationMailer.correo_solicitante( soli.email,temp.document_file_name, "public/mensajes/documents/#{temp.id}/original_#{temp.document_file_name}" ,s.numero,temp.texto,temp.titulo).deliver
+			end
+		end
 	end
+
+	def logC
+#Mensaje(id: integer, emisor_id: integer, destinatario_id: integer, titulo: string, texto: text, fecha: datetime, expediente_id: integer, fechaCrear: datetime, fechaMod: datetime, usuarioRes: integer, usuarioMod: integer, created_at: datetime, updated_at: datetime, leido: boolean, borrado: boolean, document_file_name: string, document_content_type: string, document_file_size: integer, document_updated_at: datetime)
+		file = File.open("public/historial", "a")
+		fecha = DateTime.now.to_s
+		mod = self.usuarioRes
+		rol = User.find(self.usuarioRes).rol.nombre
+		descripcion = "creacion de institucion"
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "destinatario_id" + "\t" + "N/A" + "\t" + self.destinatario_id + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "emisor_id" + "\t" + "N/A" + "\t" + self.emisor_id + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "titulo" + "\t" + "N/A" + "\t" + self.titulo + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "texto" + "\t" + "N/A" + "\t" + self.texto + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "fecha" + "\t" + "N/A" + "\t" + self.fecha.to_s+ "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "expediente_id" + "\t" + "N/A" + "\t" + self.expediente_isr.to_s+ "\t" + descripcion + "\n")
+
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "leido" + "\t" + "N/A" + "\t" + "false" + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "borrado" + "\t" + "N/A" + "\t" + "false" + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "document_file_name" + "\t" + "N/A" + "\t" + self.document_file_name + "\t" + descripcion + "\n")
+
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "fechaCrear" + "\t" + "N/A" + "\t" + self.fechaCrear.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "fechaMod" + "\t" + "N/A" + "\t" + self.fechaMod.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" +  "\t" + "usuarioRes" + "\t" + "N/A" + "\t" + self.usuarioRes.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "mensaje" + "\t" + "usuarioMod" + "\t" + "N/A" + "\t" + self.usuarioMod.to_s + "\t" + descripcion + "\n")
+
+		file.close()
+
+
+	end	
+
+
+
 end

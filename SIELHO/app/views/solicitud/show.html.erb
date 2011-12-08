@@ -3,7 +3,10 @@
 <p><strong>Institucion : </strong> <%=Institucion.find( @solicitud.institucion_id).nombre %> </p>
 <p><strong>Fecha de solicitud : </strong> <%=@solicitud.fecha%> </p>
 <p><strong>Clasificacion : </strong> <%=Clasificacion.find(@solicitud.clasificacion_id).nombre%></p>
-<p><strong>Oip Responsable :</strong> <%=Oip.find_by_usuario_id(@expediente.creador).nombre%></p>
+<p><strong>Oip Creador :</strong> <%=Oip.find_by_usuario_id(@expediente.creador).nombre%></p>
+<p><strong>Usuario Responsable :</strong> <%=User.find(@solicitud.responsable).username%></p>
+
+
 <p><strong>Estado : </strong> <%=Estado.find(@expediente.estado_id).nombre%></p>
 <p><strong>Descripcion: </strong> <%=@solicitud.descripcion%></p>
 

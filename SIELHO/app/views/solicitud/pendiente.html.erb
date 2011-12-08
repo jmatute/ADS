@@ -9,7 +9,7 @@
 <tr>
 	<td><%= link_to m.numero,ver_expediente_path(m,Expediente.find( m.expediente_id)) %> </td>
 	<td><%="#{m.fecha}"%> </td>
-		<td><%="#{User.find(Expediente.find(m.expediente_id).creador ).username }"%>
+		<td><%="#{User.find(m.responsable ).username }"%>
      <td> 
 		<%=Estado.find(Expediente.find(m.expediente_id).estado_id).nombre %>
 	</td>	
@@ -20,8 +20,62 @@
 <%end%>
 <% end%>
 		</table>
+<%unless @asignaciones.blank?%>
+<h2> Asignaciones </h2>
+<table class="sortable"   id="sortabletable" >
+	<tr>
+		 <th>Solicitud </th><th> Plazo </th> <th> Descripcion </th> <th> Fecha Inicio </th><th>Finalizar</th>
+	</tr>
+<% @asignaciones.each do |m| %>
+	<tr><%= form_tag("/asignacion/#{m.id}/finalizar", :method => "post") do %>
+	<td><%=link_to Solicitud.find_by_expediente_id( m.expediente_id).numero, contestar_path(current_user,Solicitud.find_by_expediente_id( m.expediente_id))%> </td>
+	<td><%="#{m.plazo}"%> </td>
+	<td><%="#{m.descripcion}"%></td>
+	<td><%="#{m.fechaInic}"%></td>
+	<td><%= submit_tag("Finalizar") %>
+	</td>
+	<%end%>
+</tr>
+<% end%>
+		</table>
 	
+	<%end%>
+
+
+<%unless @asignacion.blank?%>
+<h2>Re Asignaciones </h2>
+<table class="sortable"   id="sortabletable" >
+	<tr>
+		 <th>Solicitud </th><th> Plazo </th> <th> Descripcion </th> <th> Fecha Inicio </th> <th>Enlaces </th> <th>Reasignar </th>
+	</tr>
+<% @asignacion.each do |m| %>
+	<tr><%= form_tag("/asignacion/#{m.id}/reasignar", :method => "post") do %>
+	<td><%=link_to Solicitud.find_by_expediente_id( m.expediente_id).numero, contestar_path(current_user,Solicitud.find_by_expediente_id( m.expediente_id))%> </td>
+	<td><%="#{m.plazo}"%> </td>
+	<td><%="#{m.descripcion}"%></td>
+	<td><%="#{m.fechaInic}"%></td>
+	<td> 
+	   <select name="nuevo">
+			<%Enlace.where(:institucion_id=>Solicitud.find_by_expediente_id(m.expediente_id).institucion_id).each do |e|%>
+				<%if User.find(e.usuario_id).activo%>
+				<option value=<%=e.usuario_id%>> <%=e.username%> </option>
+				<%end%>
+			<%end%>
+		</select>	
+		
+
+	</td>
+	<td><%= submit_tag("Asignar") %>
+
+	</td>
+
+
+	 <%end%>
+</tr>
+<% end%>
+		</table>
 	
+	<%end%>
 <%elsif current_user.rol.nombre.eql? "enlace" %>
 <table class="sortable"   id="sortabletable" >
 	<tr>
@@ -37,5 +91,37 @@
 <% end%>
 		</table>
 
+<%elsif current_user.rol.nombre.eql? "admin" %>
+<table class="sortable"   id="sortabletable" >
+<tr>
+	<th>Numero de solicitud</th> <th> Fecha </th> <th> Responsable </th> <th> Estado </th> <th>Oip </th><th>Reasignar </th> 
+</tr>
+<% @solicitudes.each do |m| %>
+
+<%if m.responsable.eql? current_user.id%>
+<tr>
+	<%= form_tag("/solicitud/#{m.id}/reasignar", :method => "post") do %>
+	<td><%= link_to m.numero,ver_expediente_path(m,Expediente.find( m.expediente_id)) %> </td>
+	<td><%="#{m.fecha}"%> </td>
+		<td><%="#{User.find(Expediente.find(m.expediente_id).creador ).username }"%>
+     <td> 
+		<%=Estado.find(Expediente.find(m.expediente_id).estado_id).nombre %>
+	</td>	
+	<td>
+	   <select name="nuevo">
+			<%Solicitud.posibles(m.institucion_id).each do |x|%>
+				<option value=<%=x[1]%>> <%=x[0]%> </option>
+			<%end%>
+		</select>	
+	</td>
+	<td><%= submit_tag("Asignar") %>
+
+	</td>
+	<%end%>
+</tr>
+
+<%end%>
+<% end%>
+		</table>
 
 <%end%>

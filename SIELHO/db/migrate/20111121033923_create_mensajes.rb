@@ -5,7 +5,6 @@ class CreateMensajes < ActiveRecord::Migration
       t.integer :destinatario_id
       t.string :titulo
       t.text :texto
-      t.binary :documento_adjunto
       t.datetime :fecha
       t.integer :expediente_id
       t.datetime :fechaCrear

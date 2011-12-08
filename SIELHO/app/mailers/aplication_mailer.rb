@@ -79,4 +79,12 @@ class AplicationMailer < ActionMailer::Base
 		@asignacion = asignacion
 		mail(:to=>correo,:subject => "Recordatorio para la asignacion de informacion")
   end
+
+ def correo_solicitante(correo, adjunto,path,numero,texto,titulo)
+		attachments[adjunto] = File.read(path)
+		@texto = texto
+		@titulo = titulo
+		@numero = numero
+		mail(:to=>correo ,:subject => "Informacion sobre su solicitud de informacion")
+ end
 end

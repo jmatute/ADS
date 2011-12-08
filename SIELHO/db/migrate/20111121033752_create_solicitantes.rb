@@ -4,7 +4,6 @@ class CreateSolicitantes < ActiveRecord::Migration
       t.string :nombre
       t.integer :documento_id
       t.integer :tipo_solicitante
-      t.text :modo_contacto
       t.integer :ocupacion_id
       t.string :genero
       t.string :nivel_educativo
@@ -18,7 +17,6 @@ class CreateSolicitantes < ActiveRecord::Migration
       t.integer :usuarioRes
       t.integer :usuarioMod
 	  t.integer :responsable
-      t.timestamps
     end
   end
 

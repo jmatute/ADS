@@ -9,7 +9,6 @@ class CreateTipoDocumentos < ActiveRecord::Migration
       t.integer :usuarioRes
       t.integer :usuarioMod
 
-      t.timestamps
     end
   end
 

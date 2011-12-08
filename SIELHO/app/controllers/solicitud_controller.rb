@@ -74,10 +74,12 @@ class SolicitudController < ApplicationController
 			expediente = Expediente.new		
 			doc.crear(temp["documento"],current_user.id)
 			solicitante.crear(temp["solicitante"],current_user.id,doc.id)	
+			solicitante.logC
 			solicitud.crear(temp["solicitud"],Mensaje.find(params[:mensaje_id]).fecha,solicitante.id,current_user.id)
 			expediente.crear(solicitud.id,current_user.id)
 			solicitud.expediente_id = expediente.id
 			solicitud.save
+			@s = solicitud
 			AplicationMailer.recibo(solicitante.email).deliver	
 			temp = Mensaje.find(params[:mensaje_id])
 			temp.expediente_id = expediente.id
@@ -90,10 +92,13 @@ class SolicitudController < ApplicationController
 
 	def pendiente
 		@solicitudes = Solicitud.all
-	
-		if current_user.rol.nombre.eql? "enlace"
+		unless current_user.rol.nombre.eql? "admin"
 			@asignacion = Asignacion.where(:enlace_id => current_user.id )
 		end
+
+		if current_user.rol.nombre.eql? "oip"
+			@asignaciones = Oip.find_by_usuario_id(current_user.id).asignaciones
+		end	
 	end
 
 	def justificar
@@ -109,6 +114,7 @@ class SolicitudController < ApplicationController
 		@justificacion.clasificacion = Clasificacion.find(Solicitud.find_by_expediente_id(e).clasificacion_id).nombre
 		@justificacion.estado = Estado.find(Expediente.find(e).estado_id).nombre
 		@justificacion.save
+		@justificacion.logC
 		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
 	end
 
@@ -126,6 +132,7 @@ class SolicitudController < ApplicationController
 		@justificacion.clasificacion = 	Clasificacion.find(Solicitud.find_by_expediente_id(params[:expediente_id]).clasificacion_id).nombre
 		@expediente = Expediente.find(params[:expediente_id]).update_attributes(:estado_id=>params[:Estado])
 		@justificacion.save
+		@justificacion.logC
 		AplicationMailer.cambioEstado(	Solicitante.find(Solicitud.find_by_expediente_id(@justificacion.expediente_id).solicitante_id).email,@justificacion.estado,@justificacion.descripcion).deliver
 		redirect_to ver_expediente_path(Solicitud.find_by_expediente_id(@justificacion.expediente_id),Expediente.find( @justificacion.expediente_id) )
 	end
@@ -170,8 +177,10 @@ class SolicitudController < ApplicationController
 		@asignacion.usuarioRes = current_user.id
 		@asignacion.fechaCrear = DateTime.now
 		@asignacion.fechaMod = DateTime.now
+		@asignacion.completada = false
 		AplicationMailer.asignacion(User.find(@asignacion.enlace_id).email).deliver
 		@asignacion.save
+		@asignacion.logC
 		redirect_to root_path
 
 	end
@@ -199,4 +208,25 @@ class SolicitudController < ApplicationController
 
 
  	end
+	
+	def reasignar
+		s = Solicitud.find(params[:solicitud_id])
+		s.update_attributes(:responsable=>params[:nuevo])
+		@solicitudes = Solicitud.all
+		if current_user.rol.nombre.eql? "enlace"
+			@asignacion = Asignacion.where(:enlace_id => current_user.id )
+		end
+		render :action=>"pendiente"
+	end
+
+	def completar
+		Asignacion.find(params[:asignacion_id]).update_attributes(:completada=>true)
+		@solicitudes = Solicitud.all
+		if current_user.rol.nombre.eql? "enlace"
+			@asignacion = Asignacion.where(:enlace_id => current_user.id )
+		end
+		render :action=>"pendiente"		
+	end
+
 end
+

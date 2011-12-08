@@ -13,7 +13,6 @@ class CreateSolicituds < ActiveRecord::Migration
       t.integer :usuarioRes
       t.integer :usuarioMod
 	  t.integer :responsable
-      t.timestamps
     end
   end
 

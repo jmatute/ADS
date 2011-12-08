@@ -1,0 +1,21 @@
+2011-12-08T02:25:25-08:00	2	oip	departamento	descripcion	N/A	Blah3	creacion de departamento
+2011-12-08T02:25:25-08:00	2	oip	departamento	nombre	N/A	Contaduria	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	descripcion	N/A	Blah5	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	nombre	N/A	Otro	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	fechaCrear	N/A	2011-12-08 10:26:51 UTC	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	fechaMod	N/A	2011-12-08 10:26:51 UTC	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	usuarioRes	N/A	2	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	usuarioMod	N/A	2	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	institucion	N/A	1	creacion de departamento
+2011-12-08T02:26:51-08:00	2	oip	departamento	enlace_id	N/A		creacion de departamento
+2011-12-08T02:26:21-08:00	2	oip	departamento	descripcion	N/A	Blah4	creacion de departamento
+2011-12-08T02:26:21-08:00	2	oip	departamento	nombre	N/A	IT	creacion de departamento
+2011-12-08T02:26:21-08:00	2	oip	departamento	fechaCrear	N/A	2011-12-08 10:26:21 UTC	creacion de departamento
+2011-12-08T02:26:21-08:00	2	oip	departamento	fechaMod	N/A	2011-12-08 10:26:21 UTC	creacion de departamento
+2011-12-08T03:20:21-08:00	1	admin	tipo_documento	nombre	N/A	RTN	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	regla	nombre	N/A	####-####-#####A	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	tipo_persona	nombre	N/A	2	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	tipo_documento	fechaCrear	N/A	2011-12-08 11:20:20 UTC	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	tipo_documento	fechaMod	N/A	2011-12-08 11:20:20 UTC	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	tipo_documento	usuarioRes	N/A	1	creacion de tipoDocumento
+2011-12-08T03:20:21-08:00	1	admin	tipo_documento	usuarioMod	N/A	1	creacion de tipoDocumento
