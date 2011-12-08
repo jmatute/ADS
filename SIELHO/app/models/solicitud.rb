@@ -3,20 +3,18 @@ class Solicitud < ActiveRecord::Base
 
 
 	def self.export_users
-	csv_string = FasterCSV.generate do |csv|
+#	csv_string = FasterCSV.generate do |csv|
+#  	cols = ["column one", "column two", "column three"]
+#  	csv << cols
 
-  	cols = ["column one", "column two", "column three"]
+#	  	User.all.each do |entry|                
+ #   		csv << [entry.email, entry.email, entry.id ]
+  #		end
 
-  	csv << cols
+  #		@idle = "data-#{Time.now.to_date.to_s}.csv"    
+  #		   send_file csv_string, :type => "text/plain", :filename=>"entries.csv",:disposition => 'attachment'
 
-  	User.all.each do |entry|                
-    	csv << [entry.email, entry.email, entry.id ]
-  	end
-
-  	filename = "data-#{Time.now.to_date.to_s}.csv"    
-  	send_data(csv_string, :type => 'text/csv; charset=utf-8; header=present', :filename => filename)  
-
-	end
+#	end
 	end
 
 	def self.buscar(codigo,institucion,incio,final)
