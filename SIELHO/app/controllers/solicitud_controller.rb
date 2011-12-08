@@ -23,7 +23,7 @@ class SolicitudController < ApplicationController
 			Mensaje.NuevaSolicitud(params)
 			AplicationMailer.enviarcorreo(params["solicitante"]["email"]).deliver
 		else
-			flash[:alert] = Mensaje.solicitudValida(params)
+			@errors = Mensaje.solicitudValida(params)
 			unless params[:documento][:tipoDocumento_id].blank?
 				if TipoDocumento.find(params[:documento][:tipoDocumento_id]).tipoPersona == 1
 					@solicitante = Solicitante.new

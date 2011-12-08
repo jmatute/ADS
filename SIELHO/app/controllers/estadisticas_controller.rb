@@ -49,6 +49,7 @@ class EstadisticasController < ApplicationController
  
 	  send_data csv_data, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{@outfile}"
  
+
 	end
 	  
 	
