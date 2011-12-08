@@ -19,3 +19,38 @@
 2011-12-08T03:20:21-08:00	1	admin	tipo_documento	fechaMod	N/A	2011-12-08 11:20:20 UTC	creacion de tipoDocumento
 2011-12-08T03:20:21-08:00	1	admin	tipo_documento	usuarioRes	N/A	1	creacion de tipoDocumento
 2011-12-08T03:20:21-08:00	1	admin	tipo_documento	usuarioMod	N/A	1	creacion de tipoDocumento
+2011-12-08T12:13:42-08:00	2	oip	documento	numero	N/A	0801-1995-23245	creacion de documento
+2011-12-08T12:13:42-08:00	2	oip	documento	fechaCrear	N/A	2011-12-08 20:13:42 UTC	creacion de documento
+2011-12-08T12:13:42-08:00	2	oip	documento	fechaMod	N/A	2011-12-08 20:13:42 UTC	creacion de documento
+2011-12-08T12:13:42-08:00	2	oip	documento	usuarioRes	N/A	2	creacion de documento
+2011-12-08T12:13:42-08:00	2	oip	documento	usuarioMod	N/A	2	creacion de documento
+2011-12-08T12:13:42-08:00	2	oip	documento	tipoDocumento	N/A	1	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	numero	N/A	0801-1995-23245	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	fechaCrear	N/A	2011-12-08 20:18:00 UTC	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	fechaMod	N/A	2011-12-08 20:18:00 UTC	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	usuarioRes	N/A	2	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	usuarioMod	N/A	2	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	documento	tipoDocumento	N/A	1	creacion de documento
+2011-12-08T12:18:00-08:00	2	oip	solicitante	documento_id	N/A	5	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	nombre	N/A	balhs	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	tipo_solicitante	N/A	1	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	ocupacion_id	N/A	0	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	genero	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	nivel educativo	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	telefono	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	email	N/A	toto_007hn@hotmail.com	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	direccion_postal	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	fax	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	poder	N/A	N/A	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	fechaCrear	N/A	2011-12-08 20:18:00 UTC	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	fechaMod	N/A	2011-12-08 20:18:00 UTC	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	usuarioRes	N/A	2	creacion de solicitante
+2011-12-08T12:18:00-08:00	2	oip	solicitante	usuarioMod	N/A	2	creacion de solicitante
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	descripcion	N/A	Una ley	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	noLEY	N/A	01-800	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	noAcuerdo	N/A	001-2010	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	fechaGaceta	N/A	2008-06-12	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	fechaCrear	N/A	2011-12-08 20:19:50 UTC	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	fechaMod	N/A	2011-12-08 20:19:50 UTC	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	usuarioRes	N/A	1	creacion de leyacuerdo
+2011-12-08T12:19:50-08:00	1	admin	leyacuerdo	usuarioMod	N/A	1	creacion de leyacuerdo

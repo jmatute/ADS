@@ -21,12 +21,14 @@ class Mensaje < ActiveRecord::Base
 		AplicationMailer.nueva(User.find(o.usuario_id).email,Institucion.find(institucion).nombre).deliver
 									
 				crear.save()
+				crear.logC()
 			end
 		end
 		crear = Mensaje.new(:emisor_id=>0,:destinatario_id=>Administrador.last.usuario_id,:titulo=>"Nueva Solicitud de Informacion",:texto=>x,:fecha=>DateTime.now,
 									:leido=>false,:borrado=>false,:fechaCrear=>DateTime.now,:fechaMod=>DateTime.now,:usuarioRes=>0,:usuarioMod=>0)
 		#AplicationMailer.nueva(User.find(Administrador.last.usuario_id).email,Institucion.find(institucion).nombre)
 		crear.save()
+		crear.logC()
 	end
 
 

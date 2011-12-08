@@ -10,34 +10,49 @@ class Solicitante < ActiveRecord::Base
 		unless doc["telefono"].blank?
 			cadena = cadena + "telefono,"
 			self.telefono = doc["telefono"]
+		else
+			self.telefono = "N/A"
 		end
 		unless doc["email"].blank?
 			cadena = cadena + "email,"
 			self.email = doc["email"]
+		else
+			self.email = "N/A"
 		end
 		unless doc["fax"].blank?
 			cadena = cadena + "fax,"
 			self.fax = doc["fax"]
+		else
+			self.fax = "N/A"
 		end
 		unless doc["direccion_postal"].blank?
 			cadena = cadena + "postal,"
 			self.direccion_postal = doc["direccion_postal"]
+		else
+			self.direccion_postal = "N/A"
 		end
 		
 		
 		unless doc["genero"].blank?
 			self.genero = doc["genero"]
+		else
+			self.genero = "N/A"
 		end
+
 		unless doc["ocupacion_id"].blank?
 			self.ocupacion_id = doc["ocupacion_id"]
+		else
+			self.ocupacion_id = 0
 		end
 		unless doc["nivel_educativo"].blank?
 			self.nivel_educativo = doc["nivel_educativo"]
+		else
+			self.nivel_educativo = "N/A"
 		end
 		unless doc["poder"].blank?
 			self.poder = doc["poder"]
 		else
-			self.poder = "N\\A"
+			self.poder = "N/A"
 		end
 
 		

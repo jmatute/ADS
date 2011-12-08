@@ -80,6 +80,7 @@ class SolicitudController < ApplicationController
 			solicitud.expediente_id = expediente.id
 			solicitud.save
 			@s = solicitud
+			@s.logC
 			AplicationMailer.recibo(solicitante.email).deliver	
 			temp = Mensaje.find(params[:mensaje_id])
 			temp.expediente_id = expediente.id

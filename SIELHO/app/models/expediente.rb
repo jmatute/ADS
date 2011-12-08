@@ -14,6 +14,33 @@ class Expediente < ActiveRecord::Base
 		
 	end
 
+	def logC
+#Expediente(id: integer, estado_id: integer, solicitud_id: integer, creador: integer, fechaEntrega: datetime, fechaEmision: datetime, fechaCrear: datetime, fechaMod: datetime, usuarioRes: integer, usuarioMod: integer, created_at: datetime, updated_at: datetime)
+
+		file = File.open("public/historial", "a")
+		fecha = DateTime.now.to_s
+		mod = self.usuarioRes
+		rol = User.find(self.usuarioRes).rol.nombre
+		descripcion = "creacion de solicitud"
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "estado_id" + "\t" + "N/A" + "\t" + self.estado_id.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "solicitud_id" + "\t" + "N/A" + "\t" + self.solicitud_id.to_s + "\t" + descripcion + "\n")
+
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "creador" + "\t" + "N/A" + "\t" + self.creador.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fechaEntrega" + "\t" + "N/A" + "\t" + self.fechaEntrega.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fechaEmision" + "\t" + "N/A" + "\t" + self.fechaEmision.to_s + "\t" + descripcion + "\n")
+
+
+
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fechaCrear" + "\t" + "N/A" + "\t" + self.fechaCrear.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fechaMod" + "\t" + "N/A" + "\t" + self.fechaMod.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "usuarioRes" + "\t" + "N/A" + "\t" + self.usuarioRes.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "usuarioMod" + "\t" + "N/A" + "\t" + self.usuarioMod.to_s + "\t" + descripcion + "\n")
+
+		file.close()
+
+
+	end	
+	
     
 
 
