@@ -24,11 +24,6 @@ class Solicitante < ActiveRecord::Base
 			self.direccion_postal = doc["direccion_postal"]
 		end
 		
-		if cadena.eql? ""
-			self.modo_contacto = "N\\A"
-		else 
-			self.modo_contacto = cadena
-		end
 		
 		unless doc["genero"].blank?
 			self.genero = doc["genero"]

@@ -7,7 +7,6 @@ class CreateOcupacions < ActiveRecord::Migration
       t.integer :usuarioRes
       t.integer :usuarioMod
 
-      t.timestamps
     end
   end
 

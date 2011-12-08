@@ -7,7 +7,6 @@ class Documento < ActiveRecord::Base
         self.fechaCrear = DateTime.now
         self.fechaMod = DateTime.now
 		self.save
-
 	end
 
 end

@@ -12,9 +12,4 @@ class Estado < ActiveRecord::Base
 		return x
 	end
 
-	def posible()
-
-
-
-	end
 end

@@ -109,5 +109,12 @@ class Mensaje < ActiveRecord::Base
 		temp.leido = false
 		temp.borrado = false
 		temp.save
+		if temp.destinatario_id.eql? 0
+			unless temp.expediente_id.blank?
+				s = Solicitud.find_by_expediente_id(temp.expediente_id)
+				soli = Solicitante.find(s.solicitante_id)
+				AplicationMailer.correo_solicitante( soli.email,temp.document_file_name, "public/mensajes/documents/#{temp.id}/original_#{temp.document_file_name}" ,s.numero,temp.texto,temp.titulo).deliver
+			end
+		end
 	end
 end

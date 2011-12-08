@@ -8,7 +8,6 @@ class CreateRols < ActiveRecord::Migration
       t.integer :usuarioRes
       t.integer :usuarioMod
 
-      t.timestamps
     end
   end
 

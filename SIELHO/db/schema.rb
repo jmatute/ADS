@@ -171,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.integer  "destinatario_id"
     t.string   "titulo"
     t.text     "texto"
-    t.binary   "documento_adjunto"
     t.datetime "fecha"
     t.integer  "expediente_id"
     t.datetime "fechaCrear"
@@ -194,8 +193,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "oips", :force => true do |t|
@@ -212,8 +209,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "permisos", :force => true do |t|
@@ -223,8 +218,11 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  end
+
+  create_table "permisos_rols", :id => false, :force => true do |t|
+    t.integer "rol_id"
+    t.integer "permiso_id"
   end
 
   create_table "rols", :force => true do |t|
@@ -234,15 +232,12 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "solicitantes", :force => true do |t|
     t.string   "nombre"
     t.integer  "documento_id"
     t.integer  "tipo_solicitante"
-    t.text     "modo_contacto"
     t.integer  "ocupacion_id"
     t.string   "genero"
     t.string   "nivel_educativo"
@@ -256,8 +251,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
     t.integer  "responsable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "solicituds", :force => true do |t|
@@ -273,8 +266,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
     t.integer  "responsable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "numero"
     t.boolean  "finalizada"
   end
@@ -287,8 +278,6 @@ ActiveRecord::Schema.define(:version => 20111206160233) do
     t.datetime "fechaMod"
     t.integer  "usuarioRes"
     t.integer  "usuarioMod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

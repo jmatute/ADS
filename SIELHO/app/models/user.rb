@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
 		x = []
 		todos = User.all
 		normal = User.find usuario
+
+
+		if normal.rol.nombre.eql? "oip"
+			x << ["solicitante",0]
+		end
+
 		todos.each do |i|
 			if normal.rol.nombre.eql? "admin"
 				if i.rol.nombre.eql? "oip"
