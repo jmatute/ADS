@@ -70,15 +70,15 @@ class Solicitud < ActiveRecord::Base
 		rol = User.find(self.usuarioRes).rol.nombre
 		descripcion = "creacion de solicitud"
 		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "descripcion" + "\t" + "N/A" + "\t" + self.descripcion + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "solicitante_id" + "\t" + "N/A" + "\t" + self.solicitante_id + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" + "\t" + "solicitante_id" + "\t" + "N/A" + "\t" + self.solicitante_id.to_s + "\t" + descripcion + "\n")
 
 		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "lugar" + "\t" + "N/A" + "\t" + self.lugar + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "institucion_id" + "\t" + "N/A" + "\t" + self.institucion_id + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "institucion_id" + "\t" + "N/A" + "\t" + self.institucion_id.to_s + "\t" + descripcion + "\n")
 
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fecha" + "\t" + "N/A" + "\t" + self.fecha + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "clasificacion_id" + "\t" + "N/A" + "\t" + self.clasificacion_id + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "expediente_id" + "\t" + "N/A" + "\t" + self.expediente_id + "\t" + descripcion + "\n")
-		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "responsable" + "\t" + "N/A" + "\t" + self.responsable + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "fecha" + "\t" + "N/A" + "\t" + self.fecha.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "clasificacion_id" + "\t" + "N/A" + "\t" + self.clasificacion_id.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "expediente_id" + "\t" + "N/A" + "\t" + self.expediente_id.to_s + "\t" + descripcion + "\n")
+		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "responsable" + "\t" + "N/A" + "\t" + self.responsable.to_s + "\t" + descripcion + "\n")
 		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "numero" + "\t" + "N/A" + "\t" + self.numero + "\t" + descripcion + "\n")
 		file.write(fecha + "\t" +mod.to_s+ "\t" +rol.to_s+ "\t" + "solicitud" +  "\t" + "finalizada" + "\t" + "N/A" + "\t" + "false" + "\t" + descripcion + "\n")
 

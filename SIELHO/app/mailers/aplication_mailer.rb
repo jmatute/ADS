@@ -81,7 +81,9 @@ class AplicationMailer < ActionMailer::Base
   end
 
  def correo_solicitante(correo, adjunto,path,numero,texto,titulo)
-		attachments[adjunto] = File.read(path)
+		unless adjunto.blank?
+			attachments[adjunto] = File.read(path)
+		end
 		@texto = texto
 		@titulo = titulo
 		@numero = numero
