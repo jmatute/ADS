@@ -14,8 +14,7 @@ class Solicitud < ActiveRecord::Base
   	end
 
   	filename = "data-#{Time.now.to_date.to_s}.csv"    
-  	send_data(csv_string, :type => 'text/csv; charset=utf-8; header=present', :filename => filename)  
-
+ 		return {:archivo=>csv_string, :type => 'text/csv; charset=utf-8; header=present', :filename => filename}
 	end
 	end
 

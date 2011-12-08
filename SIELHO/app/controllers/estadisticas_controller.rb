@@ -1,6 +1,7 @@
 class EstadisticasController < ApplicationController
   def index
-   Solicitud.export_users
+  	s =  Solicitud.export_users
+	p s
   end
 
 end
