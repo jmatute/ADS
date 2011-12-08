@@ -51,6 +51,8 @@ class EstadisticasController < ApplicationController
  
 
 	end
+
+
 	  
 	
   end
