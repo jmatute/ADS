@@ -14,6 +14,9 @@ class Expediente < ActiveRecord::Base
 		
 	end
 
+    
+
+
 	def cambiadaClasificacion(id)
 		clasificacion = Clasificacion.find(id).nombre
 		if clasificacion.eql?"publica"		

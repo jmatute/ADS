@@ -33,6 +33,7 @@ class ParametrizacionController < ApplicationController
 			@departamento = Departamento.new(params[:departamento])
 			@departamento.agregar(  Oip.find_by_usuario_id(current_user.id).institucion_id,current_user.id)
 			if @departamento.save()
+				@departamento.logC()
 				flash[:notice] = "Nueva Departamento creado "
 			elsif
 				render :action => "newdepartamento"
@@ -58,7 +59,8 @@ class ParametrizacionController < ApplicationController
 			@estado.fechaCrear = DateTime.now
 			@estado.fechaMod = DateTime.now
 			if @estado.save()
-					flash[:notice] = "Nuevo Estado creado "
+				@estado.logC	
+				flash[:notice] = "Nuevo Estado creado "
 			elsif
 					render :action => "newestado"
 			end	
@@ -72,6 +74,7 @@ class ParametrizacionController < ApplicationController
 			@tipodocumento.fechaCrear = DateTime.now
 			@tipodocumento.fechaMod = DateTime.now
 			if @tipodocumento.save()
+				@tipodocumento.logC
 				flash[:notice] = "Nuevo Tipo Documento creado "
 			elsif
 	   			render :action => "newtipodocumento"	
@@ -84,6 +87,7 @@ class ParametrizacionController < ApplicationController
 			@leyAcuerdo.fechaCrear = DateTime.now
 			@leyAcuerdo.fechaMod = DateTime.now
 			if @leyAcuerdo.save()
+				@leyAcuerdo.logC
 				flash[:notice] = "Nueva Ley/Acuerdo creado "
 			elsif
 	   			render :action => "newleyacuerdo"	
@@ -94,6 +98,7 @@ class ParametrizacionController < ApplicationController
 			@institucion = Institucion.new(params[:institucion])
 			@institucion.agregar(current_user.id)
 			if @institucion.save()
+				@institucion.logC
 				flash[:notice] = "Nueva Institucion creada "
 			elsif
 				render :action => "newinstitucion"
