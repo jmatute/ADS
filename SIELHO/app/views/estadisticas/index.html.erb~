@@ -1,2 +1,21 @@
 <h2 class= "titulo">Estadisticas</h2>
 <h4 class= "titulo"> Seleccione los parametros para realizar el reporte</h4>
+
+<div class= "buscarForm2">
+<% form_tag estadisticas_index_path, :method => 'get' do %>
+   <table>
+   <tr>
+    <td><p>Desde:</p>  <input type="text" name = "final" size="12" id="inputField" /> <td/>
+    <td><p>Hasta:</p>  <input type="text" name ="inicio" size="12" id="inputField2" /> <td/>
+    </tr>
+    <tr> 
+  <div class= "maria">  	
+<td> <p> Seleccion Institucion Obligada: </p> <%= collection_select(:institucion,:institucion, Institucion.all, :id, :nombre) %><td/>
+     </tr>
+</div>
+	</table>
+      
+   <br/> <%= submit_tag "Exportar", :name => nil %><br/>
+  
+<% end %>
+</div>

@@ -1,4 +1,27 @@
 class Solicitud < ActiveRecord::Base
+	require 'fastercsv'
+
+	def self.export_to_csv
+	  @users = User.all
+	  @outfile = "members_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+ 
+	csv_data = FasterCSV.generate do |csv|
+	csv << ["Username","Email"]
+	
+    @users.each do |user|
+      csv << [
+      user.username,
+      user.email, 
+      ]
+    end
+  end
+ 
+  send_file csv_data,
+    :type => 'text/csv; charset=iso-8859-1; header=present',
+    :disposition => "attachment; filename=#{@outfile}"
+ 
+  flash[:notice] = "Export complete!"
+end
 
 	def self.buscar(codigo,institucion,incio,final)
 		solicitudes = []		
@@ -26,7 +49,7 @@ class Solicitud < ActiveRecord::Base
 					solicitudes2 = []
 					solicitudes.each do |y|
 					temp = y.fecha.strftime("%m-%d-%Y")
-					  if temp >= incio.to_s && temp <= final.to_s
+					  if temp >= final.to_s && temp <= incio.to_s
 					      solicitudes2 << y
 					  end
 					end
@@ -58,6 +81,17 @@ class Solicitud < ActiveRecord::Base
 		self.save	
 	end
 
+
+	def self.posibles(institucion)
+		a = Oip.where(:institucion_id=>institucion)
+		x = []
+		a.each do |o|
+			if User.find(o.usuario_id).activo
+				x << ["#{o.pnombre} #{o.papellido}",o.usuario_id]
+			end
+		end
+		return x
+	end
 	def self.solicitudes(usuario)
 
 		x =  User.find(usuario)

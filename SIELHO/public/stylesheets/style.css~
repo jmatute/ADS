@@ -12,6 +12,25 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 	   
 	}
         /* menu */
+	.buscarForm {
+	       	
+	 	margin-top: -15px;	
+	 	margin-left: 65px;	
+	}
+
+	.buscarForm td {
+		padding: 10px;
+	}	
+	.buscarForm input,select {
+	
+		
+		font-size:12px;
+	}
+
+	.buscarForm input[type= "submit"] {
+		margin-left: 40%;
+	}
+
         #menu{ margin:0px; padding:0px; list-style:none; color:#fff; line-height:45px; display:inline-block; float:left; z-index:1000; width: 98%; background-color:#172322;
 	  
 	  border-radius: 0em 0em 0em 4em;
@@ -36,11 +55,11 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 	}
 	
 	
-	.solicitud input {
+	.solicitud input,select {
 	     border: 1px solid #CBCBCB;
 	   padding: 6px;
 	  color: gray;
-	  font-size: 16px;
+	  font-size: 14px;
 	  background-color: #FCFCFC;
 	  -moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -68,8 +87,9 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 /* 	 */
 	 .mensajes2 {
 	    border: 1px solid rgba(255,0,0,0);
-	    background-color: rgba(255,0,0,0.25);
+	    background-color: rgba(255,0,0,0.15);
 	    width: 82%;
+            font-color:green;
 	   text-align: center;
 	   margin-left:auto;
 	   margin-right:auto;
@@ -83,8 +103,9 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 	
 	.mensajes {
 	    border: 1px solid rgba(0,255,0,0);
-	    background-color: rgba(0,255,0,0.25);
+	    background-color: rgba(0,255,0,0.15);
 	    width: 82%;
+	    font-color:red;
 	   text-align: center;
 	   margin-left:auto;
 	   margin-right:auto;
@@ -119,7 +140,7 @@ body { font-family:Arial, Helvetica, Sans-Serif; font-size:14px; margin:0px 20px
 	-webkit-border-radius: 2px;
 	-border-radius: 2px;  
 	}
-	input {
+	input,select {
 	  border: 1px solid #CBCBCB;
 	   padding: 6px;
 	  color: gray;
@@ -227,9 +248,19 @@ ul.osx-dock p {
   
 }  
   
+.buscarForm2 select { 
+    font-size: 14px;
+    width: 300px;
+  
+}
+
+.buscarForm2 {
+  margin-left:320px;
+  
+}
 ul.osx-dock li:hover span { z-index: 2;display: inline; }
-div#dockContainer { position: fixed; bottom: 12px; height: 120px; padding: 90px 0 0; text-align: center; -webkit-border-radius: 6px; -moz-border-radius: 6px; width: 100%; line-height: 1; z-index: 100; }
-div#dockWrapper { width: auto; display: inline-block; position: relative; border-bottom: solid 2px rgba(255,255,255,.35); line-height: 0; }
+div#dockContainer {z-index: 2; position: fixed; bottom: 12px; height: 120px; padding: 90px 0 0; text-align: center; -webkit-border-radius: 6px; -moz-border-radius: 6px; width: 100%; line-height: 1; z-index: 100; }
+div#dockWrapper { z-index: 2;width: auto; display: inline-block; position: relative; border-bottom: solid 2px rgba(255,255,255,.35); line-height: 0; }
 
 .cuerpoDoc {
   margin-left:auto;

@@ -6,6 +6,8 @@ gem 'json'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #gem 'simple_xlsx'
 gem 'fastercsv'
+gem "spreadsheet", "0.6.5.8"
+gem "to_xls"
 gem "rake","0.8.7"
 gem 'thin'
 gem 'devise'
